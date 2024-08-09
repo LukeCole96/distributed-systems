@@ -7,6 +7,14 @@ plugins {
 group = 'com'
 version = '0.0.1-SNAPSHOT'
 
+jar {
+	manifest {
+		attributes(
+				'Main-Class': 'app.ChannelMetadataStoreApplication'
+		)
+	}
+}
+
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)

@@ -34,7 +34,7 @@ public class PrivateEndpointsControllerTest {
     }
 
     @Test
-    public void whenMetricsEndpointCalled_ShouldReturnMetrics() throws Exception {
+    public void getMetricsEndpointCalled_ShouldReturnMetrics() throws Exception {
         this.mockMvc.perform(get("/private/metrics"))
                 .andDo(print())
                 .andExpect(status().isOk())

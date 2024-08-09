@@ -40,4 +40,12 @@ public class PrivateEndpointsControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("jvm.buffer.memory.used")));
     }
+
+    @Test
+    public void getStatus_ShouldReturnAppStatus() throws Exception {
+        this.mockMvc.perform(get("/private/status"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("OK")));
+    }
 }

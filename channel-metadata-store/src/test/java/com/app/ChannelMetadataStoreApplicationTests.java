@@ -1,4 +1,4 @@
-package com.channel_metadata_store;
+package com.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

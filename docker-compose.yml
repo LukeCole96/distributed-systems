@@ -3,15 +3,21 @@ services:
     build: channel-metadata-store
     ports:
       - 8080:8080
+  
   prometheus:
     image: prom/prometheus
     ports:
       - '9090:9090'
     volumes:
       - ./prometheus:/etc/prometheus
+    extra_hosts:
+      - 'host.docker.internal:host-gateway' #USED TO ALLOW COMS WITH APP
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     restart: always
+    networks:
+      - localprom
+  
   alertmanager:
     image: prom/alertmanager
     ports:
@@ -21,6 +27,7 @@ services:
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
     restart: always
+  
   grafana:
       image: grafana/grafana-enterprise
       ports:
@@ -33,6 +40,10 @@ services:
         - GF_INSTALL_PLUGINS=grafana-piechart-panel
       volumes:
         - './datasources:/etc/grafana/provisioning/datasources'
+      networks:
+        - localprom
+  
+  
   zookeeper:
     image: wurstmeister/zookeeper:latest
     ports:
@@ -52,3 +63,7 @@ services:
       KAFKA_CREATE_TOPICS: "my-topic:1:1"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  
+networks:
+  localprom:
+    driver: bridge

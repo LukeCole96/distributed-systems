@@ -10,9 +10,7 @@ import java.util.List;
 
 @Repository
 public interface ChannelMetadataRepository extends JpaRepository<ChannelMetadataEntity, Long> {
-    List<ChannelMetadataEntity> getAllChannelMetadata(String territory);
-    ChannelMetadataEntity findChannelMetadata(long id);
-
-
-    // Custom query methods (if necessary)
+//    List<ChannelMetadataEntity> getAllChannelMetadata(String territory);
+//    ChannelMetadataEntity findChannelMetadata(long id);
+// ^ not needed, repository gives service an ability to find info by ID
 }

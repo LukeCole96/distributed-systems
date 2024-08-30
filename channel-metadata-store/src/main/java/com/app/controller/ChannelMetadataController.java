@@ -21,12 +21,12 @@ public class ChannelMetadataController {
 
     @PostMapping("/{countryCode}")
     public ResponseEntity<String> saveCountryData(@PathVariable String countryCode, @RequestBody ChannelMetadataRequest request) {
-        channelMetadataService.createChannelMetadata(countryCode, request);
+        channelMetadataService.saveOrUpdateChannelMetadata(countryCode, request);
         return ResponseEntity.ok("Data successfully posted");
     }
 
-    @GetMapping("/{countryCode}")
-    public ResponseEntity<String> getCountryData(@PathVariable String countryCode) {
+    @GetMapping("/{id}")
+    public ResponseEntity<String> getCountryData(@PathVariable String id) {
         log.info("hitttt");
         return ResponseEntity.ok("bleh");
     }

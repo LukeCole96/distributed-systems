@@ -3,11 +3,37 @@ services:
     build: channel-metadata-store
     ports:
       - 8080:8080
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/$DATABASE_NAME
+      - SPRING_DATASOURCE_USERNAME=$YOUR_USERNAME
+      - SPRING_DATASOURCE_PASSWORD=$YOUR_PASSWORD
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
   
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      # - POSTGRES_USER=$YOUR_USERNAME
+      # - POSTGRES_PASSWORD=$YOUR_PASSWORD
+      # - POSTGRES_DB=$YOUR_DB_NAME
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=channel-metadata-db
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
   prometheus:
     image: prom/prometheus
     ports:
       - '9090:9090'
+    links:
+      - alertmanager
     volumes:
       - ./prometheus:/etc/prometheus
     extra_hosts:
@@ -29,20 +55,19 @@ services:
     restart: always
   
   grafana:
-      image: grafana/grafana-enterprise
-      ports:
-        - '3000:3000'
-      depends_on:
-        - prometheus
-      environment:
-        #      - GF_SERVER_ROOT_URL=http://my.grafana.server/
-        #      - GF_INSTALL_PLUGINS=grafana-clock-panel
-        - GF_INSTALL_PLUGINS=grafana-piechart-panel
-      volumes:
-        - './datasources:/etc/grafana/provisioning/datasources'
-      networks:
-        - localprom
-  
+    image: grafana/grafana-enterprise
+    ports:
+      - '3000:3000'
+    depends_on:
+      - prometheus
+    environment:
+      #      - GF_SERVER_ROOT_URL=http://my.grafana.server/
+      #      - GF_INSTALL_PLUGINS=grafana-clock-panel
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+    volumes:
+      - './datasources:/etc/grafana/provisioning/datasources'
+    networks:
+      - localprom
   
   zookeeper:
     image: wurstmeister/zookeeper:latest

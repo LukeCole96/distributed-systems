@@ -8,6 +8,11 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.List;
 
 @Service
 public class ChannelMetadataService {
@@ -19,16 +24,53 @@ public class ChannelMetadataService {
         this.channelMetadataRepository = channelMetadataRepository;
     }
 
-    @CachePut(value = "distributed-cache", key = "#entity.id")
+    @CachePut(value = "distributed-cache", key = "#request.countryCode")
     @Transactional
-    public void saveOrUpdateChannelMetadata(String countryCode, ChannelMetadataRequest request) {
-        // Write-through: Hazelcast automatically handles the cache update
-        ChannelMetadataEntity entity = new ChannelMetadataEntity(countryCode, request);
-        channelMetadataRepository.save(entity);
+    public ChannelMetadataRequest saveOrUpdateChannelMetadata(String countryCode, ChannelMetadataRequest request) {
+        ChannelMetadataEntity existingEntity = channelMetadataRepository.findByCountryCode(countryCode);
+
+        // If the entity exists, update it; otherwise, create a new one
+        ChannelMetadataEntity entity;
+        if (existingEntity != null) {
+            entity = existingEntity;
+            entity.setMetadata(convertToJson(request.getMetadata()));
+            entity.setProduct(request.getProduct());
+        } else {
+            entity = new ChannelMetadataEntity(request);
+        }
+
+        ChannelMetadataEntity savedEntity = channelMetadataRepository.save(entity);
+        return mapEntityToModel(savedEntity);
+    }
+    @Cacheable(value = "distributed-cache", key = "#id")
+    public ChannelMetadataRequest getChannelMetadataById(Long id) {
+        ChannelMetadataEntity entity = channelMetadataRepository.findById(id).orElse(null);
+        return entity != null ? mapEntityToModel(entity) : null;
     }
 
-    @Cacheable(value = "distributed-cache", key = "#id")
-    public ChannelMetadataEntity getChannelMetadataById(Long id) {
-        return channelMetadataRepository.findById(id).orElse(null);  // Returns null if not found
+    private ChannelMetadataRequest mapEntityToModel(ChannelMetadataEntity entity) {
+        ChannelMetadataRequest model = new ChannelMetadataRequest();
+        model.setCountryCode(entity.getCountryCode());
+        model.setProduct(entity.getProduct());
+        model.setMetadata(parseJsonToChannels(entity.getMetadata()));
+        return model;
+    }
+
+    private List<ChannelMetadataRequest.Channel> parseJsonToChannels(String json) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.readValue(json, new TypeReference<List<ChannelMetadataRequest.Channel>>(){});
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to parse JSON", e);
+        }
+    }
+
+    private String convertToJson(List<ChannelMetadataRequest.Channel> channels) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writeValueAsString(channels);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to convert metadata to JSON", e);
+        }
     }
 }

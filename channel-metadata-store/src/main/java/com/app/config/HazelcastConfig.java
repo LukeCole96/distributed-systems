@@ -10,9 +10,8 @@ public class HazelcastConfig {
 
     @Bean
     public Config hazelcastConfiguration() {
-        Config config = new Config();
-
-        config.setInstanceName("hazelcast-instance")
+        Config config = new Config()
+                .setInstanceName("hazelcast-instance")
                 .addMapConfig(new MapConfig()
                         .setName("distributed-cache")
                         .setTimeToLiveSeconds(3600)

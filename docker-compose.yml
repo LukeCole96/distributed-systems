@@ -1,32 +1,63 @@
 services:
+  db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    restart: always
+    # command: ["/bin/bash", "/docker-entrypoint-initdb.d/init.sh"]
+    # env_file: ./.env
+    environment:
+      MYSQL_DATABASE: 'channel_metadata_db'
+      # So you don't have to use root, but you can if you like
+      # MYSQL_USER: 'user'
+      # You can use whatever password you like
+      # MYSQL_PASSWORD: 'none'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : <MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+  
   channel-metadata-store:
     build: channel-metadata-store
     ports:
       - 8080:8080
     depends_on:
       - db
+      - hazelcast
     environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/$DATABASE_NAME
-      - SPRING_DATASOURCE_USERNAME=$YOUR_USERNAME
-      - SPRING_DATASOURCE_PASSWORD=$YOUR_PASSWORD
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/channel_metadata_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - HAZELCAST_URL=hazelcast:5701
   
-  db:
-    image: postgres
-    container_name: db
-    environment:
-      # - POSTGRES_USER=$YOUR_USERNAME
-      # - POSTGRES_PASSWORD=$YOUR_PASSWORD
-      # - POSTGRES_DB=$YOUR_DB_NAME
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=channel-metadata-db
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    hazelcast:
+      image: hazelcast/hazelcast:5.0.3
+      container_name: hazelcast
+      ports:
+        - "5701:5701"
+      networks:
+        - hazelcast-network
+
+  # db:
+  #   image: postgres
+  #   container_name: db
+  #   environment:
+  #     - POSTGRES_USER=user
+  #     - POSTGRES_PASSWORD=password
+  #     - POSTGRES_DB=channel_metadata_db
+  #   volumes:
+  #     - ./init:/docker-entrypoint-initdb.d
+  #   ports:
+  #     - "5432:5432"
+
+
 
   prometheus:
     image: prom/prometheus
@@ -91,4 +122,6 @@ services:
   
 networks:
   localprom:
+    driver: bridge
+  hazelcast-network:
     driver: bridge

@@ -1,9 +1,18 @@
 package com.app.model;
 
 import lombok.Data;
+import java.util.List;
 
 @Data
 public class ChannelMetadataRequest {
-    private String metadata;
-    private String product; //comes from client in a header
+    private String countryCode;
+    private List<Channel> metadata;
+    private String product;
+
+    @Data
+    public static class Channel {
+        private String name;
+        private String language;
+        private String type;
+    }
 }

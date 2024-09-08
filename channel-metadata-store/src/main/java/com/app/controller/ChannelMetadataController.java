@@ -26,8 +26,14 @@ public class ChannelMetadataController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> getCountryData(@PathVariable String id) {
-        log.info("hitttt");
-        return ResponseEntity.ok("bleh");
+    public ResponseEntity<ChannelMetadataRequest> getCountryData(@PathVariable Long id) {
+        log.info("Fetching data for ID: {}", id);
+        ChannelMetadataRequest channelData = channelMetadataService.getChannelMetadataById(id);
+
+        if (channelData != null) {
+            return ResponseEntity.ok(channelData);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

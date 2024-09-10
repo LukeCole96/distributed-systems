@@ -1,0 +1,41 @@
+<hazelcast xmlns="http://www.hazelcast.com/schema/config"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.hazelcast.com/schema/config
+                              http://www.hazelcast.com/schema/config/hazelcast-config-5.0.xsd">
+
+    <!-- Network configuration -->
+    <network>
+        <interfaces>
+            <interface>0.0.0.0</interface> <!-- Accept connections from any IP address -->
+        </interfaces>
+        <port>5701</port> <!-- Port for Hazelcast connections -->
+   
+    </network>
+
+    <!-- Define Hazelcast cluster settings -->
+    <properties>
+        <property name="hazelcast.logging.type">log4j2</property>
+        <property name="hazelcast.local.public.address">192.168.1.2</property>
+            <property name="hazelcast.diagnostics.enabled">true</property>
+            <property name="hazelcast.diagnostics.directory">/opt/hazelcast/logs</property>
+            <!-- Adjust the frequency and enable/disable specific diagnostics -->
+            <property name="hazelcast.diagnostics.metric.level">DEBUG</property>
+            <property name="hazelcast.diagnostics.invocation.sample.period.seconds">30</property>
+    </properties>
+
+    <!-- Define the map configuration -->
+    <map name="distributed-cache">
+        <in-memory-format>BINARY</in-memory-format>
+        <backup-count>1</backup-count>
+        <async-backup-count>0</async-backup-count>
+        <time-to-live-seconds>3600</time-to-live-seconds>
+        <max-idle-seconds>1800</max-idle-seconds>
+    </map>
+
+    <!-- Metrics configuration -->
+    <metrics enabled="true">
+        <jmx enabled="true"/>
+    </metrics>
+
+</hazelcast>
+

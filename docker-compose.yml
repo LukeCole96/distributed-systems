@@ -1,13 +1,84 @@
 services:
+  db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: db
+    restart: always
+    # command: ["/bin/bash", "/docker-entrypoint-initdb.d/init.sh"]
+    # env_file: ./.env
+    environment:
+      MYSQL_DATABASE: 'channel_metadata_db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'none'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : <MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+    networks:
+      - hazelcast-network
+  
   channel-metadata-store:
     build: channel-metadata-store
     ports:
       - 8080:8080
-  
+    depends_on:
+      - db
+      - hazelcast
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/channel_metadata_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - HAZELCAST_URL=hazelcast:5701
+    networks:
+      - hazelcast-network
+      
+  hazelcast:
+    image: hazelcast/hazelcast:5.0.3
+    # container_name: hazelcast
+    volumes:
+      - ./hazelcast/hazelcast.xml:/opt/hazelcast/config/hazelcast.xml
+      - ./hazelcast/logs:/opt/hazelcast/logs
+    command: hz start -c /opt/hazelcast/config/hazelcast.xml
+    environment:
+      - hazelcast.config=/opt/hazelcast/config/hazelcast.xml
+      - hazelcast.diagnostics.directory=/opt/hazelcast/logs
+    ports:
+      - "5701"
+    networks:
+      - hazelcast-network
+    deploy:
+      replicas: 3  # Number of Hazelcast nodes
+
+  # db:
+  #   image: postgres
+  #   container_name: db
+  #   environment:
+  #     - POSTGRES_USER=user
+  #     - POSTGRES_PASSWORD=password
+  #     - POSTGRES_DB=channel_metadata_db
+  #   volumes:
+  #     - ./init:/docker-entrypoint-initdb.d
+  #   ports:
+  #     - "5432:5432"
+
+
+
   prometheus:
     image: prom/prometheus
     ports:
       - '9090:9090'
+    links:
+      - alertmanager
     volumes:
       - ./prometheus:/etc/prometheus
     extra_hosts:
@@ -29,20 +100,19 @@ services:
     restart: always
   
   grafana:
-      image: grafana/grafana-enterprise
-      ports:
-        - '3000:3000'
-      depends_on:
-        - prometheus
-      environment:
-        #      - GF_SERVER_ROOT_URL=http://my.grafana.server/
-        #      - GF_INSTALL_PLUGINS=grafana-clock-panel
-        - GF_INSTALL_PLUGINS=grafana-piechart-panel
-      volumes:
-        - './datasources:/etc/grafana/provisioning/datasources'
-      networks:
-        - localprom
-  
+    image: grafana/grafana-enterprise
+    ports:
+      - '3000:3000'
+    depends_on:
+      - prometheus
+    environment:
+      #      - GF_SERVER_ROOT_URL=http://my.grafana.server/
+      #      - GF_INSTALL_PLUGINS=grafana-clock-panel
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+    volumes:
+      - './datasources:/etc/grafana/provisioning/datasources'
+    networks:
+      - localprom
   
   zookeeper:
     image: wurstmeister/zookeeper:latest
@@ -66,4 +136,6 @@ services:
   
 networks:
   localprom:
+    driver: bridge
+  hazelcast-network:
     driver: bridge

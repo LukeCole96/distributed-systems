@@ -1,0 +1,32 @@
+<hazelcast-client xmlns="http://www.hazelcast.com/schema/client-config"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.hazelcast.com/schema/client-config
+                                      http://www.hazelcast.com/schema/client-config/hazelcast-client-config-5.2.xsd">
+
+    <!-- Network configuration for connecting to the Hazelcast cluster -->
+    <network>
+        <cluster-members>
+            <address>hazelcast:5701</address> <!-- Use the actual IP address and port of the Hazelcast server -->
+        </cluster-members>
+    </network>
+
+    <!-- Connection strategy -->
+    <connection-strategy>
+        <connection-retry>
+            <cluster-connect-timeout-millis>50000</cluster-connect-timeout-millis> <!-- Retry timeout in milliseconds -->
+        </connection-retry>
+    </connection-strategy>
+
+    <!-- Metrics configuration -->
+    <metrics enabled="true">
+        <!-- Enabling JMX to expose the metrics -->
+        <jmx enabled="true"/>
+    </metrics>
+
+    <!-- Near cache configuration (if applicable) -->
+    <near-cache name="distributed-cache">
+        <in-memory-format>BINARY</in-memory-format>
+        <time-to-live-seconds>13600</time-to-live-seconds> <!-- Optional: Adjust TTL based on your use case -->
+    </near-cache>
+
+</hazelcast-client>

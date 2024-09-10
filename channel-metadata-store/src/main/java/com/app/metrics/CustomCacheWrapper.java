@@ -16,11 +16,13 @@ public class CustomCacheWrapper {
     private final HazelcastInstance hazelcastInstance;
     private final Counter cacheMissCounter;
     private final Counter cacheEvictionCounter;
+    private final Counter cacheHits;
 
     public CustomCacheWrapper(HazelcastInstance hazelcastInstance, MeterRegistry meterRegistry) {
         this.hazelcastInstance = hazelcastInstance;
         this.cacheMissCounter = meterRegistry.counter("custom_cache_misses", "cache", "distributed-cache");
         this.cacheEvictionCounter = meterRegistry.counter("custom_cache_evictions", "cache", "distributed-cache");
+        this.cacheHits = meterRegistry.counter("custom_cache_hits", "cache", "distributed-cache");
     }
 
     public Object get(String key) {
@@ -30,6 +32,7 @@ public class CustomCacheWrapper {
             map = hazelcastInstance.getMap("distributed-cache");
             value = map.get(key);
             log.info("Successful getting CACHE KEY: " + key);
+            cacheHits.increment();
             if (value == null) {
                 log.info("LC: CACHE MISS, COUNTER SHOULD INCREMENT");
                 cacheMissCounter.increment(); // Increment miss counter on cache miss

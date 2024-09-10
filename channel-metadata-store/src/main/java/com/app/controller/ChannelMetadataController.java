@@ -16,19 +16,22 @@ public class ChannelMetadataController {
 
     @Autowired
     public ChannelMetadataController(ChannelMetadataService channelMetadataService) {
+        log.info("ChannelMetadataController initialized");
         this.channelMetadataService = channelMetadataService;
     }
 
+    // POST method remains unchanged
     @PostMapping("/{countryCode}")
     public ResponseEntity<String> saveCountryData(@PathVariable String countryCode, @RequestBody ChannelMetadataRequest request) {
         channelMetadataService.saveOrUpdateChannelMetadata(countryCode, request);
         return ResponseEntity.ok("Data successfully posted");
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ChannelMetadataRequest> getCountryData(@PathVariable Long id) {
-        log.info("Fetching data for ID: {}", id);
-        ChannelMetadataRequest channelData = channelMetadataService.getChannelMetadataById(id);
+    // Update GET method to fetch by countryCode
+    @GetMapping("/{countryCode}")
+    public ResponseEntity<ChannelMetadataRequest> getCountryData(@PathVariable String countryCode) {
+        log.info("Fetching data for countryCode: {}", countryCode);
+        ChannelMetadataRequest channelData = channelMetadataService.getChannelMetadataByCountryCode(countryCode);
 
         if (channelData != null) {
             return ResponseEntity.ok(channelData);

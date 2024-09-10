@@ -9,6 +9,6 @@ public interface ChannelMetadataRepository extends JpaRepository<ChannelMetadata
     ChannelMetadataEntity findByCountryCode(String countryCode);
 
     //    List<ChannelMetadataEntity> getAllChannelMetadata(String territory);
-//    ChannelMetadataEntity findChannelMetadata(long id);
+//    ChannelMetadataEntiaty findChannelMetadata(long id);
 // ^ not needed, repository gives service an ability to find info by ID
 }

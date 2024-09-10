@@ -16,6 +16,7 @@ public class ChannelMetadataEntity {
     protected Long id;
 
     protected String countryCode;
+    @Lob
     protected String metadata;
     protected String product;  //comes from client in a header
 

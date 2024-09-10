@@ -28,16 +28,16 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-actuator:3.2.8'
-	implementation 'io.micrometer:micrometer-registry-prometheus:1.13.2'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator:3.3.2'  // Align with Spring Boot 3.3.2
+	implementation 'io.micrometer:micrometer-registry-prometheus:1.10.0'  // Align with Micrometer version used by Spring Boot 3.3.x
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.3.2'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:3.3.3'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:3.3.2'  // Align with Spring Boot 3.3.2
 	runtimeOnly "mysql:mysql-connector-java:8.0.33"
 	implementation 'com.hazelcast:hazelcast-spring:5.2.0'
+	implementation 'com.hazelcast:hazelcast:5.2.0'
 
-	implementation 'io.micrometer:micrometer-registry-prometheus'
-	implementation 'io.micrometer:micrometer-core'
+	implementation 'io.micrometer:micrometer-core:1.10.0'  // Align with Micrometer version used
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
@@ -46,6 +46,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 }
 
 tasks.named('test') {

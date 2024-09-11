@@ -1,4 +1,4 @@
-package com.app.kafka;
+package com.app.controller;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.DescribeClusterResult;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 import java.util.Properties;
 
 @Component
-public class KafkaHealthcheck implements HealthIndicator {
+public class PrivateKafkaHealthcheck implements HealthIndicator {
 
     private final AdminClient kafkaAdminClient;
 
-    public KafkaHealthcheck(@Value("${spring.kafka.bootstrap-servers}") String bootstrapServers) {
+    public PrivateKafkaHealthcheck(@Value("${spring.kafka.bootstrap-servers}") String bootstrapServers) {
         Properties config = new Properties();
         config.put("bootstrap.servers", bootstrapServers);
         this.kafkaAdminClient = AdminClient.create(config);

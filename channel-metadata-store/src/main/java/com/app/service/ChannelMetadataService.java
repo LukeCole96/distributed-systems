@@ -48,9 +48,6 @@ public class ChannelMetadataService {
                 String cacheKey = (String) key;
                 try {
                     ChannelMetadataEntity entity = (ChannelMetadataEntity) customCacheWrapper.get(cacheKey);
-
-                    ChannelMetadataRequest request = mapEntityToModel(entity);
-
                     channelMetadataRepository.save(entity);
 
                     log.info("Successfully updated database from cache for key: {}", cacheKey);

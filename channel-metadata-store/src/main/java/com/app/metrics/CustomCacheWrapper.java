@@ -33,7 +33,7 @@ public class CustomCacheWrapper {
             log.info("Successful getting CACHE KEY: " + key);
             cacheHitsCounter.increment();
             if (value == null) {
-                log.info("LC: CACHE MISS, COUNTER SHOULD INCREMENT");
+                log.info("Cache miss detected!");
                 cacheMissCounter.increment(); // Increment miss counter on cache miss
             }
         } catch (Exception e) {
@@ -68,7 +68,7 @@ public class CustomCacheWrapper {
         try {
             IMap<String, Object> map = hazelcastInstance.getMap("distributed-cache");
             size = map.size();
-            log.info("LC: Cache size: {}", size);
+            log.info("Cache size: {}", size);
         } catch (Exception e) {
             log.error("Error retrieving cache size", e);
         }

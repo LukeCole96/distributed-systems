@@ -4,9 +4,7 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import com.hazelcast.map.LocalMapStats;
 import io.micrometer.core.instrument.MeterRegistry;
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,7 +16,6 @@ public class CustomHazelcastMetrics {
     public CustomCacheWrapper registerHazelcastMetrics(HazelcastInstance hazelcastInstance, MeterRegistry meterRegistry) {
         log.debug("Initializing Hazelcast metrics");
 
-        // Retrieve the Hazelcast map
         IMap<String, Object> map = hazelcastInstance.getMap("distributed-cache");
         if (map == null) {
             log.error("Hazelcast map 'distributed-cache' not found");
@@ -26,11 +23,9 @@ public class CustomHazelcastMetrics {
         }
         log.debug("Hazelcast map 'distributed-cache' found");
 
-        // Retrieve map stats
         LocalMapStats stats = map.getLocalMapStats();
         log.debug("Retrieved LocalMapStats from Hazelcast map");
 
-        // Register Hazelcast cache metrics with Micrometer
         try {
             meterRegistry.gauge("hazelcast_cache_size", stats, LocalMapStats::getOwnedEntryCount);
             log.debug("Registered gauge for cache size");

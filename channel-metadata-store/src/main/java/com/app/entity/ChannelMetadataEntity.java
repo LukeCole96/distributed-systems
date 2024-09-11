@@ -4,7 +4,6 @@ import com.app.model.ChannelMetadataRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.util.List;
 

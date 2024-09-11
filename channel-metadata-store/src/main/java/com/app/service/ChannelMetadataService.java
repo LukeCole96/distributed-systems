@@ -2,7 +2,6 @@ package com.app.service;
 
 import com.app.cache.CacheUpdateEvent;
 import com.app.entity.ChannelMetadataEntity;
-import com.app.exceptions.GlobalExceptionHandler;
 import com.app.kafka.KafkaProducerService;
 import com.app.metrics.CustomCacheWrapper;
 import com.app.model.ChannelMetadataRequest;

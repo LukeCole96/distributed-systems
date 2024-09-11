@@ -82,7 +82,6 @@ public class ChannelMetadataService {
             log.info("Updated cache with database value for countryCode: {}", countryCode);
             return model;
         }
-
         log.warn("No channel metadata found for countryCode: {}", countryCode);
         return null;
     }

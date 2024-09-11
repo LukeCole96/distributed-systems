@@ -41,7 +41,7 @@ public class ChannelMetadataController {
         } catch (GlobalExceptionHandler.MethodArgumentNotValidException e) {
             throw new GlobalExceptionHandler.MethodArgumentNotValidException(e.getMessage());
         } catch (Exception e) {
-            throw new GlobalExceptionHandler.ConflictException("Data conflict occurred");
+            throw new GlobalExceptionHandler.ConflictException("Timeout occurred");
         }
     }
 

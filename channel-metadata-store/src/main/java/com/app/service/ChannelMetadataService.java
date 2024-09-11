@@ -58,7 +58,6 @@ public class ChannelMetadataService {
         try {
             customCacheWrapper.put(countryCode, entity);
             String message = String.format("Database update failed for key: %s, Metadata: %s", countryCode, entity.getMetadata());
-            kafkaProducerService.sendMessage("retry-db-write-from-cache", countryCode, message);
 
         } catch (Exception e) {
             log.error("Error occurred while handling DB connection failure for countryCode: {}", countryCode, e);

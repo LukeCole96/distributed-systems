@@ -36,8 +36,6 @@ public class KafkaEventListener {
             String message = String.format("Database update failed for key: %s, Metadata: %s", event.getCountryCode(), event.getRequest().getMetadata());
             customCacheWrapper.put(event.getCountryCode(), entity);
 
-            kafkaProducerService.sendMessage("retry-db-write-from-cache", event.getCountryCode(), message);
-
         } catch (Exception e) {
             log.error("Error occurred while handling transaction rollback for countryCode: {}", event.getCountryCode(), e);
         }

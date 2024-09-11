@@ -19,7 +19,6 @@ public class CacheUpdateListener {
         this.customCacheWrapper = customCacheWrapper;
     }
 
-    // Listen for the CacheUpdateEvent and update the cache after transaction commit
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void handleCacheUpdate(CacheUpdateEvent event) {
         log.info("Updating cache after transaction commit for countryCode: {}", event.getCountryCode());

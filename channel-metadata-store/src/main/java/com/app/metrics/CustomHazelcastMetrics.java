@@ -43,7 +43,6 @@ public class CustomHazelcastMetrics {
             log.error("Error registering Hazelcast metrics with Micrometer", e);
         }
 
-        // Return CustomCacheWrapper
         return new CustomCacheWrapper(hazelcastInstance, meterRegistry);
     }
 }

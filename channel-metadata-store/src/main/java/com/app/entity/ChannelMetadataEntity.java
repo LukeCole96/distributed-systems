@@ -18,11 +18,9 @@ public class ChannelMetadataEntity {
     protected String countryCode;
     @Lob
     protected String metadata;
-    protected String product;  //comes from client in a header
+    protected String product;
 
-    public ChannelMetadataEntity() {
-        // Default constructor required by JPA
-    }
+    public ChannelMetadataEntity() {}
 
     public ChannelMetadataEntity(ChannelMetadataRequest request) {
         this.countryCode = request.getCountryCode();
@@ -68,7 +66,7 @@ public class ChannelMetadataEntity {
             if (obj instanceof List<?>) {
                 return mapper.writeValueAsString(obj);
             } else if (obj instanceof String) {
-                return (String) obj; // Assumes the input string is already in JSON format
+                return (String) obj;
             } else {
                 throw new IllegalArgumentException("Unsupported type for JSON conversion");
             }

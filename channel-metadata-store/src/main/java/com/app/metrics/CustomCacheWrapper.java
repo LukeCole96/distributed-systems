@@ -34,7 +34,7 @@ public class CustomCacheWrapper {
             cacheHitsCounter.increment();
             if (value == null) {
                 log.info("Cache miss detected!");
-                cacheMissCounter.increment(); // Increment miss counter on cache miss
+                cacheMissCounter.increment();
             }
         } catch (Exception e) {
             log.error("Error accessing cache for key: {}", key, e);
@@ -56,7 +56,7 @@ public class CustomCacheWrapper {
         try {
             IMap<String, Object> map = hazelcastInstance.getMap("distributed-cache");
             map.delete(key);
-            cacheEvictionCounter.increment(); // Increment eviction counter on evict
+            cacheEvictionCounter.increment();
             log.info("Evicted key: {} from cache", key);
         } catch (Exception e) {
             log.error("Error evicting cache for key: {}", key, e);

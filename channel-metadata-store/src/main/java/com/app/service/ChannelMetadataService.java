@@ -39,14 +39,11 @@ public class ChannelMetadataService {
         log.info("Attempting to save entity to the database for countryCode: {}", countryCode);
 
         try {
-            // Attempt to save or update the entity in the database
             ChannelMetadataEntity savedEntity = channelMetadataRepository.save(entity);
 
-            // Publish cache update event after saving to the database
             applicationEventPublisher.publishEvent(new CacheUpdateEvent(countryCode, mapEntityToModel(savedEntity)));
             log.info("about to return the updated model...");
 
-            // Return the updated model
             return mapEntityToModel(savedEntity);
 
         } catch (Exception e) {
@@ -65,7 +62,6 @@ public class ChannelMetadataService {
 
         } catch (Exception e) {
             log.error("Error occurred while handling DB connection failure for countryCode: {}", countryCode, e);
-            // Optionally, rethrow or handle the exception depending on your needs
             throw e;
         }
     }

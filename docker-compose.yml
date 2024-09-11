@@ -28,11 +28,11 @@ services:
       - hazelcast.config=/opt/hazelcast/config/hazelcast.xml
       - hazelcast.diagnostics.directory=/opt/hazelcast/logs
     ports:
-      - "5701-5703:5701"
+      - "5701-5704:5701"
     networks:
       - hazelcast-network
     deploy:
-      replicas: 3  # Number of Hazelcast nodes
+      replicas: 4  # Number of Hazelcast nodes
 
   zookeeper:
     image: wurstmeister/zookeeper:latest

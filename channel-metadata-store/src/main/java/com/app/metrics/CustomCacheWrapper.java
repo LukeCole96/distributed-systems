@@ -7,6 +7,11 @@ import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Component
 public class CustomCacheWrapper {
@@ -22,6 +27,20 @@ public class CustomCacheWrapper {
         this.cacheMissCounter = meterRegistry.counter("custom_cache_misses", "cache", "distributed-cache");
         this.cacheHitsCounter = meterRegistry.counter("custom_cache_hits", "cache", "distributed-cache");
         this.cacheEvictionCounter = meterRegistry.counter("custom_cache_evictions", "cache", "distributed-cache");
+    }
+
+    public List<String> getAllKeys() {
+        try {
+            Set<Object> keySet = hazelcastInstance.getMap("distributed-cache").keySet();
+
+            return keySet.stream()
+                    .filter(key -> key instanceof String)
+                    .map(key -> (String) key)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.error("Error fetching keys from cache: ", e);
+            return Collections.emptyList();
+        }
     }
 
     public Object get(String key) {
@@ -73,6 +92,10 @@ public class CustomCacheWrapper {
             log.error("Error retrieving cache size", e);
         }
         return size;
+    }
+
+    public IMap<Object, Object> getCache() {
+        return hazelcastInstance.getMap("distributed-cache");
     }
 }
 

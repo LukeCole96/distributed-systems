@@ -30,12 +30,15 @@ public class GlobalExceptionHandler {
         String kafkaMessage = String.format("Error occurred. Code: %s, Message: %s", errorCode, message);
         try {
             log.info("CRAP 3");
+
+
             kafkaProducerService.sendMessage("retry-db-write-from-cache", "error", kafkaMessage);
             log.info("Successfully sent error message to Kafka: {}", kafkaMessage);
         } catch (Exception e) {
             log.error("Failed to send error message to Kafka. ErrorCode: {}, Message: {}, Exception: {}", errorCode, message, e.getMessage(), e);
         }
     }
+
 
     // 4XX
     public static class MethodArgumentNotValidException extends RuntimeException {

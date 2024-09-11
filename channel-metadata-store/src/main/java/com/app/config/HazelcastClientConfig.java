@@ -15,7 +15,7 @@ public class HazelcastClientConfig {
     public HazelcastInstance hazelcastInstance() {
         ClientConfig clientConfig = new ClientConfig();
         clientConfig.setClusterName("dev");
-        clientConfig.getNetworkConfig().addAddress("hazelcast:5701"); // Update with actual Hazelcast server addresses
+        clientConfig.getNetworkConfig().addAddress("hazelcast:5701");
         clientConfig.getSerializationConfig().setUseNativeByteOrder(true);
         clientConfig.getSerializationConfig().setAllowUnsafe(true);
         clientConfig.getSerializationConfig().setEnableCompression(false);

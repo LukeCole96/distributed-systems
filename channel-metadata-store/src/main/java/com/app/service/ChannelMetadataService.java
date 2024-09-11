@@ -2,6 +2,7 @@ package com.app.service;
 
 import com.app.cache.CacheUpdateEvent;
 import com.app.entity.ChannelMetadataEntity;
+import com.app.exceptions.GlobalExceptionHandler;
 import com.app.kafka.KafkaProducerService;
 import com.app.metrics.CustomCacheWrapper;
 import com.app.model.ChannelMetadataRequest;
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @Service
@@ -33,6 +35,33 @@ public class ChannelMetadataService {
         this.customCacheWrapper = customCacheWrapper;
         this.kafkaProducerService = kafkaProducerService;
         this.applicationEventPublisher = applicationEventPublisher;
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
+    @CircuitBreaker(name = "dbService", fallbackMethod = "fallbackToKafka")
+    @Retry(name = "dbRetry")
+    public void forceUpdateAllFromCache() {
+        Set<Object> keySet = customCacheWrapper.getCache().keySet();
+
+        for (Object key : keySet) {
+            if (key instanceof String) {
+                String cacheKey = (String) key;
+                try {
+                    ChannelMetadataEntity entity = (ChannelMetadataEntity) customCacheWrapper.get(cacheKey);
+
+                    ChannelMetadataRequest request = mapEntityToModel(entity);
+
+                    channelMetadataRepository.save(entity);
+
+                    log.info("Successfully updated database from cache for key: {}", cacheKey);
+                } catch (Exception e) {
+                    log.error("Error occurred while force updating from cache to the database.", e);
+                    throw new RuntimeException("Failed to update database: " + e.getMessage(), e);
+                }
+            } else {
+                log.warn("Cache key is not a string: {}", key);
+            }
+        }
     }
 
     @Transactional(rollbackFor = {Exception.class})

@@ -6,6 +6,8 @@ import com.app.kafka.KafkaProducerService;
 import com.app.metrics.CustomCacheWrapper;
 import com.app.model.ChannelMetadataRequest;
 import com.app.repository.ChannelMetadataRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -30,10 +32,12 @@ public class ChannelMetadataService {
         this.channelMetadataRepository = channelMetadataRepository;
         this.customCacheWrapper = customCacheWrapper;
         this.kafkaProducerService = kafkaProducerService;
-        this.applicationEventPublisher = applicationEventPublisher;  // Inject ApplicationEventPublisher
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @Transactional(rollbackFor = {Exception.class})
+    @CircuitBreaker(name = "dbService", fallbackMethod = "fallbackToKafka")
+    @Retry(name = "dbRetry")
     public ChannelMetadataRequest saveOrUpdateChannelMetadata(String countryCode, ChannelMetadataRequest request) {
         ChannelMetadataEntity entity = convertRequestToEntity(countryCode, request);
         log.info("Attempting to save entity to the database for countryCode: {}", countryCode);
@@ -42,8 +46,7 @@ public class ChannelMetadataService {
             ChannelMetadataEntity savedEntity = channelMetadataRepository.save(entity);
 
             applicationEventPublisher.publishEvent(new CacheUpdateEvent(countryCode, mapEntityToModel(savedEntity)));
-            log.info("about to return the updated model...");
-
+            log.info("Returning the updated model...");
             return mapEntityToModel(savedEntity);
 
         } catch (Exception e) {
@@ -53,12 +56,16 @@ public class ChannelMetadataService {
         return null;
     }
 
+    // Fallback to Kafka when db is down
+    public ChannelMetadataRequest fallbackToKafka(String countryCode, ChannelMetadataRequest request, Throwable t) {
+        log.warn("Database is unavailable, falling back to Kafka. Reason: {}", t.getMessage());
+        kafkaProducerService.sendMessage("retry-db-write-from-cache", countryCode, request.toString());
+        return null;
+    }
 
     private void handleDbConnectionFailure(String countryCode, ChannelMetadataEntity entity) {
         try {
             customCacheWrapper.put(countryCode, entity);
-            String message = String.format("Database update failed for key: %s, Metadata: %s", countryCode, entity.getMetadata());
-
         } catch (Exception e) {
             log.error("Error occurred while handling DB connection failure for countryCode: {}", countryCode, e);
             throw e;

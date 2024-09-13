@@ -1,0 +1,1354 @@
+11-09-2024 23:09:21 1726096161592 BuildInfo[
+                          Build=20220328
+                          BuildNumber=20220328
+                          Revision=52ab9d6
+                          Version=5.0.3
+                          SerialVersion=1
+                          Enterprise=false]
+11-09-2024 23:09:21 1726096161592 SystemProperties[
+                          hazelcast.config=/opt/hazelcast/config/hazelcast.xml
+                          hazelcast.logging.type=log4j2
+                          hazelcast.tracking.server=true
+                          java.class.path=/opt/hazelcast/*:/opt/hazelcast/lib:/opt/hazelcast/lib/log4j-slf4j-impl-2.17.1.jar:/opt/hazelcast/lib/hazelcast-jet-cdc-mysql-5.0.3.jar:/opt/hazelcast/lib/jmx_prometheus_javaagent-0.14.0.jar:/opt/hazelcast/lib/cache-api-1.1.1.jar:/opt/hazelcast/lib/hazelcast-jet-python-5.0.3.jar:/opt/hazelcast/lib/hazelcast-jet-files-s3-5.0.3.jar:/opt/hazelcast/lib/hazelcast-jet-csv-5.0.3.jar:/opt/hazelcast/lib/jline-terminal-jansi-3.21.0.jar:/opt/hazelcast/lib/hazelcast-sql-5.0.3.jar:/opt/hazelcast/lib/hazelcast-3-connector-interface-5.0.3.jar:/opt/hazelcast/lib/hazelcast-jet-hadoop-all-5.0.3.jar:/opt/hazelcast/lib/hazelcast-5.0.3.jar:/opt/hazelcast/lib/hazelcast-jet-kinesis-5.0.3.jar:/opt/hazelcast/lib/jansi-2.4.0.jar:/opt/hazelcast/lib/hazelcast-3-connector-common-5.0.3.jar:/opt/hazelcast/lib/slf4j-api-1.7.36.jar:/opt/hazelcast/lib/hazelcast-wm-4.0.jar:/opt/hazelcast/lib/hazelcast-jet-files-azure-5.0.3.jar:/opt/hazelcast/lib/hazelcast-jet-kafka-5.0.3.jar:/opt/hazelcast/lib/hazelcast-jet-protobuf-5.0.3.jar:/opt/hazelcast/lib/jline-reader-3.21.0.jar:/opt/hazelcast/lib/hazelcast-jet-elasticsearch-7-5.0.3.jar:/opt/hazelcast/lib/picocli-4.4.0.jar:/opt/hazelcast/lib/jline-terminal-3.21.0.jar:/opt/hazelcast/lib/hazelcast-jet-cdc-postgres-5.0.3.jar:/opt/hazelcast/lib/hazelcast-distribution-5.0.3.jar:/opt/hazelcast/lib/hazelcast-hibernate53-2.1.1.jar:/opt/hazelcast/lib/hazelcast-jet-grpc-5.0.3.jar:/opt/hazelcast/lib/hazelcast-jet-s3-5.0.3.jar:/opt/hazelcast/lib/hazelcast-jet-cdc-debezium-5.0.3.jar:/opt/hazelcast/lib/log4j-api-2.17.1.jar:/opt/hazelcast/lib/hazelcast-jet-files-gcs-5.0.3.jar:/opt/hazelcast/lib/log4j-core-2.17.1.jar:/opt/hazelcast/lib/hazelcast-jet-avro-5.0.3.jar:/opt/hazelcast/bin/user-lib:/opt/hazelcast/bin/user-lib/*
+                          java.class.version=55.0
+                          java.home=/usr/lib/jvm/java-11-openjdk
+                          java.io.tmpdir=/tmp
+                          java.library.path=/usr/lib/jvm/java-11-openjdk/lib/server:/usr/lib/jvm/java-11-openjdk/lib:/usr/lib/jvm/java-11-openjdk/../lib:/usr/java/packages/lib:/lib:/usr/lib:/usr/lib64:/lib64
+                          java.net.preferIPv4Stack=true
+                          java.runtime.name=OpenJDK Runtime Environment
+                          java.runtime.version=11.0.14+9-alpine-r0
+                          java.specification.name=Java Platform API Specification
+                          java.specification.vendor=Oracle Corporation
+                          java.specification.version=11
+                          java.vendor=Alpine
+                          java.vendor.url=https://alpinelinux.org/
+                          java.vendor.url.bug=https://gitlab.alpinelinux.org/alpine/aports/issues
+                          java.version=11.0.14
+                          java.version.date=2022-01-18
+                          java.vm.args=--add-modules=java.se --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.management/sun.management=ALL-UNNAMED --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED -Dhazelcast.logging.type=log4j2 -Dlog4j.configurationFile=file:/opt/hazelcast/config/log4j2.properties -Dhazelcast.config=/opt/hazelcast/config/hazelcast-docker.xml -Djet.custom.lib.dir=/opt/hazelcast/custom-lib -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=80.0 -XX:MaxGCPauseMillis=5 
+                          java.vm.compressedOopsMode=Zero based
+                          java.vm.info=mixed mode
+                          java.vm.name=OpenJDK 64-Bit Server VM
+                          java.vm.specification.name=Java Virtual Machine Specification
+                          java.vm.specification.vendor=Oracle Corporation
+                          java.vm.specification.version=11
+                          java.vm.vendor=Alpine
+                          java.vm.version=11.0.14+9-alpine-r0
+                          os.arch=aarch64
+                          os.name=Linux
+                          os.version=6.6.32-linuxkit
+                          sun.arch.data.model=64
+                          sun.boot.library.path=/usr/lib/jvm/java-11-openjdk/lib
+                          sun.cpu.endian=little
+                          sun.cpu.isalist=
+                          sun.io.unicode.encoding=UnicodeLittle
+                          sun.java.command=com.hazelcast.commandline.HazelcastServerCommandLine start -c /opt/hazelcast/config/hazelcast.xml
+                          sun.java.launcher=SUN_STANDARD
+                          sun.jnu.encoding=UTF-8
+                          sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+                          sun.os.patch.level=unknown]
+11-09-2024 23:09:21 1726096161596 ConfigProperties[
+                          hazelcast.diagnostics.directory=/opt/hazelcast/logs
+                          hazelcast.diagnostics.enabled=true
+                          hazelcast.diagnostics.invocation.sample.period.seconds=30
+                          hazelcast.diagnostics.metric.level=DEBUG
+                          hazelcast.local.public.address=192.168.1.2
+                          hazelcast.logging.type=log4j2
+                          hazelcast.max.no.heartbeat.seconds=120
+                          hazelcast.max.no.master.confirmation.seconds=120
+                          hazelcast.shutdownhook.enabled=true
+                          hazelcast.shutdownhook.policy=GRACEFUL]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=classloading.totalLoadedClassesCount]=7330]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ns,metric=partitions.elapsedDestinationCommitTime]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.genericQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.replicaSyncSemaphore]=10]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.genericThreadCount]=6]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.completedCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=classloading.unloadedClassesCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.runningPartitionCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=os.committedVirtualMemorySize]=15214759936]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ns,metric=partitions.elapsedMigrationTime]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.migrationQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=event.threadCount]=5]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=runtime.usedMemory]=63724920]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ns,metric=partitions.totalElapsedMigrationTime]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.maxHeap]=12981370880]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=cluster.clock.maxClusterTimeDiff]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ns,metric=partitions.totalElapsedMigrationOperationTime]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=os.processCpuTime]=4290000000]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.committedHeap]=744488960]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=raft.terminatedRaftNodeGroupIds]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.freeHeap]=680764040]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=os.freePhysicalMemorySize]=7980781568]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=event.totalFailureCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.totalCompletedMigrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=operation.invocations.invocationScanPeriodMillis]=1000]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.responses.backupCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.runningGenericCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=raft.metadata.activeMembersCommitIndex]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.asyncOperations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=os.totalSwapSpaceSize]=1610608640]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=gc.minorTime]=207]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[service=hz:core:clusterService,unit=count,metric=event.publicationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=event.eventQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.callTimeoutCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=boolean,metric=partitions.migrationActive]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=client.endpoint.totalRegistrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=runtime.freeMemory]=680764040]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=cluster.heartbeat.lastHeartbeat]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.invocations.delayedExecutionCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.responses.missingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=event.syncDeliveryFailureCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=cluster.clock.clusterTimeDiff]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=raft.metadata.groups]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=proxy.createdCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.retryCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=operation.invocations.heartbeatBroadcastPeriodMillis]=15000]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.maxNative]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.totalPhysical]=16225161216]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=percent,metric=operation.invocations.usedPercentage]=0.0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=os.systemLoadAverage]=7.767578125]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=thread.totalStartedThreadCount]=50]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[service=hz:core:proxyService,unit=count,metric=event.publicationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=gc.unknownTime]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=cluster.clock.clusterUpTime]=-9223370310758614169]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[service=hz:core:clusterService,unit=count,metric=event.listenerCount]=2]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.partitionThreadCount]=10]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=thread.threadCount]=49]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.invocations.heartbeatPacketsSent]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.replicaSyncRequestsCounter]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.partitionCount]=271]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=runtime.maxMemory]=12981370880]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.invocations.heartbeatPacketsReceived]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[service=hz:core:partitionService,unit=count,metric=event.publicationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=thread.daemonThreadCount]=5]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=os.processCpuLoad]=0.0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.freeNative]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=cluster.size]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=event.rejectedCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=raft.missingMembers]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=cluster.clock.localClockTime]=1726096161640]
+11-09-2024 23:09:21 1726096161596 Metric[[dir=user.home,unit=bytes,metric=file.partition.freeSpace]=80119484416]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=gc.majorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=thread.peakThreadCount]=49]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.maxBackupCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=operation.invocations.invocationTimeoutMillis]=60000]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.priorityQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=runtime.totalMemory]=744488960]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=operation.invocations.backupTimeoutMillis]=5000]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.responses.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[service=hz:impl:replicatedMapService,unit=count,metric=event.listenerCount]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[service=hz:core:proxyService,unit=count,metric=event.listenerCount]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=proxy.proxyCount]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.freePhysical]=7981113344]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.responses.timeoutCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ns,metric=partitions.totalElapsedDestinationCommitTime]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.committedNative]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=os.openFileDescriptorCount]=65]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.invocations.backupTimeouts]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ns,metric=partitions.elapsedMigrationOperationTime]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.genericPriorityQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=gc.minorCount]=9]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=transactions.startCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.usedMetadata]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=os.freeSwapSpaceSize]=1610608640]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=os.systemCpuLoad]=100.0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=os.totalPhysicalMemorySize]=16225161216]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=partitions.lastRepartitionTime]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=runtime.availableProcessors]=10]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=event.eventsProcessed]=8]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.parker.parkQueueCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.responses.normalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=client.endpoint.count]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=gc.unknownCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.responseQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.maxMetadata]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.parker.totalParkedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.localPartitionCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=gc.majorTime]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.runningCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=classloading.loadedClassesCount]=7401]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.invocations.lastCallId]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=transactions.commitCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=raft.destroyedGroupIds]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.activePartitionCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=os.maxFileDescriptorCount]=1048576]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[service=hz:core:partitionService,unit=count,metric=event.listenerCount]=3]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.invocations.pending]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.usedNative]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[dir=user.home,unit=bytes,metric=file.partition.totalSpace]=86289817600]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=cluster.clock.clusterStartTime]=-9223372036854775808]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=ms,metric=cluster.clock.clusterTime]=1726096161645]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.plannedMigrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[service=hz:impl:replicatedMapService,unit=count,metric=event.publicationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[dir=user.home,unit=bytes,metric=file.partition.usableSpace]=75700715520]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=proxy.destroyedCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.invocations.normalTimeouts]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=raft.metadata.activeMembers]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.failedBackups]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.memberGroupsSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=operation.operationTimeoutCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=transactions.rollbackCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[metric=runtime.uptime]=5304]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=event.queueCapacity]=1000000]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=raft.nodes]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.stateStamp]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=partitions.completedMigrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=memory.usedHeap]=63952728]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-Acceptor,unit=ms,metric=tcp.acceptor.idleTimeMillis]=29]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-Acceptor,unit=count,metric=tcp.acceptor.eventCount]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-Acceptor,unit=count,metric=tcp.acceptor.exceptionCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-Acceptor,unit=count,metric=tcp.acceptor.selectorRecreateCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.connection.inProgressCount]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.connection.count]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.connection.openedCount]=2]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.connection.closedCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.connection.activeCount]=2]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.connection.acceptedSocketCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.connection.connectionListenerCount]=3]
+11-09-2024 23:09:21 1726096161596 Metric[[endpoint=[channel_stacks_hazelcast]:5701,unit=enum,metric=tcp.connection.connectionType]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.connection.clientCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.connection.textCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.totalRemoveLatencies]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.maxPutLatency]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.maxGetLatency]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.maxRemoveLatency]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.totalPutLatencies]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.totalGetLatencies]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.total]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.lastAccessTime]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.lastUpdateTime]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.hits]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.numberOfOtherOperations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.numberOfEvents]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.getCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.putCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.removeCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.creationTime]=1726096161680]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.ownedEntryCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=__sql.catalog,unit=bytes,metric=replicatedMap.ownedEntryMemoryCost]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster,unit=count,metric=executor.internal.maximumPoolSize]=2]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:event,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:event,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:event,unit=count,metric=executor.internal.maximumPoolSize]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:event,unit=count,metric=executor.internal.completedTasks]=6]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:event,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:offloadable,unit=count,metric=executor.internal.remainingQueueCapacity]=100000]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:offloadable,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:offloadable,unit=count,metric=executor.internal.maximumPoolSize]=10]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:offloadable,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:offloadable,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:splitBrainProtection,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:splitBrainProtection,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:splitBrainProtection,unit=count,metric=executor.internal.maximumPoolSize]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:splitBrainProtection,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:splitBrainProtection,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client,unit=count,metric=executor.internal.remainingQueueCapacity]=1000000]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client,unit=count,metric=executor.internal.maximumPoolSize]=10]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:mastership,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:mastership,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:mastership,unit=count,metric=executor.internal.maximumPoolSize]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:mastership,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:mastership,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:async,unit=count,metric=executor.internal.remainingQueueCapacity]=100000]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:async,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:async,unit=count,metric=executor.internal.maximumPoolSize]=10]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:async,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:async,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client-blocking-tasks,unit=count,metric=executor.internal.remainingQueueCapacity]=1000000]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client-blocking-tasks,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client-blocking-tasks,unit=count,metric=executor.internal.maximumPoolSize]=200]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client-blocking-tasks,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client-blocking-tasks,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client-query,unit=count,metric=executor.internal.remainingQueueCapacity]=1000000]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client-query,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client-query,unit=count,metric=executor.internal.maximumPoolSize]=10]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client-query,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:client-query,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:scheduled:cqc:018d188a-11a5-490f-9d55-ca54afda16a7,unit=count,metric=executor.internal.remainingQueueCapacity]=10000]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:scheduled:cqc:018d188a-11a5-490f-9d55-ca54afda16a7,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:scheduled:cqc:018d188a-11a5-490f-9d55-ca54afda16a7,unit=count,metric=executor.internal.maximumPoolSize]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:scheduled:cqc:018d188a-11a5-490f-9d55-ca54afda16a7,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:scheduled:cqc:018d188a-11a5-490f-9d55-ca54afda16a7,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:scheduled,unit=count,metric=executor.internal.remainingQueueCapacity]=1000000]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:scheduled,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:scheduled,unit=count,metric=executor.internal.maximumPoolSize]=20]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:scheduled,unit=count,metric=executor.internal.completedTasks]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:scheduled,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:system,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:system,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:system,unit=count,metric=executor.internal.maximumPoolSize]=10]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:system,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:system,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=MetricsPublisher,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:09:21 1726096161596 Metric[[name=MetricsPublisher,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=MetricsPublisher,unit=count,metric=executor.internal.maximumPoolSize]=16]
+11-09-2024 23:09:21 1726096161596 Metric[[name=MetricsPublisher,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=MetricsPublisher,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:splitbrain,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:splitbrain,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:splitbrain,unit=count,metric=executor.internal.maximumPoolSize]=2]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:splitbrain,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:splitbrain,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:version:auto:upgrade,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:version:auto:upgrade,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:version:auto:upgrade,unit=count,metric=executor.internal.maximumPoolSize]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:version:auto:upgrade,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:cluster:version:auto:upgrade,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:query,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:query,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:query,unit=count,metric=executor.internal.maximumPoolSize]=16]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:query,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:query,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:CRDTReplicationMigration,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:CRDTReplicationMigration,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:CRDTReplicationMigration,unit=count,metric=executor.internal.maximumPoolSize]=16]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:CRDTReplicationMigration,unit=count,metric=executor.internal.completedTasks]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:CRDTReplicationMigration,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:io,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:io,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:io,unit=count,metric=executor.internal.maximumPoolSize]=16]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:io,unit=count,metric=executor.internal.completedTasks]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[name=hz:io,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=ms,metric=tcp.connection.in.idleTimeMs]=1726096161708]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=bytes,metric=tcp.connection.in.bytesRead]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.normalFramesRead]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.priorityFramesRead]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.processCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.ownerId]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.startedMigrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.completedMigrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=ms,metric=tcp.connection.out.idleTimeMillis]=2]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.scheduled]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.writeQueueSize]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.priorityWriteQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=bytes,metric=tcp.connection.out.bytesWritten]=3]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.normalFramesWritten]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.priorityFramesWritten]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.processCount]=2532]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.ownerId]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.startedMigrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.completedMigrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=ms,metric=tcp.connection.in.idleTimeMs]=60]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=bytes,metric=tcp.connection.in.bytesRead]=113]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.in.normalFramesRead]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.in.priorityFramesRead]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.in.processCount]=2]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.in.ownerId]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.in.startedMigrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.in.completedMigrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=ms,metric=tcp.connection.out.idleTimeMillis]=48]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.out.scheduled]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.out.writeQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.out.priorityWriteQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=bytes,metric=tcp.connection.out.bytesWritten]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.out.normalFramesWritten]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.out.priorityFramesWritten]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.out.processCount]=6]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.out.ownerId]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.out.startedMigrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:53867,unit=count,metric=tcp.connection.out.completedMigrations]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=ms,metric=tcp.inputThread.idleTimeMillis]=1726096161708]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.ioThreadId]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=bytes,metric=tcp.inputThread.bytesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.framesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.priorityFramesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.processCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.taskQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.eventCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.completedTaskCount]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.selectorRebuildCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=ms,metric=tcp.inputThread.idleTimeMillis]=60]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.ioThreadId]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=bytes,metric=tcp.inputThread.bytesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.framesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.priorityFramesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.processCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.taskQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.eventCount]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.completedTaskCount]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.selectorRebuildCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=ms,metric=tcp.inputThread.idleTimeMillis]=1726096161709]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.ioThreadId]=2]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=bytes,metric=tcp.inputThread.bytesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.framesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.priorityFramesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.processCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.taskQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.eventCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.completedTaskCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.selectorRebuildCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=ms,metric=tcp.outputThread.idleTimeMillis]=65]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.ioThreadId]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=bytes,metric=tcp.outputThread.bytesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.framesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.priorityFramesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.processCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.taskQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.eventCount]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.completedTaskCount]=2529]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.selectorRebuildCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=ms,metric=tcp.outputThread.idleTimeMillis]=1726096161714]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.ioThreadId]=1]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=bytes,metric=tcp.outputThread.bytesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.framesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.priorityFramesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.processCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.taskQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.eventCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.completedTaskCount]=5]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.selectorRebuildCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=ms,metric=tcp.outputThread.idleTimeMillis]=1726096161714]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.ioThreadId]=2]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=bytes,metric=tcp.outputThread.bytesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.framesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.priorityFramesTransceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.processCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.taskQueueSize]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.eventCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.completedTaskCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.selectorRebuildCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.balancer.imbalanceDetectedCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.balancer.migrationCompletedCount]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=tcp.bytesSend]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=bytes,metric=tcp.bytesReceived]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.packetsSend]=0]
+11-09-2024 23:09:21 1726096161596 Metric[[unit=count,metric=tcp.packetsReceived]=0]
+11-09-2024 23:09:21 1726096161719 SlowOperations[]
+11-09-2024 23:09:21 1726096161719 Invocations[
+                          Pending[]
+                          History[]
+                          SlowHistory[]]
+11-09-2024 23:09:21 1726096161719 InvocationProfiler[]
+11-09-2024 23:09:21 1726096161720 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=2
+                                  totalTime(us)=36,984
+                                  avg(us)=18,492
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          1024..2047us=1
+                                          32768..65535us=1]]]
+11-09-2024 23:09:21 1726096161720 HazelcastInstance[
+                          thisAddress=[172.18.0.13]:5701
+                          isRunning=true
+                          isLite=false
+                          joined=false
+                          nodeState=ACTIVE
+                          clusterId=null
+                          clusterSize=1
+                          isMaster=false
+                          masterAddress=null
+                          Members[
+                                  [172.18.0.13]:5701]]
+11-09-2024 23:09:21 1726096161721 ClusterVersionChanged[
+                          5.0]
+11-09-2024 23:09:21 1726096161721 Lifecycle[
+                          STARTING]
+11-09-2024 23:09:21 1726096161721 MemberAdded[
+                          member=[172.18.0.13]:5701
+                          Members[
+                                  [172.18.0.13]:5701:this:master]]
+11-09-2024 23:09:22 1726096162579 ConnectionAdded[
+                          Connection[id=2, /10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701, qualifier=null, endpoint=[172.18.0.15]:5701, alive=true, connectionType=MEMBER, planeIndex=0]
+                          type=MEMBER
+                          isAlive=true]
+11-09-2024 23:09:26 1726096166578 InvocationProfiler[]
+11-09-2024 23:09:26 1726096166579 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=36
+                                  totalTime(us)=60,993
+                                  avg(us)=1,694
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=10
+                                          256..511us=13
+                                          512..1023us=4
+                                          1024..2047us=5
+                                          2048..4095us=3
+                                          32768..65535us=1]]]
+11-09-2024 23:09:31 1726096171579 InvocationProfiler[]
+11-09-2024 23:09:31 1726096171579 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=46
+                                  totalTime(us)=63,467
+                                  avg(us)=1,379
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=19
+                                          256..511us=14
+                                          512..1023us=4
+                                          1024..2047us=5
+                                          2048..4095us=3
+                                          32768..65535us=1]]]
+11-09-2024 23:09:36 1726096176579 InvocationProfiler[]
+11-09-2024 23:09:36 1726096176580 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=56
+                                  totalTime(us)=69,041
+                                  avg(us)=1,232
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=21
+                                          256..511us=16
+                                          512..1023us=10
+                                          1024..2047us=5
+                                          2048..4095us=3
+                                          32768..65535us=1]]]
+11-09-2024 23:09:41 1726096181579 InvocationProfiler[]
+11-09-2024 23:09:41 1726096181579 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=66
+                                  totalTime(us)=75,704
+                                  avg(us)=1,147
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=21
+                                          256..511us=18
+                                          512..1023us=18
+                                          1024..2047us=5
+                                          2048..4095us=3
+                                          32768..65535us=1]]]
+11-09-2024 23:09:46 1726096186579 InvocationProfiler[]
+11-09-2024 23:09:46 1726096186581 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=76
+                                  totalTime(us)=84,605
+                                  avg(us)=1,113
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=21
+                                          256..511us=20
+                                          512..1023us=24
+                                          1024..2047us=6
+                                          2048..4095us=4
+                                          32768..65535us=1]]]
+11-09-2024 23:09:51 1726096191579 Invocations[
+                          Pending[
+                                  Invocation{op=com.hazelcast.internal.cluster.impl.operations.JoinMastershipClaimOp{serviceName='hz:core:clusterService', identityHash=706960270, partitionId=-1, replicaIndex=0, callId=1, invocationTime=1726096166635 (2024-09-11 23:09:26.635), waitTimeout=-1, callTimeout=60000, tenantControl=com.hazelcast.spi.impl.tenantcontrol.NoopTenantControl@0}, tryCount=1, tryPauseMillis=500, invokeCount=1, callTimeoutMillis=60000, firstInvocationTimeMs=1726096166634, firstInvocationTime='2024-09-11 23:09:26.634', lastHeartbeatMillis=0, lastHeartbeatTime='1970-01-01 00:00:00.000', target=[channel_stacks_hazelcast]:5701, pendingResponse={VOID}, backupsAcksExpected=-1, backupsAcksReceived=0, connection=null} duration=24945 ms
+                                  Invocation{op=com.hazelcast.internal.cluster.impl.operations.JoinMastershipClaimOp{serviceName='hz:core:clusterService', identityHash=1603476417, partitionId=-1, replicaIndex=0, callId=2, invocationTime=1726096181656 (2024-09-11 23:09:41.656), waitTimeout=-1, callTimeout=60000, tenantControl=com.hazelcast.spi.impl.tenantcontrol.NoopTenantControl@0}, tryCount=1, tryPauseMillis=500, invokeCount=1, callTimeoutMillis=60000, firstInvocationTimeMs=1726096181656, firstInvocationTime='2024-09-11 23:09:41.656', lastHeartbeatMillis=0, lastHeartbeatTime='1970-01-01 00:00:00.000', target=[channel_stacks_hazelcast]:5701, pendingResponse={VOID}, backupsAcksExpected=-1, backupsAcksReceived=0, connection=null} duration=9923 ms]
+                          History[
+                                  com.hazelcast.internal.cluster.impl.operations.JoinMastershipClaimOp samples=2]
+                          SlowHistory[
+                                  com.hazelcast.internal.cluster.impl.operations.JoinMastershipClaimOp samples=2]]
+11-09-2024 23:09:51 1726096191583 InvocationProfiler[]
+11-09-2024 23:09:51 1726096191584 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=86
+                                  totalTime(us)=92,551
+                                  avg(us)=1,076
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=21
+                                          256..511us=23
+                                          512..1023us=29
+                                          1024..2047us=7
+                                          2048..4095us=5
+                                          32768..65535us=1]]]
+11-09-2024 23:09:56 1726096196579 InvocationProfiler[]
+11-09-2024 23:09:56 1726096196580 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=96
+                                  totalTime(us)=97,548
+                                  avg(us)=1,016
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=23
+                                          256..511us=26
+                                          512..1023us=34
+                                          1024..2047us=7
+                                          2048..4095us=5
+                                          32768..65535us=1]]]
+11-09-2024 23:10:01 1726096201579 InvocationProfiler[]
+11-09-2024 23:10:01 1726096201582 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=106
+                                  totalTime(us)=105,294
+                                  avg(us)=993
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=23
+                                          256..511us=28
+                                          512..1023us=40
+                                          1024..2047us=9
+                                          2048..4095us=5
+                                          32768..65535us=1]]]
+11-09-2024 23:10:06 1726096206579 InvocationProfiler[]
+11-09-2024 23:10:06 1726096206580 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=116
+                                  totalTime(us)=112,253
+                                  avg(us)=967
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=23
+                                          256..511us=32
+                                          512..1023us=46
+                                          1024..2047us=9
+                                          2048..4095us=5
+                                          32768..65535us=1]]]
+11-09-2024 23:10:11 1726096211579 InvocationProfiler[]
+11-09-2024 23:10:11 1726096211580 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=126
+                                  totalTime(us)=118,083
+                                  avg(us)=937
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=25
+                                          256..511us=34
+                                          512..1023us=51
+                                          1024..2047us=10
+                                          2048..4095us=5
+                                          32768..65535us=1]]]
+11-09-2024 23:10:16 1726096216580 InvocationProfiler[]
+11-09-2024 23:10:16 1726096216583 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=136
+                                  totalTime(us)=130,877
+                                  avg(us)=962
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=25
+                                          256..511us=36
+                                          512..1023us=58
+                                          1024..2047us=10
+                                          2048..4095us=5
+                                          4096..8191us=1
+                                          32768..65535us=1]]]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=classloading.totalLoadedClassesCount]=7525]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ns,metric=partitions.elapsedDestinationCommitTime]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.genericQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.replicaSyncSemaphore]=10]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.genericThreadCount]=6]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.completedCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=classloading.unloadedClassesCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.runningPartitionCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=os.committedVirtualMemorySize]=15233122304]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ns,metric=partitions.elapsedMigrationTime]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.migrationQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=event.threadCount]=5]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=runtime.usedMemory]=58124104]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ns,metric=partitions.totalElapsedMigrationTime]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.maxHeap]=12981370880]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=cluster.clock.maxClusterTimeDiff]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ns,metric=partitions.totalElapsedMigrationOperationTime]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=os.processCpuTime]=6770000000]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.committedHeap]=744488960]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=raft.terminatedRaftNodeGroupIds]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.freeHeap]=686364856]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedTotalCount]=132]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=os.freePhysicalMemorySize]=6728183808]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=event.totalFailureCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.totalCompletedMigrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=operation.invocations.invocationScanPeriodMillis]=1000]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.responses.backupCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.runningGenericCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=raft.metadata.activeMembersCommitIndex]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.asyncOperations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=os.totalSwapSpaceSize]=1610608640]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=gc.minorTime]=291]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[service=hz:core:clusterService,unit=count,metric=event.publicationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=event.eventQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.callTimeoutCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=boolean,metric=partitions.migrationActive]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=client.endpoint.totalRegistrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=runtime.freeMemory]=686364856]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=cluster.heartbeat.lastHeartbeat]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.invocations.delayedExecutionCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.responses.missingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=event.syncDeliveryFailureCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=cluster.clock.clusterTimeDiff]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=raft.metadata.groups]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=proxy.createdCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.retryCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=operation.invocations.heartbeatBroadcastPeriodMillis]=15000]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.maxNative]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.totalPhysical]=16225161216]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=percent,metric=operation.invocations.usedPercentage]=0.0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=os.systemLoadAverage]=6.22265625]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=thread.totalStartedThreadCount]=56]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[service=hz:core:proxyService,unit=count,metric=event.publicationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=gc.unknownTime]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedTotalCount]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=cluster.clock.clusterUpTime]=-9223370310758554230]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[service=hz:core:clusterService,unit=count,metric=event.listenerCount]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.partitionThreadCount]=10]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=thread.threadCount]=55]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.invocations.heartbeatPacketsSent]=5]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.replicaSyncRequestsCounter]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.partitionCount]=271]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedTotalCount]=6]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=runtime.maxMemory]=12981370880]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.invocations.heartbeatPacketsReceived]=5]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[service=hz:core:partitionService,unit=count,metric=event.publicationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=thread.daemonThreadCount]=5]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=os.processCpuLoad]=0.24307243558580457]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.freeNative]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=cluster.size]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=event.rejectedCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedTotalCount]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=raft.missingMembers]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=cluster.clock.localClockTime]=1726096221578]
+11-09-2024 23:10:21 1726096221577 Metric[[dir=user.home,unit=bytes,metric=file.partition.freeSpace]=80224489472]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=6]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=gc.majorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedTotalCount]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=thread.peakThreadCount]=55]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.maxBackupCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=operation.invocations.invocationTimeoutMillis]=60000]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.priorityQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=runtime.totalMemory]=744488960]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=operation.invocations.backupTimeoutMillis]=5000]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.responses.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[service=hz:impl:replicatedMapService,unit=count,metric=event.listenerCount]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=3]
+11-09-2024 23:10:21 1726096221577 Metric[[service=hz:core:proxyService,unit=count,metric=event.listenerCount]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=proxy.proxyCount]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.freePhysical]=6728183808]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedTotalCount]=3]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.responses.timeoutCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ns,metric=partitions.totalElapsedDestinationCommitTime]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.committedNative]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=os.openFileDescriptorCount]=66]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.invocations.backupTimeouts]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.priorityPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ns,metric=partitions.elapsedMigrationOperationTime]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.genericPriorityQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=gc.minorCount]=11]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-7,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=transactions.startCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.usedMetadata]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=os.freeSwapSpaceSize]=1610608640]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=os.systemCpuLoad]=3.1857976653696496]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=os.totalPhysicalMemorySize]=16225161216]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=partitions.lastRepartitionTime]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-4,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=runtime.availableProcessors]=10]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=event.eventsProcessed]=74]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.parker.parkQueueCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.responses.normalCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=client.endpoint.count]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=gc.unknownCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.responseQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.maxMetadata]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.parker.totalParkedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.localPartitionCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=gc.majorTime]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-2,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.runningCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=classloading.loadedClassesCount]=7525]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.invocations.lastCallId]=4]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.normalPendingCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=transactions.commitCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-3,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-6,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=raft.destroyedGroupIds]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-5,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.activePartitionCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=os.maxFileDescriptorCount]=1048576]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[service=hz:core:partitionService,unit=count,metric=event.listenerCount]=3]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.invocations.pending]=4]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.usedNative]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[dir=user.home,unit=bytes,metric=file.partition.totalSpace]=86289817600]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=cluster.clock.clusterStartTime]=-9223372036854775808]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=ms,metric=cluster.clock.clusterTime]=1726096221579]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-8,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.plannedMigrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[service=hz:impl:replicatedMapService,unit=count,metric=event.publicationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-0,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[dir=user.home,unit=bytes,metric=file.partition.usableSpace]=75807784960]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-0,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=proxy.destroyedCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.invocations.normalTimeouts]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=raft.metadata.activeMembers]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.failedBackups]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.memberGroupsSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=operation.operationTimeoutCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=transactions.rollbackCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[metric=runtime.uptime]=65236]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=event.queueCapacity]=1000000]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.priority-generic-operation.thread-0,unit=count,metric=operation.thread.completedPartitionSpecificRunnableCount]=132]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=raft.nodes]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.generic-operation.thread-1,unit=count,metric=operation.thread.completedRunnableCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-4,unit=count,metric=operation.thread.errorCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-3,unit=count,metric=operation.thread.completedPacketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-1,unit=count,metric=operation.thread.completedOperationBatchCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.stateStamp]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=partitions.completedMigrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-2,unit=count,metric=operation.thread.completedTotalCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.partition-operation.thread-9,unit=count,metric=operation.thread.completedOperationCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=memory.usedHeap]=58239016]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-Acceptor,unit=ms,metric=tcp.acceptor.idleTimeMillis]=59517]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-Acceptor,unit=count,metric=tcp.acceptor.eventCount]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-Acceptor,unit=count,metric=tcp.acceptor.exceptionCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-Acceptor,unit=count,metric=tcp.acceptor.selectorRecreateCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.connection.inProgressCount]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.connection.count]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.connection.openedCount]=3]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.connection.closedCount]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.connection.activeCount]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.connection.acceptedSocketCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.connection.connectionListenerCount]=3]
+11-09-2024 23:10:21 1726096221577 Metric[[endpoint=[172.18.0.15]:5701,unit=enum,metric=tcp.connection.connectionType]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[bindAddress=[10.0.1.18]:5701,unit=enum,metric=tcp.connection.connectionType,endpoint=[172.18.0.15]:5701]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[bindAddress=[172.18.0.15]:5701,unit=enum,metric=tcp.connection.connectionType,endpoint=[172.18.0.15]:5701]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.connection.clientCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.connection.textCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.totalRemoveLatencies]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.maxPutLatency]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.maxGetLatency]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.maxRemoveLatency]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.totalPutLatencies]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.totalGetLatencies]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.total]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.lastAccessTime]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.lastUpdateTime]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.hits]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.numberOfOtherOperations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.numberOfEvents]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.getCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.putCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.removeCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=ms,metric=replicatedMap.creationTime]=1726096161680]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=count,metric=replicatedMap.ownedEntryCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=__sql.catalog,unit=bytes,metric=replicatedMap.ownedEntryMemoryCost]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster,unit=count,metric=executor.internal.maximumPoolSize]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster,unit=count,metric=executor.internal.completedTasks]=13]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:event,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:event,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:event,unit=count,metric=executor.internal.maximumPoolSize]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:event,unit=count,metric=executor.internal.completedTasks]=6]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:event,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:offloadable,unit=count,metric=executor.internal.remainingQueueCapacity]=100000]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:offloadable,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:offloadable,unit=count,metric=executor.internal.maximumPoolSize]=10]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:offloadable,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:offloadable,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:splitBrainProtection,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:splitBrainProtection,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:splitBrainProtection,unit=count,metric=executor.internal.maximumPoolSize]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:splitBrainProtection,unit=count,metric=executor.internal.completedTasks]=12]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:splitBrainProtection,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client,unit=count,metric=executor.internal.remainingQueueCapacity]=1000000]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client,unit=count,metric=executor.internal.maximumPoolSize]=10]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:mastership,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:mastership,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:mastership,unit=count,metric=executor.internal.maximumPoolSize]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:mastership,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:mastership,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:async,unit=count,metric=executor.internal.remainingQueueCapacity]=100000]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:async,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:async,unit=count,metric=executor.internal.maximumPoolSize]=10]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:async,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:async,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client-blocking-tasks,unit=count,metric=executor.internal.remainingQueueCapacity]=1000000]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client-blocking-tasks,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client-blocking-tasks,unit=count,metric=executor.internal.maximumPoolSize]=200]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client-blocking-tasks,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client-blocking-tasks,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client-query,unit=count,metric=executor.internal.remainingQueueCapacity]=1000000]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client-query,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client-query,unit=count,metric=executor.internal.maximumPoolSize]=10]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client-query,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:client-query,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:scheduled:cqc:018d188a-11a5-490f-9d55-ca54afda16a7,unit=count,metric=executor.internal.remainingQueueCapacity]=10000]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:scheduled:cqc:018d188a-11a5-490f-9d55-ca54afda16a7,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:scheduled:cqc:018d188a-11a5-490f-9d55-ca54afda16a7,unit=count,metric=executor.internal.maximumPoolSize]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:scheduled:cqc:018d188a-11a5-490f-9d55-ca54afda16a7,unit=count,metric=executor.internal.completedTasks]=12]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:scheduled:cqc:018d188a-11a5-490f-9d55-ca54afda16a7,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:scheduled,unit=count,metric=executor.internal.remainingQueueCapacity]=1000000]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:scheduled,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:scheduled,unit=count,metric=executor.internal.maximumPoolSize]=20]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:scheduled,unit=count,metric=executor.internal.completedTasks]=1042]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:scheduled,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:system,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:system,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:system,unit=count,metric=executor.internal.maximumPoolSize]=10]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:system,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:system,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=MetricsPublisher,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:10:21 1726096221577 Metric[[name=MetricsPublisher,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=MetricsPublisher,unit=count,metric=executor.internal.maximumPoolSize]=16]
+11-09-2024 23:10:21 1726096221577 Metric[[name=MetricsPublisher,unit=count,metric=executor.internal.completedTasks]=12]
+11-09-2024 23:10:21 1726096221577 Metric[[name=MetricsPublisher,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:splitbrain,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:splitbrain,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:splitbrain,unit=count,metric=executor.internal.maximumPoolSize]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:splitbrain,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:splitbrain,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:version:auto:upgrade,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:version:auto:upgrade,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:version:auto:upgrade,unit=count,metric=executor.internal.maximumPoolSize]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:version:auto:upgrade,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:cluster:version:auto:upgrade,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:query,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:query,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:query,unit=count,metric=executor.internal.maximumPoolSize]=16]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:query,unit=count,metric=executor.internal.completedTasks]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:query,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:CRDTReplicationMigration,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:CRDTReplicationMigration,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:CRDTReplicationMigration,unit=count,metric=executor.internal.maximumPoolSize]=16]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:CRDTReplicationMigration,unit=count,metric=executor.internal.completedTasks]=61]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:CRDTReplicationMigration,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:io,unit=count,metric=executor.internal.remainingQueueCapacity]=2147483647]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:io,unit=count,metric=executor.internal.poolSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:io,unit=count,metric=executor.internal.maximumPoolSize]=16]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:io,unit=count,metric=executor.internal.completedTasks]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[name=hz:io,unit=count,metric=executor.internal.queueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=ms,metric=tcp.connection.in.idleTimeMs]=59406]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=bytes,metric=tcp.connection.in.bytesRead]=170]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.normalFramesRead]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.priorityFramesRead]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.processCount]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.ownerId]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.startedMigrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.in.completedMigrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=ms,metric=tcp.connection.out.idleTimeMillis]=59417]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.scheduled]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.writeQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.priorityWriteQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=bytes,metric=tcp.connection.out.bytesWritten]=183]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.normalFramesWritten]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.priorityFramesWritten]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.processCount]=1797230]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.ownerId]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.startedMigrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:34565->channel_stacks_hazelcast/10.0.1.18:5701,unit=count,metric=tcp.connection.out.completedMigrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=ms,metric=tcp.connection.in.idleTimeMs]=151]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=bytes,metric=tcp.connection.in.bytesRead]=8033]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.in.normalFramesRead]=73]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.in.priorityFramesRead]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.in.processCount]=74]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.in.ownerId]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.in.startedMigrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.in.completedMigrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=ms,metric=tcp.connection.out.idleTimeMillis]=150]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.out.scheduled]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.out.writeQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.out.priorityWriteQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=bytes,metric=tcp.connection.out.bytesWritten]=114099]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.out.normalFramesWritten]=73]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.out.priorityFramesWritten]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.out.processCount]=78]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.out.ownerId]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.out.startedMigrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[pipelineId=/10.0.1.20:5701->/10.0.1.4:52425,unit=count,metric=tcp.connection.out.completedMigrations]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=ms,metric=tcp.inputThread.idleTimeMillis]=59406]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.ioThreadId]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=bytes,metric=tcp.inputThread.bytesTransceived]=170]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.framesTransceived]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.priorityFramesTransceived]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.processCount]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.taskQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.eventCount]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.completedTaskCount]=60]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-0,unit=count,metric=tcp.inputThread.selectorRebuildCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=ms,metric=tcp.inputThread.idleTimeMillis]=498]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.ioThreadId]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=bytes,metric=tcp.inputThread.bytesTransceived]=7923]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.framesTransceived]=72]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.priorityFramesTransceived]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.processCount]=73]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.taskQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.eventCount]=74]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.completedTaskCount]=60]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-1,unit=count,metric=tcp.inputThread.selectorRebuildCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=ms,metric=tcp.inputThread.idleTimeMillis]=151]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.ioThreadId]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=bytes,metric=tcp.inputThread.bytesTransceived]=7923]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.framesTransceived]=72]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.priorityFramesTransceived]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.processCount]=73]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.taskQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.eventCount]=74]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.completedTaskCount]=60]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-in-2,unit=count,metric=tcp.inputThread.selectorRebuildCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=ms,metric=tcp.outputThread.idleTimeMillis]=59937]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.ioThreadId]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=bytes,metric=tcp.outputThread.bytesTransceived]=183]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.framesTransceived]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.priorityFramesTransceived]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.processCount]=1797230]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.taskQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.eventCount]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.completedTaskCount]=1797287]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-0,unit=count,metric=tcp.outputThread.selectorRebuildCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=ms,metric=tcp.outputThread.idleTimeMillis]=1726096221581]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.ioThreadId]=1]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=bytes,metric=tcp.outputThread.bytesTransceived]=112536]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.framesTransceived]=72]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.priorityFramesTransceived]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.processCount]=77]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.taskQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.eventCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.completedTaskCount]=64]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-1,unit=count,metric=tcp.outputThread.selectorRebuildCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=ms,metric=tcp.outputThread.idleTimeMillis]=1726096221581]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.ioThreadId]=2]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=bytes,metric=tcp.outputThread.bytesTransceived]=112536]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.framesTransceived]=72]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.priorityFramesTransceived]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.processCount]=77]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.taskQueueSize]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.eventCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.selectorIOExceptionCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.completedTaskCount]=64]
+11-09-2024 23:10:21 1726096221577 Metric[[thread=hz.cool_zhukovsky.IO.thread-out-2,unit=count,metric=tcp.outputThread.selectorRebuildCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.balancer.imbalanceDetectedCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.balancer.migrationCompletedCount]=0]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=tcp.bytesSend]=222129]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=bytes,metric=tcp.bytesReceived]=15796]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.packetsSend]=143]
+11-09-2024 23:10:21 1726096221577 Metric[[unit=count,metric=tcp.packetsReceived]=143]
+11-09-2024 23:10:21 1726096221582 SlowOperations[]
+11-09-2024 23:10:21 1726096221582 Invocations[
+                          Pending[
+                                  Invocation{op=com.hazelcast.internal.cluster.impl.operations.JoinMastershipClaimOp{serviceName='hz:core:clusterService', identityHash=706960270, partitionId=-1, replicaIndex=0, callId=1, invocationTime=1726096166635 (2024-09-11 23:09:26.635), waitTimeout=-1, callTimeout=60000, tenantControl=com.hazelcast.spi.impl.tenantcontrol.NoopTenantControl@0}, tryCount=1, tryPauseMillis=500, invokeCount=1, callTimeoutMillis=60000, firstInvocationTimeMs=1726096166634, firstInvocationTime='2024-09-11 23:09:26.634', lastHeartbeatMillis=0, lastHeartbeatTime='1970-01-01 00:00:00.000', target=[channel_stacks_hazelcast]:5701, pendingResponse={VOID}, backupsAcksExpected=-1, backupsAcksReceived=0, connection=null} duration=54948 ms
+                                  Invocation{op=com.hazelcast.internal.cluster.impl.operations.JoinMastershipClaimOp{serviceName='hz:core:clusterService', identityHash=1603476417, partitionId=-1, replicaIndex=0, callId=2, invocationTime=1726096181656 (2024-09-11 23:09:41.656), waitTimeout=-1, callTimeout=60000, tenantControl=com.hazelcast.spi.impl.tenantcontrol.NoopTenantControl@0}, tryCount=1, tryPauseMillis=500, invokeCount=1, callTimeoutMillis=60000, firstInvocationTimeMs=1726096181656, firstInvocationTime='2024-09-11 23:09:41.656', lastHeartbeatMillis=0, lastHeartbeatTime='1970-01-01 00:00:00.000', target=[channel_stacks_hazelcast]:5701, pendingResponse={VOID}, backupsAcksExpected=-1, backupsAcksReceived=0, connection=null} duration=39926 ms
+                                  Invocation{op=com.hazelcast.internal.cluster.impl.operations.JoinMastershipClaimOp{serviceName='hz:core:clusterService', identityHash=871461513, partitionId=-1, replicaIndex=0, callId=3, invocationTime=1726096196668 (2024-09-11 23:09:56.668), waitTimeout=-1, callTimeout=60000, tenantControl=com.hazelcast.spi.impl.tenantcontrol.NoopTenantControl@0}, tryCount=1, tryPauseMillis=500, invokeCount=1, callTimeoutMillis=60000, firstInvocationTimeMs=1726096196668, firstInvocationTime='2024-09-11 23:09:56.668', lastHeartbeatMillis=0, lastHeartbeatTime='1970-01-01 00:00:00.000', target=[channel_stacks_hazelcast]:5701, pendingResponse={VOID}, backupsAcksExpected=-1, backupsAcksReceived=0, connection=null} duration=24914 ms
+                                  Invocation{op=com.hazelcast.internal.cluster.impl.operations.JoinMastershipClaimOp{serviceName='hz:core:clusterService', identityHash=2063506807, partitionId=-1, replicaIndex=0, callId=4, invocationTime=1726096211691 (2024-09-11 23:10:11.691), waitTimeout=-1, callTimeout=60000, tenantControl=com.hazelcast.spi.impl.tenantcontrol.NoopTenantControl@0}, tryCount=1, tryPauseMillis=500, invokeCount=1, callTimeoutMillis=60000, firstInvocationTimeMs=1726096211690, firstInvocationTime='2024-09-11 23:10:11.690', lastHeartbeatMillis=0, lastHeartbeatTime='1970-01-01 00:00:00.000', target=[channel_stacks_hazelcast]:5701, pendingResponse={VOID}, backupsAcksExpected=-1, backupsAcksReceived=0, connection=null} duration=9892 ms]
+                          History[
+                                  com.hazelcast.internal.cluster.impl.operations.JoinMastershipClaimOp samples=6]
+                          SlowHistory[
+                                  com.hazelcast.internal.cluster.impl.operations.JoinMastershipClaimOp samples=6]]
+11-09-2024 23:10:21 1726096221583 InvocationProfiler[]
+11-09-2024 23:10:21 1726096221583 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=146
+                                  totalTime(us)=135,900
+                                  avg(us)=930
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          128..255us=26
+                                          256..511us=41
+                                          512..1023us=62
+                                          1024..2047us=10
+                                          2048..4095us=5
+                                          4096..8191us=1
+                                          32768..65535us=1]]]
+11-09-2024 23:10:21 1726096221583 HazelcastInstance[
+                          thisAddress=[172.18.0.13]:5701
+                          isRunning=true
+                          isLite=false
+                          joined=false
+                          nodeState=ACTIVE
+                          clusterId=null
+                          clusterSize=1
+                          isMaster=false
+                          masterAddress=null
+                          Members[
+                                  [172.18.0.13]:5701]]
+11-09-2024 23:10:26 1726096226579 InvocationProfiler[]
+11-09-2024 23:10:26 1726096226580 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=164
+                                  totalTime(us)=140,709
+                                  avg(us)=857
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          64..127us=6
+                                          128..255us=33
+                                          256..511us=43
+                                          512..1023us=65
+                                          1024..2047us=10
+                                          2048..4095us=5
+                                          4096..8191us=1
+                                          32768..65535us=1]]]
+11-09-2024 23:10:31 1726096231580 InvocationProfiler[]
+11-09-2024 23:10:31 1726096231582 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=169
+                                  totalTime(us)=142,853
+                                  avg(us)=845
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          64..127us=6
+                                          128..255us=33
+                                          256..511us=47
+                                          512..1023us=66
+                                          1024..2047us=10
+                                          2048..4095us=5
+                                          4096..8191us=1
+                                          32768..65535us=1]]]
+11-09-2024 23:10:36 1726096236578 InvocationProfiler[]
+11-09-2024 23:10:36 1726096236580 OperationsProfiler[
+                          com.hazelcast.client.impl.protocol.task.AuthenticationMessageTask[
+                                  count=174
+                                  totalTime(us)=145,451
+                                  avg(us)=835
+                                  max(us)=35,034
+                                  latency-distribution[
+                                          64..127us=6
+                                          128..255us=33
+                                          256..511us=51
+                                          512..1023us=67
+                                          1024..2047us=10
+                                          2048..4095us=5
+                                          4096..8191us=1
+                                          32768..65535us=1]]]

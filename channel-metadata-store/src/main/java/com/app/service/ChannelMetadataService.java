@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.List;
+
 @Slf4j
 @Service
 public class ChannelMetadataService {
@@ -34,22 +34,15 @@ public class ChannelMetadataService {
     public ChannelMetadataRequest saveOrUpdateChannelMetadata(String countryCode, ChannelMetadataRequest request) {
         ChannelMetadataEntity entity = convertRequestToEntity(countryCode, request);
 
-        // Save or update the entity in the database
         ChannelMetadataEntity savedEntity = channelMetadataRepository.save(entity);
-
-        // Publish cache update event after saving to the database
         applicationEventPublisher.publishEvent(new CacheUpdateEvent(countryCode, mapEntityToModel(savedEntity)));
 
-        // Return the updated model
         return mapEntityToModel(savedEntity);
     }
 
-
-    // Fetch Channel Metadata by countryCode, manually checking cache first
     public ChannelMetadataRequest getChannelMetadataByCountryCode(String countryCode) {
         log.info("Fetching channel metadata for countryCode: {}", countryCode);
 
-        // Check the cache first
         ChannelMetadataRequest cachedValue = (ChannelMetadataRequest) customCacheWrapper.get(countryCode);
         if (cachedValue != null) {
             log.info("Found value in cache for countryCode: {}", countryCode);
@@ -59,8 +52,8 @@ public class ChannelMetadataService {
         // If not found in cache, query from the database
         ChannelMetadataEntity entity = channelMetadataRepository.findByCountryCode(countryCode);
         if (entity != null) {
-            // Update cache after fetching from DB (Cache-Aside behavior)
             ChannelMetadataRequest model = mapEntityToModel(entity);
+
             customCacheWrapper.put(countryCode, model);
             log.info("Updated cache with database value for countryCode: {}", countryCode);
             return model;

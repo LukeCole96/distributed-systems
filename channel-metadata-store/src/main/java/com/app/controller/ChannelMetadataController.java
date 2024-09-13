@@ -20,14 +20,12 @@ public class ChannelMetadataController {
         this.channelMetadataService = channelMetadataService;
     }
 
-    // POST method remains unchanged
     @PostMapping("/{countryCode}")
     public ResponseEntity<String> saveCountryData(@PathVariable String countryCode, @RequestBody ChannelMetadataRequest request) {
         channelMetadataService.saveOrUpdateChannelMetadata(countryCode, request);
         return ResponseEntity.ok("Data successfully posted");
     }
 
-    // Update GET method to fetch by countryCode
     @GetMapping("/{countryCode}")
     public ResponseEntity<ChannelMetadataRequest> getCountryData(@PathVariable String countryCode) {
         log.info("Fetching data for countryCode: {}", countryCode);

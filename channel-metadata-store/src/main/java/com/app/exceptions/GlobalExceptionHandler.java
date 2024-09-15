@@ -23,20 +23,6 @@ public class GlobalExceptionHandler {
         this.kafkaProducerService = kafkaProducerService;
     }
 
-    private void sendErrorMessageToKafka(String errorCode, String message) {
-        String kafkaMessage = String.format("Error occurred. Code: %s, Message: %s", errorCode, message);
-        try {
-            log.info("CRAP 3");
-
-
-            kafkaProducerService.sendMessage("retry-db-write-from-cache", "error", kafkaMessage);
-            log.info("Successfully sent error message to Kafka: {}", kafkaMessage);
-        } catch (Exception e) {
-            log.error("Failed to send error message to Kafka. ErrorCode: {}, Message: {}, Exception: {}", errorCode, message, e.getMessage(), e);
-        }
-    }
-
-
     // 4XX
     public static class MethodArgumentNotValidException extends RuntimeException {
         public MethodArgumentNotValidException(String message) {
@@ -92,9 +78,6 @@ public class GlobalExceptionHandler {
         Map<String, String> errorDetails = new HashMap<>();
         errorDetails.put("errorCode", "CMS-0004");
         errorDetails.put("message", ex.getMessage());
-
-        sendErrorMessageToKafka("CMS-0004", ex.getMessage());
-
         return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
     }
 
@@ -102,7 +85,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0000");
+        errorDetails.put("errorCode", "CMS-0001");
         errorDetails.put("message", "Failed to find item");
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
@@ -111,7 +94,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<Map<String, String>> handleBadRequestException(BadRequestException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0001");
+        errorDetails.put("errorCode", "CMS-0002");
         errorDetails.put("message", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
@@ -120,7 +103,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UnauthorizedException.class)
     public ResponseEntity<Map<String, String>> handleUnauthorizedException(UnauthorizedException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0002");
+        errorDetails.put("errorCode", "CMS-0003");
         errorDetails.put("message", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
     }
@@ -129,7 +112,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ForbiddenException.class)
     public ResponseEntity<Map<String, String>> handleForbiddenException(ForbiddenException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0003");
+        errorDetails.put("errorCode", "CMS-0004");
         errorDetails.put("message", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
     }
@@ -138,8 +121,21 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handleGlobalException(Exception ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-1111");
+        errorDetails.put("errorCode", "CMS-0005");
         errorDetails.put("message", "An unexpected error occurred");
+
+        sendErrorMessageToKafka("CMS-0000", ex.getMessage());
+
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    private void sendErrorMessageToKafka(String errorCode, String message) {
+        try {
+            String kafkaMessage = String.format("Error occurred. Code: %s, Message: %s", errorCode, message);
+            kafkaProducerService.sendMessage("retry-db-write-from-cache", "error", kafkaMessage);
+            log.info("Successfully sent error message to Kafka: {}", kafkaMessage);
+        } catch (Exception e) {
+            log.error("Failed to send error message to Kafka. ErrorCode: {}, Message: {}, Exception: {}", errorCode, message, e.getMessage(), e);
+        }
     }
 }

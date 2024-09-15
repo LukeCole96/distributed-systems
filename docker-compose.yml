@@ -1,4 +1,15 @@
 services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - channel-metadata-store
+    networks:
+      - hazelcast-network
+
   db:
     platform: linux/x86_64
     image: mysql:5.7
@@ -93,7 +104,7 @@ services:
   channel-metadata-store:
     build: channel-metadata-store
     ports:
-      - 8080:8080
+      - 8080
     depends_on:
       - db
       - hazelcast
@@ -109,6 +120,8 @@ services:
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka-1:9092,kafka-2:9094,kafka-3:9096
     networks:
       - hazelcast-network 
+    deploy:
+      replicas: 4
     restart: always
 
 networks:

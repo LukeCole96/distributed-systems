@@ -1,6 +1,5 @@
 package com.app.cache;
 
-import com.app.cache.CacheUpdateEvent;
 import com.app.metrics.CustomCacheWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ public class CacheUpdateListener {
         this.customCacheWrapper = customCacheWrapper;
     }
 
-    // Listen for the CacheUpdateEvent and update the cache after transaction commit
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void handleCacheUpdate(CacheUpdateEvent event) {
         log.info("Updating cache after transaction commit for countryCode: {}", event.getCountryCode());

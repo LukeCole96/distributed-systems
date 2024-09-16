@@ -2,25 +2,44 @@ package com.app.metrics;
 
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
-import com.hazelcast.map.LocalMapStats;
 import io.micrometer.core.instrument.Counter;
-import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
 public class CustomCacheWrapper {
 
     private final HazelcastInstance hazelcastInstance;
+
     private final Counter cacheMissCounter;
+    private final Counter cacheHitsCounter;
     private final Counter cacheEvictionCounter;
 
     public CustomCacheWrapper(HazelcastInstance hazelcastInstance, MeterRegistry meterRegistry) {
         this.hazelcastInstance = hazelcastInstance;
         this.cacheMissCounter = meterRegistry.counter("custom_cache_misses", "cache", "distributed-cache");
+        this.cacheHitsCounter = meterRegistry.counter("custom_cache_hits", "cache", "distributed-cache");
         this.cacheEvictionCounter = meterRegistry.counter("custom_cache_evictions", "cache", "distributed-cache");
+    }
+
+    public List<String> getAllKeys() {
+        try {
+            Set<Object> keySet = hazelcastInstance.getMap("distributed-cache").keySet();
+
+            return keySet.stream()
+                    .filter(key -> key instanceof String)
+                    .map(key -> (String) key)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.error("Error fetching keys from cache: ", e);
+            return Collections.emptyList();
+        }
     }
 
     public Object get(String key) {
@@ -30,9 +49,10 @@ public class CustomCacheWrapper {
             map = hazelcastInstance.getMap("distributed-cache");
             value = map.get(key);
             log.info("Successful getting CACHE KEY: " + key);
+            cacheHitsCounter.increment();
             if (value == null) {
-                log.info("LC: CACHE MISS, COUNTER SHOULD INCREMENT");
-                cacheMissCounter.increment(); // Increment miss counter on cache miss
+                log.info("Cache miss detected!");
+                cacheMissCounter.increment();
             }
         } catch (Exception e) {
             log.error("Error accessing cache for key: {}", key, e);
@@ -54,7 +74,7 @@ public class CustomCacheWrapper {
         try {
             IMap<String, Object> map = hazelcastInstance.getMap("distributed-cache");
             map.delete(key);
-            cacheEvictionCounter.increment(); // Increment eviction counter on evict
+            cacheEvictionCounter.increment();
             log.info("Evicted key: {} from cache", key);
         } catch (Exception e) {
             log.error("Error evicting cache for key: {}", key, e);
@@ -66,11 +86,15 @@ public class CustomCacheWrapper {
         try {
             IMap<String, Object> map = hazelcastInstance.getMap("distributed-cache");
             size = map.size();
-            log.info("LC: Cache size: {}", size);
+            log.info("Cache size: {}", size);
         } catch (Exception e) {
             log.error("Error retrieving cache size", e);
         }
         return size;
+    }
+
+    public IMap<Object, Object> getCache() {
+        return hazelcastInstance.getMap("distributed-cache");
     }
 }
 

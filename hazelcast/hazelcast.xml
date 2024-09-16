@@ -4,33 +4,52 @@
                               http://www.hazelcast.com/schema/config/hazelcast-config-5.0.xsd">
 
     <!-- Network configuration -->
+    <!-- <network> -->
+        <!-- <interfaces> -->
+            <!-- <interface>0.0.0.0</interface> Accept connections from any IP address -->
+        <!-- </interfaces> -->
+        <!-- <port>5701</port> Port for Hazelcast connections -->
+   
+    <!-- </network> -->
+      <!-- Network configuration -->
     <network>
         <interfaces>
             <interface>0.0.0.0</interface> <!-- Accept connections from any IP address -->
         </interfaces>
         <port>5701</port> <!-- Port for Hazelcast connections -->
-   
     </network>
 
     <!-- Define Hazelcast cluster settings -->
     <properties>
+        <property name="hazelcast.max.no.heartbeat.seconds">120</property>
+        <property name="hazelcast.max.no.master.confirmation.seconds">120</property>
+        <property name="hazelcast.shutdownhook.enabled">true</property>
+        <property name="hazelcast.shutdownhook.policy">GRACEFUL</property>
         <property name="hazelcast.logging.type">log4j2</property>
         <property name="hazelcast.local.public.address">192.168.1.2</property>
-            <property name="hazelcast.diagnostics.enabled">true</property>
-            <property name="hazelcast.diagnostics.directory">/opt/hazelcast/logs</property>
-            <!-- Adjust the frequency and enable/disable specific diagnostics -->
-            <property name="hazelcast.diagnostics.metric.level">DEBUG</property>
-            <property name="hazelcast.diagnostics.invocation.sample.period.seconds">30</property>
+        <property name="hazelcast.diagnostics.enabled">true</property>
+        <property name="hazelcast.diagnostics.directory">/opt/hazelcast/logs</property>
+        <property name="hazelcast.diagnostics.metric.level">DEBUG</property>
+        <property name="hazelcast.diagnostics.invocation.sample.period.seconds">30</property>
     </properties>
 
     <!-- Define the map configuration -->
     <map name="distributed-cache">
         <in-memory-format>BINARY</in-memory-format>
-        <backup-count>1</backup-count>
+        <backup-count>3</backup-count>
         <async-backup-count>0</async-backup-count>
-        <time-to-live-seconds>3600</time-to-live-seconds>
-        <max-idle-seconds>1800</max-idle-seconds>
+        <time-to-live-seconds>3600</time-to-live-seconds> <!-- Adjust if needed -->
+        <max-idle-seconds>3600</max-idle-seconds> <!-- Increase or remove if eviction is causing issues -->
+        <eviction max-size-policy="USED_HEAP_PERCENTAGE" size="85"/> <!-- Ensure eviction happens only when needed -->
+        <split-brain-protection-ref>cache-split-brain-protection</split-brain-protection-ref> <!-- Reference the split-brain-protection -->
+        <merge-policy>com.hazelcast.spi.merge.LatestUpdateMergePolicy</merge-policy> <!-- Add the merge policy -->
+        <per-entry-stats-enabled>true</per-entry-stats-enabled> <!-- Enable per-entry stats -->
     </map>
+
+    <!-- Define the split-brain protection -->
+    <split-brain-protection name="cache-split-brain-protection" enabled="true">
+        <minimum-cluster-size>2</minimum-cluster-size> <!-- Prevent split-brain scenarios -->
+    </split-brain-protection>
 
     <!-- Metrics configuration -->
     <metrics enabled="true">
@@ -38,4 +57,3 @@
     </metrics>
 
 </hazelcast>
-

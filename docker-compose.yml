@@ -1,50 +1,36 @@
 services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - channel-metadata-store
+    networks:
+      - hazelcast-network
+
   db:
     platform: linux/x86_64
     image: mysql:5.7
     container_name: db
     restart: always
-    # command: ["/bin/bash", "/docker-entrypoint-initdb.d/init.sh"]
-    # env_file: ./.env
     environment:
       MYSQL_DATABASE: 'channel_metadata_db'
-      # So you don't have to use root, but you can if you like
       MYSQL_USER: 'user'
-      # You can use whatever password you like
       MYSQL_PASSWORD: 'none'
-      # Password for root access
       MYSQL_ROOT_PASSWORD: 'password'
     ports:
-      # <Port exposed> : <MySQL Port running inside container>
       - '3306:3306'
     expose:
-      # Opens port 3306 on the container
       - '3306'
-      # Where our data will be persisted
     volumes:
       - ./init:/docker-entrypoint-initdb.d
-    networks:
-      - hazelcast-network
-  
-  channel-metadata-store:
-    build: channel-metadata-store
-    ports:
-      - 8080:8080
-    depends_on:
-      - db
-      - hazelcast
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/channel_metadata_db
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=password
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - HAZELCAST_URL=hazelcast:5701
     networks:
       - hazelcast-network
       
   hazelcast:
     image: hazelcast/hazelcast:5.0.3
-    # container_name: hazelcast
     volumes:
       - ./hazelcast/hazelcast.xml:/opt/hazelcast/config/hazelcast.xml
       - ./hazelcast/logs:/opt/hazelcast/logs
@@ -53,87 +39,91 @@ services:
       - hazelcast.config=/opt/hazelcast/config/hazelcast.xml
       - hazelcast.diagnostics.directory=/opt/hazelcast/logs
     ports:
-      - "5701"
+      - "5701-5704:5701"
     networks:
       - hazelcast-network
     deploy:
-      replicas: 3  # Number of Hazelcast nodes
+      replicas: 4  # Number of Hazelcast nodes
 
-  # db:
-  #   image: postgres
-  #   container_name: db
-  #   environment:
-  #     - POSTGRES_USER=user
-  #     - POSTGRES_PASSWORD=password
-  #     - POSTGRES_DB=channel_metadata_db
-  #   volumes:
-  #     - ./init:/docker-entrypoint-initdb.d
-  #   ports:
-  #     - "5432:5432"
-
-
-
-  prometheus:
-    image: prom/prometheus
-    ports:
-      - '9090:9090'
-    links:
-      - alertmanager
-    volumes:
-      - ./prometheus:/etc/prometheus
-    extra_hosts:
-      - 'host.docker.internal:host-gateway' #USED TO ALLOW COMS WITH APP
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-    restart: always
-    networks:
-      - localprom
-  
-  alertmanager:
-    image: prom/alertmanager
-    ports:
-      - '9093:9093'
-    volumes:
-      - ./alert-manager:/etc/alertmanager
-    command:
-      - '--config.file=/etc/alertmanager/alertmanager.yml'
-    restart: always
-  
-  grafana:
-    image: grafana/grafana-enterprise
-    ports:
-      - '3000:3000'
-    depends_on:
-      - prometheus
-    environment:
-      #      - GF_SERVER_ROOT_URL=http://my.grafana.server/
-      #      - GF_INSTALL_PLUGINS=grafana-clock-panel
-      - GF_INSTALL_PLUGINS=grafana-piechart-panel
-    volumes:
-      - './datasources:/etc/grafana/provisioning/datasources'
-    networks:
-      - localprom
-  
   zookeeper:
     image: wurstmeister/zookeeper:latest
     ports:
       - "2181:2181"
-  kafka:
-    image: wurstmeister/kafka:latest
-    ports:
-      - "9092:9092"
+    networks:
+      - hazelcast-network
+
+  kafka-1:
+    image: confluentinc/cp-kafka:7.4.0
+    hostname: kafka-1
+    container_name: kafka-1
     expose:
       - "9093"
     environment:
-      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092
+      KAFKA_BROKER_ID: 1
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka-1:9093,OUTSIDE://kafka-1:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
       KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
       KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_CREATE_TOPICS: "my-topic:1:1"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-  
+      KAFKA_CREATE_TOPICS: "retry-db-write-from-cache:3:3"
+    networks:
+      - hazelcast-network
+
+  kafka-2:
+    image: confluentinc/cp-kafka:7.4.0
+    hostname: kafka-2
+    container_name: kafka-2
+    expose:
+      - "9095"
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka-2:9095,OUTSIDE://kafka-2:9094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9095,OUTSIDE://0.0.0.0:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    networks:
+      - hazelcast-network
+
+  kafka-3:
+    image: confluentinc/cp-kafka:7.4.0
+    hostname: kafka-3
+    container_name: kafka-3
+    expose:
+      - "9097"
+    environment:
+      KAFKA_BROKER_ID: 3
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka-3:9097,OUTSIDE://kafka-3:9096
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9097,OUTSIDE://0.0.0.0:9096
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    networks:
+      - hazelcast-network
+
+  channel-metadata-store:
+    build: channel-metadata-store
+    ports:
+      - 8080
+    depends_on:
+      - db
+      - hazelcast
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/channel_metadata_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - HAZELCAST_URL=hazelcast:5701
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka-1:9092,kafka-2:9094,kafka-3:9096
+    networks:
+      - hazelcast-network 
+    deploy:
+      replicas: 4
+    restart: always
+
 networks:
   localprom:
     driver: bridge

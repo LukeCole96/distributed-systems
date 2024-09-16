@@ -4,12 +4,14 @@ import com.app.model.ChannelMetadataRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
-
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "channel_metadata")
-public class ChannelMetadataEntity {
+public class ChannelMetadataEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +20,9 @@ public class ChannelMetadataEntity {
     protected String countryCode;
     @Lob
     protected String metadata;
-    protected String product;  //comes from client in a header
+    protected String product;
 
-    public ChannelMetadataEntity() {
-        // Default constructor required by JPA
-    }
+    public ChannelMetadataEntity() {}
 
     public ChannelMetadataEntity(ChannelMetadataRequest request) {
         this.countryCode = request.getCountryCode();
@@ -68,7 +68,7 @@ public class ChannelMetadataEntity {
             if (obj instanceof List<?>) {
                 return mapper.writeValueAsString(obj);
             } else if (obj instanceof String) {
-                return (String) obj; // Assumes the input string is already in JSON format
+                return (String) obj;
             } else {
                 throw new IllegalArgumentException("Unsupported type for JSON conversion");
             }

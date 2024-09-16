@@ -2,9 +2,12 @@ package com.app.service;
 
 import com.app.cache.CacheUpdateEvent;
 import com.app.entity.ChannelMetadataEntity;
+import com.app.kafka.KafkaProducerService;
 import com.app.metrics.CustomCacheWrapper;
 import com.app.model.ChannelMetadataRequest;
 import com.app.repository.ChannelMetadataRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -13,54 +16,101 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.List;
+import java.util.Set;
+
 @Slf4j
 @Service
 public class ChannelMetadataService {
 
     private final ChannelMetadataRepository channelMetadataRepository;
     private final CustomCacheWrapper customCacheWrapper;
+    private final KafkaProducerService kafkaProducerService;
     private final ApplicationEventPublisher applicationEventPublisher;
 
     @Autowired
-    public ChannelMetadataService(ChannelMetadataRepository channelMetadataRepository, CustomCacheWrapper customCacheWrapper, ApplicationEventPublisher applicationEventPublisher) {
+    public ChannelMetadataService(ChannelMetadataRepository channelMetadataRepository, CustomCacheWrapper customCacheWrapper, KafkaProducerService kafkaProducerService, ApplicationEventPublisher applicationEventPublisher) {
         this.channelMetadataRepository = channelMetadataRepository;
         this.customCacheWrapper = customCacheWrapper;
-        this.applicationEventPublisher = applicationEventPublisher;  // Inject ApplicationEventPublisher
+        this.kafkaProducerService = kafkaProducerService;
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
-    @Transactional
+    @Transactional(rollbackFor = {Exception.class})
+    @CircuitBreaker(name = "dbService", fallbackMethod = "fallbackToKafka")
+    @Retry(name = "dbRetry")
+    public void forceUpdateAllFromCache() {
+        Set<Object> keySet = customCacheWrapper.getCache().keySet();
+
+        for (Object key : keySet) {
+            if (key instanceof String) {
+                String cacheKey = (String) key;
+                try {
+                    ChannelMetadataEntity entity = (ChannelMetadataEntity) customCacheWrapper.get(cacheKey);
+                    channelMetadataRepository.save(entity);
+
+                    log.info("Successfully updated database from cache for key: {}", cacheKey);
+                } catch (Exception e) {
+                    log.error("Error occurred while force updating from cache to the database.", e);
+                    throw new RuntimeException("Failed to update database: " + e.getMessage(), e);
+                }
+            } else {
+                log.warn("Cache key is not a string: {}", key);
+            }
+        }
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
+    @CircuitBreaker(name = "dbService", fallbackMethod = "fallbackToKafka")
+    @Retry(name = "dbRetry")
     public ChannelMetadataRequest saveOrUpdateChannelMetadata(String countryCode, ChannelMetadataRequest request) {
-        ChannelMetadataEntity entity = convertRequestToEntity(countryCode, request);
+        try {
+            ChannelMetadataEntity entity = convertRequestToEntity(countryCode, request);
+            ChannelMetadataEntity savedEntity = channelMetadataRepository.save(entity);
+            ChannelMetadataRequest updatedModel = mapEntityToModel(savedEntity);
+            customCacheWrapper.put(countryCode, updatedModel);
 
-        // Save or update the entity in the database
-        ChannelMetadataEntity savedEntity = channelMetadataRepository.save(entity);
-
-        // Publish cache update event after saving to the database
-        applicationEventPublisher.publishEvent(new CacheUpdateEvent(countryCode, mapEntityToModel(savedEntity)));
-
-        // Return the updated model
-        return mapEntityToModel(savedEntity);
+            log.info("Successfully saved and cached metadata for countryCode: {}", countryCode);
+            return updatedModel;
+        } catch (Exception e) {
+            log.error("Error occurred while saving/updating metadata for countryCode: {}", countryCode, e);
+            throw e;
+        }
     }
 
+    // Fallback to Kafka when db is down
+    public ChannelMetadataRequest fallbackToKafka(String countryCode, ChannelMetadataRequest request, Throwable t) {
+        log.warn("Database is unavailable, falling back to Kafka. Reason: {}", t.getMessage());
+        kafkaProducerService.sendMessage("retry-db-write-from-cache", countryCode, request.toString());
+        return null;
+    }
 
-    // Fetch Channel Metadata by countryCode, manually checking cache first
+    private void handleDbConnectionFailure(String countryCode, ChannelMetadataEntity entity) {
+        try {
+            customCacheWrapper.put(countryCode, entity);
+        } catch (Exception e) {
+            log.error("Error occurred while handling DB connection failure for countryCode: {}", countryCode, e);
+            throw e;
+        }
+    }
+
+    // ChannelMetadataService.java
+
     public ChannelMetadataRequest getChannelMetadataByCountryCode(String countryCode) {
         log.info("Fetching channel metadata for countryCode: {}", countryCode);
 
-        // Check the cache first
-        ChannelMetadataRequest cachedValue = (ChannelMetadataRequest) customCacheWrapper.get(countryCode);
-        if (cachedValue != null) {
+        Object cachedValue = customCacheWrapper.get(countryCode);
+        if (cachedValue instanceof ChannelMetadataRequest) {
             log.info("Found value in cache for countryCode: {}", countryCode);
-            return cachedValue;
+            return (ChannelMetadataRequest) cachedValue;
+        } else {
+            log.warn("Unexpected type in cache for countryCode: {}. Expected ChannelMetadataRequest, found: {}", countryCode, cachedValue != null ? cachedValue.getClass().getName() : "null");
         }
 
-        // If not found in cache, query from the database
         ChannelMetadataEntity entity = channelMetadataRepository.findByCountryCode(countryCode);
         if (entity != null) {
-            // Update cache after fetching from DB (Cache-Aside behavior)
             ChannelMetadataRequest model = mapEntityToModel(entity);
+
             customCacheWrapper.put(countryCode, model);
             log.info("Updated cache with database value for countryCode: {}", countryCode);
             return model;
@@ -69,6 +119,7 @@ public class ChannelMetadataService {
         log.warn("No channel metadata found for countryCode: {}", countryCode);
         return null;
     }
+
 
     private ChannelMetadataEntity convertRequestToEntity(String countryCode, ChannelMetadataRequest request) {
         ChannelMetadataEntity existingEntity = channelMetadataRepository.findByCountryCode(countryCode);

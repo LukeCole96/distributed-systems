@@ -68,7 +68,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationException(MethodArgumentNotValidException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-00001");
+        errorDetails.put("errorCode", "CMS-0001");
         errorDetails.put("message", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
@@ -76,8 +76,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ConflictException.class)
     public ResponseEntity<Map<String, String>> handleConflictException(ConflictException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0004");
+        errorDetails.put("errorCode", "CMS-0002");
         errorDetails.put("message", ex.getMessage());
+
+        sendErrorMessageToKafka("CMS-0002", ex.getMessage());
+
         return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
     }
 
@@ -85,7 +88,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0001");
+        errorDetails.put("errorCode", "CMS-0003");
         errorDetails.put("message", "Failed to find item");
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
@@ -94,7 +97,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<Map<String, String>> handleBadRequestException(BadRequestException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0002");
+        errorDetails.put("errorCode", "CMS-0004");
         errorDetails.put("message", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
@@ -103,7 +106,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UnauthorizedException.class)
     public ResponseEntity<Map<String, String>> handleUnauthorizedException(UnauthorizedException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0003");
+        errorDetails.put("errorCode", "CMS-0005");
         errorDetails.put("message", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
     }
@@ -112,8 +115,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ForbiddenException.class)
     public ResponseEntity<Map<String, String>> handleForbiddenException(ForbiddenException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0004");
+        errorDetails.put("errorCode", "CMS-0006");
         errorDetails.put("message", ex.getMessage());
+
+        sendErrorMessageToKafka("CMS-0006", ex.getMessage());
+
         return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
     }
 
@@ -121,10 +127,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handleGlobalException(Exception ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0005");
+        errorDetails.put("errorCode", "CMS-0007");
         errorDetails.put("message", "An unexpected error occurred");
 
-        sendErrorMessageToKafka("CMS-0000", ex.getMessage());
+        sendErrorMessageToKafka("CMS-0007", ex.getMessage());
 
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }

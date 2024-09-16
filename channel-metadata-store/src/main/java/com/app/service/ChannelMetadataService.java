@@ -46,7 +46,9 @@ public class ChannelMetadataService {
             if (key instanceof String) {
                 String cacheKey = (String) key;
                 try {
-                    ChannelMetadataEntity entity = (ChannelMetadataEntity) customCacheWrapper.get(cacheKey);
+                    ChannelMetadataRequest request = (ChannelMetadataRequest) customCacheWrapper.get(cacheKey);
+                    ChannelMetadataEntity entity = convertRequestToEntity(request);
+
                     channelMetadataRepository.save(entity);
 
                     log.info("Successfully updated database from cache for key: {}", cacheKey);
@@ -65,7 +67,7 @@ public class ChannelMetadataService {
     @Retry(name = "dbRetry")
     public ChannelMetadataRequest saveOrUpdateChannelMetadata(String countryCode, ChannelMetadataRequest request) {
         try {
-            ChannelMetadataEntity entity = convertRequestToEntity(countryCode, request);
+            ChannelMetadataEntity entity = convertRequestToEntity(request);
             ChannelMetadataEntity savedEntity = channelMetadataRepository.save(entity);
             ChannelMetadataRequest updatedModel = mapEntityToModel(savedEntity);
             customCacheWrapper.put(countryCode, updatedModel);
@@ -120,20 +122,11 @@ public class ChannelMetadataService {
         return null;
     }
 
-
-    private ChannelMetadataEntity convertRequestToEntity(String countryCode, ChannelMetadataRequest request) {
-        ChannelMetadataEntity existingEntity = channelMetadataRepository.findByCountryCode(countryCode);
-        ChannelMetadataEntity entity;
-        if (existingEntity != null) {
-            entity = existingEntity;
-            entity.setMetadata(convertToJson(request.getMetadata()));
-            entity.setProduct(request.getProduct());
-        } else {
-            entity = new ChannelMetadataEntity();
-            entity.setCountryCode(countryCode);
-            entity.setMetadata(convertToJson(request.getMetadata()));
-            entity.setProduct(request.getProduct());
-        }
+    private ChannelMetadataEntity convertRequestToEntity(ChannelMetadataRequest request) {
+        ChannelMetadataEntity entity = new ChannelMetadataEntity();
+        entity.setCountryCode(request.getCountryCode());
+        entity.setProduct(request.getProduct());
+        entity.setMetadata(convertToJson(request.getMetadata()));
         return entity;
     }
 

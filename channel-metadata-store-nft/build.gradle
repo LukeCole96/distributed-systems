@@ -53,3 +53,11 @@ task gatlingRunWithSingleServiceDown(type: JavaExec) {
             '--simulation', 'simulationDowntime.PeakLoadWithSingleServiceDown'
     ]
 }
+
+task gatlingRunDbDownCacheRetryServiceIntegrating(type: JavaExec) {
+    classpath = sourceSets.gatling.runtimeClasspath
+    main = "io.gatling.app.Gatling"
+    args = [
+            '--simulation', 'simulationDowntime.PeakLoadWithDbDownCacheRetryServiceIntegrating'
+    ]
+}

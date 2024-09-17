@@ -1,6 +1,5 @@
 package com.app.exceptions;
 
-import com.app.kafka.KafkaProducerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,9 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,12 +14,8 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-
-    private final KafkaProducerService kafkaProducerService;
-
     @Autowired
-    public GlobalExceptionHandler(KafkaProducerService kafkaProducerService) {
-        this.kafkaProducerService = kafkaProducerService;
+    public GlobalExceptionHandler() {
     }
 
     // 4XX
@@ -71,7 +63,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationException(MethodArgumentNotValidException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0001");
+        errorDetails.put("errorCode", "CRS-0001");
         errorDetails.put("message", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
@@ -79,10 +71,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ConflictException.class)
     public ResponseEntity<Map<String, String>> handleConflictException(ConflictException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0002");
+        errorDetails.put("errorCode", "CRS-0002");
         errorDetails.put("message", ex.getMessage());
-
-        sendErrorMessageToKafka("CMS-0002", ex.getMessage());
 
         return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
     }
@@ -91,7 +81,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0003");
+        errorDetails.put("errorCode", "CRS-0003");
         errorDetails.put("message", "Failed to find item");
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
@@ -100,7 +90,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<Map<String, String>> handleBadRequestException(BadRequestException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0004");
+        errorDetails.put("errorCode", "CRS-0004");
         errorDetails.put("message", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
@@ -109,7 +99,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UnauthorizedException.class)
     public ResponseEntity<Map<String, String>> handleUnauthorizedException(UnauthorizedException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0005");
+        errorDetails.put("errorCode", "CRS-0005");
         errorDetails.put("message", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
     }
@@ -118,10 +108,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ForbiddenException.class)
     public ResponseEntity<Map<String, String>> handleForbiddenException(ForbiddenException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0006");
+        errorDetails.put("errorCode", "CRS-0006");
         errorDetails.put("message", ex.getMessage());
-
-        sendErrorMessageToKafka("CMS-0006", ex.getMessage());
 
         return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
     }
@@ -130,23 +118,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handleGlobalException(Exception ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0007");
+        errorDetails.put("errorCode", "CRS-0007");
         errorDetails.put("message", "An unexpected error occurred");
 
-        sendErrorMessageToKafka("CMS-0007", ex.getMessage());
-
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    private void sendErrorMessageToKafka(String errorCode, String message) {
-        try {
-            LocalDateTime now = LocalDateTime.now();
-            String timestamp = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            String kafkaMessage = String.format("Timestamp: %s, Error occurred. Code: %s, Message: %s", timestamp, errorCode, message);
-            kafkaProducerService.sendMessage("retry-db-write-from-cache", "error", kafkaMessage);
-            log.info("Successfully sent error message to Kafka: {}", kafkaMessage);
-        } catch (Exception e) {
-            log.error("Failed to send error message to Kafka. ErrorCode: {}, Message: {}, Exception: {}", errorCode, message, e.getMessage(), e);
-        }
     }
 }

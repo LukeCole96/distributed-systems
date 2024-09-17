@@ -165,6 +165,39 @@ services:
       replicas: 4
     restart: always
 
+  cache-retry:
+    build: cache-retry
+    ports:
+      - "8090:8090"
+    depends_on:
+      - channel-metadata-store
+      - kafka-1
+      - kafka-2
+      - kafka-3
+      - cache-retry-db
+    networks:
+      - hazelcast-network
+    restart: always
+
+  cache-retry-db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: cache-retry-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'cache_retry_db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'none'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3309:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./init-cache-retry:/docker-entrypoint-initdb.d
+    networks:
+      - hazelcast-network
+
 networks:
   hazelcast-network:
     driver: bridge

@@ -116,6 +116,33 @@ object TestScenario {
         ).asJson
         .check(status.is(200))
     ).inject(atOnceUsers(5))
+  }
 
+  def postDuringDowntime(countryCode: String) = {
+    val scenarioName = s"POST $countryCode metadata"
+    val endpoint = s"/api/channel-metadata/$countryCode"
+
+    scenario(scenarioName).exec(
+      http(s"POST /api/channel-metadata/$countryCode")
+        .post(endpoint)
+        .header("Content-Type", "application/json")
+        .body(
+          StringBody(
+            s"""
+          {
+            "countryCode": "$countryCode",
+            "metadata": [
+              {
+                "name": "AT One",
+                "language": "English",
+                "type": "News"
+              }
+            ],
+            "product": "exampleProduct"
+          }
+          """
+          )
+        ).asJson
+    ).inject(constantUsersPerSec(10) during (2 minutes))
   }
 }

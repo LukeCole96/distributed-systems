@@ -106,6 +106,7 @@ public class ChannelMetadataService {
             log.info("Found value in cache for countryCode: {}", countryCode);
             return (ChannelMetadataRequest) cachedValue;
         } else {
+
             log.warn("Unexpected type in cache for countryCode: {}. Expected ChannelMetadataRequest, found: {}", countryCode, cachedValue != null ? cachedValue.getClass().getName() : "null");
         }
 

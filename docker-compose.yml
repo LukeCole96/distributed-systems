@@ -174,8 +174,10 @@ services:
       - kafka-1
       - kafka-2
       - kafka-3
+      - cache-retry-db
     networks:
       - hazelcast-network
+    restart: always
 
   cache-retry-db:
     platform: linux/x86_64
@@ -188,9 +190,9 @@ services:
       MYSQL_PASSWORD: 'none'
       MYSQL_ROOT_PASSWORD: 'password'
     ports:
-      - '3309:3309'
+      - '3309:3306'
     expose:
-      - '3309'
+      - '3306'
     volumes:
       - ./init-cache-retry:/docker-entrypoint-initdb.d
     networks:

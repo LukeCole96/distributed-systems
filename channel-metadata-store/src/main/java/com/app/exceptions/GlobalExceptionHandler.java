@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -137,7 +140,9 @@ public class GlobalExceptionHandler {
 
     private void sendErrorMessageToKafka(String errorCode, String message) {
         try {
-            String kafkaMessage = String.format("Error occurred. Code: %s, Message: %s", errorCode, message);
+            LocalDateTime now = LocalDateTime.now();
+            String timestamp = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            String kafkaMessage = String.format("Timestamp: %s, Error occurred. Code: %s, Message: %s", timestamp, errorCode, message);
             kafkaProducerService.sendMessage("retry-db-write-from-cache", "error", kafkaMessage);
             log.info("Successfully sent error message to Kafka: {}", kafkaMessage);
         } catch (Exception e) {

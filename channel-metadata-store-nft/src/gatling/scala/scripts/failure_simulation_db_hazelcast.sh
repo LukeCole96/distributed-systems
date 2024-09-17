@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sleep 30
+
 hazelcast_instances=($(docker ps --filter "name=hazelcast" --format "{{.Names}}"))
 
 db_instance="db"

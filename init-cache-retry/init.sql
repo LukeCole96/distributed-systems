@@ -4,7 +4,7 @@ CREATE DATABASE cache_retry_db;
 USE cache_retry_db;
 
 CREATE TABLE db_downtime_store (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     downtime_timestamp VARCHAR(255) NOT NULL
 );
 

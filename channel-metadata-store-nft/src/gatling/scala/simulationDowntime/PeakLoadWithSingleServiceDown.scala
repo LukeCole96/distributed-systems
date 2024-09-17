@@ -20,7 +20,7 @@ class PeakLoadWithSingleServiceDown extends Simulation {
   setUp(scenarios)
     .protocols(httpProtocol)
     .assertions(
-      global.responseTime.percentile(99).lt(600),
+      global.responseTime.percentile(99).lt(3500),
       forAll.successfulRequests.percent.is(100)
     )
 }

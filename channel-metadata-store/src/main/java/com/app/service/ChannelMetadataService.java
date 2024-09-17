@@ -87,17 +87,6 @@ public class ChannelMetadataService {
         return null;
     }
 
-    private void handleDbConnectionFailure(String countryCode, ChannelMetadataEntity entity) {
-        try {
-            customCacheWrapper.put(countryCode, entity);
-        } catch (Exception e) {
-            log.error("Error occurred while handling DB connection failure for countryCode: {}", countryCode, e);
-            throw e;
-        }
-    }
-
-    // ChannelMetadataService.java
-
     public ChannelMetadataRequest getChannelMetadataByCountryCode(String countryCode) {
         log.info("Fetching channel metadata for countryCode: {}", countryCode);
 

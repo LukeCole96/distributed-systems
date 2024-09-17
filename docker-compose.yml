@@ -165,6 +165,15 @@ services:
       replicas: 4
     restart: always
 
+cache-retry:
+  build: cache-retry
+  ports:
+    - "8090:8090"
+  depends_on:
+    - channel_metadata-store
+  networks:
+    - hazelcast-network
+
 networks:
   hazelcast-network:
     driver: bridge

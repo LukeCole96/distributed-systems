@@ -3,14 +3,12 @@ package com.app.service;
 import com.app.entity.DbDowntimeEntity;
 import com.app.repository.DbDowntimeStoreRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.util.retry.Retry;
-
 import java.time.Duration;
 import java.util.List;
 

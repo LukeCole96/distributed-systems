@@ -14,6 +14,7 @@ class PeakLoadWithDbDownAndHalfCacheCapacity extends Simulation {
   val scenarios = TestScenario.get_gb_whilst_failure_simulation_ongoing :: List("GB", "US", "DE", "FR").map { countryCode =>
     TestScenario.postPrimingScenario(countryCode)
   }
+
   Process("./src/gatling/scala/scripts/failure_simulation_db_hazelcast.sh").run()
 
   setUp(scenarios)

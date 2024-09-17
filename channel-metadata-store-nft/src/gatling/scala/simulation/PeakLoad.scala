@@ -1,7 +1,7 @@
 package simulation
 
 import io.gatling.core.Predef._
-import io.gatling.core.structure.{PopulationBuilder, ScenarioBuilder}
+import io.gatling.core.structure.PopulationBuilder
 import io.gatling.http.Predef._
 import scenarios.TestScenario
 import scala.language.postfixOps

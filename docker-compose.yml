@@ -165,14 +165,17 @@ services:
       replicas: 4
     restart: always
 
-cache-retry:
-  build: cache-retry
-  ports:
-    - "8090:8090"
-  depends_on:
-    - channel_metadata-store
-  networks:
-    - hazelcast-network
+  cache-retry:
+    build: cache-retry
+    ports:
+      - "8090:8090"
+    depends_on:
+      - channel-metadata-store
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    networks:
+      - hazelcast-network
 
 networks:
   hazelcast-network:

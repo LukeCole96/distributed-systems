@@ -177,6 +177,25 @@ services:
     networks:
       - hazelcast-network
 
+  cache-retry-db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: cache-retry-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'cache_retry_db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'none'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3309:3309'
+    expose:
+      - '3309'
+    volumes:
+      - ./init-cache-retry:/docker-entrypoint-initdb.d
+    networks:
+      - hazelcast-network
+
 networks:
   hazelcast-network:
     driver: bridge

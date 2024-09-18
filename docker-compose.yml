@@ -14,12 +14,14 @@ services:
     image: prom/prometheus
     ports:
       - '9090:9090'
+    user: root
     links:
       - alertmanager
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # For service discovery
       - ./prometheus:/etc/prometheus
     extra_hosts:
-      - 'host.docker.internal:host-gateway' #USED TO ALLOW COMS WITH APP
+      - 'host.docker.internal:host-gateway' 
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     restart: always
@@ -161,6 +163,8 @@ services:
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka-1:9092,kafka-2:9094,kafka-3:9096
     networks:
       - hazelcast-network 
+    labels:
+      prometheus-scrape: "true"
     deploy:
       replicas: 4
     restart: always
@@ -177,6 +181,8 @@ services:
       - cache-retry-db
     networks:
       - hazelcast-network
+    labels:
+      prometheus-scrape: "true"
     restart: always
 
   cache-retry-db:

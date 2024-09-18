@@ -2,13 +2,16 @@ package com.app.service;
 
 import com.app.entity.DbDowntimeEntity;
 import com.app.repository.DbDowntimeStoreRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.util.retry.Retry;
+import reactor.core.publisher.Mono;
+
 import java.time.Duration;
 import java.util.List;
 
@@ -27,8 +30,12 @@ public class RetryCacheService {
     }
 
     @KafkaListener(topics = "retry-db-write-from-cache", groupId = "channel-metadata-group")
-    public void consumeKafkaMessage(String message) {
+    @CircuitBreaker(name = "dbService", fallbackMethod = "fallbackConsumeKafkaMessage")
+    @Retry(name = "dbRetry")
+    public void consumeKafkaMessage(String message) throws InterruptedException {
         try {
+//                        Thread.sleep(5000); //only for testing circuit breaking...
+
             log.info("Received Kafka message: {}", message);
             DbDowntimeEntity downtimeStore = new DbDowntimeEntity();
 
@@ -53,14 +60,17 @@ public class RetryCacheService {
         }
     }
 
-    public void triggerChannelMetadataUpdate() {
-        webClient.post() //uses webflux for non-blocking / reactive implementation
+    @CircuitBreaker(name = "metadataService", fallbackMethod = "fallbackMetadataUpdate")
+    public void triggerChannelMetadataUpdate() throws InterruptedException {
+//        Thread.sleep(4000);
+
+        webClient.post()
                 .uri("/api/channel-metadata/force-update-all")
                 .retrieve()
                 .toBodilessEntity()
-                .doOnSuccess(response -> log.info("Successfully triggered channel metadata update. Response: {}", response))
+                .doOnSuccess(response ->  log.info("Successfully triggered channel metadata update. Response: {}", response))
                 .doOnError(error -> log.error("Failed to trigger channel metadata update.", error))
-                .retryWhen(Retry.fixedDelay(1, Duration.ofSeconds(5)))
+                .retryWhen(reactor.util.retry.Retry.fixedDelay(1, Duration.ofSeconds(5)))
                 .subscribe();
     }
 
@@ -69,12 +79,20 @@ public class RetryCacheService {
 
         if (timestampIndex != -1) {
             String timestamp = logMessage.substring(timestampIndex + 11, timestampIndex + 30);
-
             log.info("Extracted timestamp: {}", timestamp);
             return timestamp;
         }
 
         log.warn("Timestamp not found in log message: {}", logMessage);
         return null;
+    }
+
+    public void fallbackConsumeKafkaMessage(String message, Throwable t) {
+        log.error("Circuit breaker opened for consumeKafkaMessage. Fallback executed. Message: {}, Error: {}", message, t.getMessage());
+    }
+
+    public Mono<Void> fallbackMetadataUpdate(Throwable t) {
+        log.error("Circuit breaker opened for triggerChannelMetadataUpdate. Fallback executed. Error: {}", t.getMessage());
+        return Mono.empty();
     }
 }

@@ -80,11 +80,12 @@ object TestScenario {
         .check(jsonPath("$.metadata[0].name").is("AT One"))
         .check(jsonPath("$.metadata[0].language").is("English"))
         .check(jsonPath("$.metadata[0].type").is("News"))
+        .check(responseTimeInMillis.lte(2200))
     )
     .inject(
-      constantUsersPerSec(10) during (5 minutes)
+      constantUsersPerSec(20) during (5 minutes)
     ).throttle(
-      reachRps(10) in (30 seconds),
+      reachRps(40) in (30 seconds),
       holdFor(5 minutes),
       reachRps(0) in (30 seconds)
     )

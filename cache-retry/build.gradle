@@ -27,6 +27,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:3.3.2'  // Align with Spring Boot 3.3.2
 	implementation "mysql:mysql-connector-java:8.0.33"
 	implementation 'io.micrometer:micrometer-registry-prometheus:1.10.0'  // Align with Micrometer version used by Spring Boot 3.3.x
+	implementation 'io.github.resilience4j:resilience4j-spring-boot3:2.0.2'
+	implementation 'io.github.resilience4j:resilience4j-micrometer:2.0.2'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compileOnly 'org.projectlombok:lombok'

@@ -1,6 +1,5 @@
 package com.app.service;
 
-import com.app.cache.CacheUpdateEvent;
 import com.app.entity.ChannelMetadataEntity;
 import com.app.kafka.KafkaProducerService;
 import com.app.metrics.CustomCacheWrapper;
@@ -46,6 +45,8 @@ public class ChannelMetadataService {
             if (key instanceof String) {
                 String cacheKey = (String) key;
                 try {
+                    //                    Thread.sleep(5000); //only for testing circuit breaking...
+
                     ChannelMetadataRequest request = (ChannelMetadataRequest) customCacheWrapper.get(cacheKey);
                     ChannelMetadataEntity entity = convertRequestToEntity(request);
 
@@ -65,12 +66,15 @@ public class ChannelMetadataService {
     @Transactional(rollbackFor = {Exception.class})
     @CircuitBreaker(name = "dbService", fallbackMethod = "fallbackToKafka")
     @Retry(name = "dbRetry")
-    public ChannelMetadataRequest saveOrUpdateChannelMetadata(String countryCode, ChannelMetadataRequest request) {
+    public ChannelMetadataRequest saveOrUpdateChannelMetadata(String countryCode, ChannelMetadataRequest request) throws InterruptedException {
         try {
+
+//            Thread.sleep(5000); //only for testing circuit breaking...
             ChannelMetadataEntity entity = convertRequestToEntity(request);
             ChannelMetadataEntity savedEntity = channelMetadataRepository.save(entity);
             ChannelMetadataRequest updatedModel = mapEntityToModel(savedEntity);
             customCacheWrapper.put(countryCode, updatedModel);
+            log.info("thread some how continued.... did timeout occur ehhh");
 
             log.info("Successfully saved and cached metadata for countryCode: {}", countryCode);
             return updatedModel;

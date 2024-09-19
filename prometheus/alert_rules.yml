@@ -1,0 +1,125 @@
+groups:
+- name: CPU_Usage_Alerts
+  rules:
+  - alert: HighCPUUsage25
+    expr: 100 * (1 - avg by(instance) (rate(process_cpu_usage[5m]))) > 25
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} has high CPU usage (25%)"
+      description: "CPU usage is above 25% for more than 1 minute."
+
+  - alert: HighCPUUsage50
+    expr: 100 * (1 - avg by(instance) (rate(process_cpu_usage[5m]))) > 50
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} has high CPU usage (50%)"
+      description: "CPU usage is above 50% for more than 1 minute."
+
+  - alert: HighCPUUsage75
+    expr: 100 * (1 - avg by(instance) (rate(process_cpu_usage[5m]))) > 75
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} has high CPU usage (75%)"
+      description: "CPU usage is above 75% for more than 1 minute."
+
+  - alert: HighCPUUsage90
+    expr: 100 * (1 - avg by(instance) (rate(process_cpu_usage[5m]))) > 90
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} has high CPU usage (90%)"
+      description: "CPU usage is above 90% for more than 1 minute."
+
+- name: JVM_Memory_Usage_Alerts
+  rules:
+  - alert: JVMHeapMemoryUsage25
+    expr: 100 * (jvm_memory_used_bytes / jvm_memory_max_bytes) > 25
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} JVM memory usage (25%)"
+      description: "JVM memory usage is above 25% for more than 1 minute."
+
+  - alert: JVMHeapMemoryUsage50
+    expr: 100 * (jvm_memory_used_bytes / jvm_memory_max_bytes) > 50
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} JVM memory usage (50%)"
+      description: "JVM memory usage is above 50% for more than 1 minute."
+
+  - alert: JVMHeapMemoryUsage75
+    expr: 100 * (jvm_memory_used_bytes / jvm_memory_max_bytes) > 75
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} JVM memory usage (75%)"
+      description: "JVM memory usage is above 75% for more than 1 minute."
+
+  - alert: JVMHeapMemoryUsage90
+    expr: 100 * (jvm_memory_used_bytes / jvm_memory_max_bytes) > 90
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} JVM memory usage (90%)"
+      description: "JVM memory usage is above 90% for more than 1 minute."
+
+- name: Disk_Usage_Alerts
+  rules:
+  - alert: DiskSpaceUsage25
+    expr: 100 * (disk_total_bytes - disk_free_bytes) / disk_total_bytes > 25
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} disk usage (25%)"
+      description: "Disk usage is above 25% for more than 5 minutes."
+
+  - alert: DiskSpaceUsage50
+    expr: 100 * (disk_total_bytes - disk_free_bytes) / disk_total_bytes > 50
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} disk usage (50%)"
+      description: "Disk usage is above 50% for more than 5 minutes."
+
+  - alert: DiskSpaceUsage75
+    expr: 100 * (disk_total_bytes - disk_free_bytes) / disk_total_bytes > 75
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} disk usage (75%)"
+      description: "Disk usage is above 75% for more than 5 minutes."
+
+  - alert: DiskSpaceUsage90
+    expr: 100 * (disk_total_bytes - disk_free_bytes) / disk_total_bytes > 90
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} disk usage (90%)"
+      description: "Disk usage is above 90% for more than 5 minutes."
+
+- name: Application_Restart_Alerts
+  rules:
+  - alert: HighAppRestarts
+    expr: increase(process_start_time_seconds[2m]) > 2
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} has restarted too frequently"
+      description: "Application has restarted more than 2 times in the past 2 minutes."

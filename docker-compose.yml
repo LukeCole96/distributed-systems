@@ -34,7 +34,7 @@ services:
     ports:
       - '9093:9093'
     volumes:
-      - ./alert-manager:/etc/alertmanager
+      - ./alertmanager:/etc/alertmanager
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
     restart: always

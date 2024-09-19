@@ -68,7 +68,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
+        "w": 3,
         "x": 0,
         "y": 1
       },
@@ -139,8 +139,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 4,
+        "w": 3,
+        "x": 3,
         "y": 1
       },
       "id": 30,
@@ -214,8 +214,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 8,
+        "w": 3,
+        "x": 6,
         "y": 1
       },
       "id": 31,
@@ -256,7 +256,147 @@
     },
     {
       "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "${prometheusInstance}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 9,
+        "y": 1
+      },
+      "id": 38,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheusInstance}"
+          },
+          "editorMode": "code",
+          "expr": "sum(custom_cache_hits_total) or vector(0)",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Cache Hits",
+      "type": "stat"
+    },
+    {
+      "datasource": {
         "name": "${prometheusInstance}",
+        "type": "prometheus",
+        "uid": "${prometheusInstance}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 12,
+        "y": 1
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheusInstance}"
+          },
+          "editorMode": "code",
+          "expr": "sum(custom_cache_misses_total) or vector(0)",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Cache Misses",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "${prometheusInstance}"
       },
@@ -285,8 +425,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 12,
+        "w": 3,
+        "x": 15,
         "y": 1
       },
       "id": 32,
@@ -315,14 +455,14 @@
             "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
-          "expr": "",
+          "expr": "sum(changes(process_start_time_seconds{container_name=~\"/distributed-systems-channel-metadata-store-.*\"}[10m]))\n",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Container Restarts 24h",
+      "title": "Container Restarts?",
       "type": "stat"
     },
     {
@@ -355,8 +495,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 16,
+        "w": 3,
+        "x": 18,
         "y": 1
       },
       "id": 7,
@@ -426,8 +566,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 20,
+        "w": 3,
+        "x": 21,
         "y": 1
       },
       "id": 23,
@@ -456,7 +596,7 @@
             "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
-          "expr": "",
+          "expr": "sum(ALERTS{container_name=~\"/distributed-systems-channel-metadata-store-.*\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -620,7 +760,7 @@
     },
     {
       "datasource": {
-        "name": "${prometheusInstance}",
+        "default": false,
         "type": "prometheus",
         "uid": "${prometheusInstance}"
       },
@@ -681,7 +821,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 4,
+        "w": 12,
         "x": 12,
         "y": 4
       },
@@ -705,7 +845,7 @@
             "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
-          "expr": "sum(db_write_total)",
+          "expr": "sum(db_write_total{container_name=~\"/distributed-systems-channel-metadata-store-.*\"}) / 100",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -717,7 +857,7 @@
             "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
-          "expr": "-sum(db_read_total)",
+          "expr": "-sum(db_read_total{container_name=~\"/distributed-systems-channel-metadata-store-.*\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "__auto",
@@ -727,146 +867,6 @@
       ],
       "title": "DB Read/Writes",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "name": "${prometheusInstance}",
-        "type": "prometheus",
-        "uid": "${prometheusInstance}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 4,
-        "x": 16,
-        "y": 4
-      },
-      "id": 38,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.2.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${prometheusInstance}"
-          },
-          "editorMode": "code",
-          "expr": "sum(custom_cache_hits_total) or vector(0)",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Cache Hits",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "name": "${prometheusInstance}",
-        "type": "prometheus",
-        "uid": "${prometheusInstance}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 4,
-        "x": 20,
-        "y": 4
-      },
-      "id": 25,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.2.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${prometheusInstance}"
-          },
-          "editorMode": "code",
-          "expr": "sum(custom_cache_misses_total) or vector(0)",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Cache Misses",
-      "type": "stat"
     },
     {
       "datasource": {
@@ -1524,7 +1524,7 @@
     },
     {
       "datasource": {
-        "name": "${prometheusInstance}",
+        "default": false,
         "type": "prometheus",
         "uid": "${prometheusInstance}"
       },
@@ -1583,7 +1583,7 @@
             "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
-          "expr": "",
+          "expr": "sum(changes(process_start_time_seconds{container_name=~\"/distributed-systems-cache-retry-.*\"}[10m]))\n",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -1724,7 +1724,7 @@
             "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
-          "expr": "",
+          "expr": "sum(ALERTS{container_name=~\"/distributed-systems-cache-retry-.*\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -2584,7 +2584,7 @@
             "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
-          "expr": "sum(db_write_total{container_name=~\"/distributed-systems-cache-retry-.*\"})",
+          "expr": "sum(db_write_total{container_name=~\"/distributed-systems-cache-retry-.*\"}) / 10",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,

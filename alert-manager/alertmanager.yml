@@ -8,7 +8,7 @@ route:
 receivers:
 - name: 'email-notification'
   email_configs:
-  - to: 'test-email@outlook.com'
+  - to: 'whywhywhy_26@outlook.co.uk'
     send_resolved: true
 inhibit_rules:
 - source_match:

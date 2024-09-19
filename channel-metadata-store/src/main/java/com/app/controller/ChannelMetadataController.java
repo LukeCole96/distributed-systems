@@ -1,8 +1,10 @@
 package com.app.controller;
 
+import com.app.controller.requesthelper.AuthValidator;
 import com.app.exceptions.GlobalExceptionHandler;
 import com.app.model.ChannelMetadataRequest;
 import com.app.service.ChannelMetadataService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +18,22 @@ import org.springframework.web.bind.annotation.*;
 public class ChannelMetadataController {
 
     private final ChannelMetadataService channelMetadataService;
+    private final AuthValidator authValidator;
 
     @Autowired
-    public ChannelMetadataController(ChannelMetadataService channelMetadataService) {
+    public ChannelMetadataController(ChannelMetadataService channelMetadataService, AuthValidator authValidator) {
         log.info("ChannelMetadataController initialized");
         this.channelMetadataService = channelMetadataService;
+        this.authValidator = authValidator;
     }
 
     @PostMapping("/force-update-all")
-    public ResponseEntity<String> forceUpdateAllFromCache() {
+    public ResponseEntity<String> forceUpdateAllFromCache(HttpServletRequest httpRequest) {
         log.info("Force the update of database with all cached metadata.");
+
+        if (!authValidator.validate(httpRequest.getHeader("Authorization"))) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid or missing credentials");
+        }
 
         try {
             channelMetadataService.forceUpdateAllFromCache();
@@ -39,8 +47,12 @@ public class ChannelMetadataController {
 
     @PostMapping("/{countryCode}")
     public ResponseEntity<String> saveCountryData(@PathVariable String countryCode,
-                                                  @Valid @RequestBody ChannelMetadataRequest request) {
+                                                  @Valid @RequestBody ChannelMetadataRequest request, HttpServletRequest httpRequest) {
         log.info("Received request to save data for countryCode: {}", countryCode);
+
+        if (!authValidator.validate(httpRequest.getHeader("Authorization"))) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid or missing credentials");
+        }
 
         if (countryCode == null || countryCode.trim().isEmpty()) {
             throw new GlobalExceptionHandler.BadRequestException("Country code cannot be empty");
@@ -61,8 +73,13 @@ public class ChannelMetadataController {
     }
 
     @GetMapping("/{countryCode}")
-    public ResponseEntity<ChannelMetadataRequest> getCountryData(@PathVariable String countryCode) {
+    public ResponseEntity<ChannelMetadataRequest> getCountryData(@PathVariable String countryCode, HttpServletRequest httpRequest) {
         log.info("Fetching data for countryCode: {}", countryCode);
+
+        if (!authValidator.validate(httpRequest.getHeader("Authorization"))) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ChannelMetadataRequest()); //hacky oops
+        }
+
         ChannelMetadataRequest channelData = channelMetadataService.getChannelMetadataByCountryCode(countryCode);
 
         if (channelData != null) {

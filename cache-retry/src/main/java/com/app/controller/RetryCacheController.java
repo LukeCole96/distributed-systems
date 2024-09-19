@@ -18,14 +18,14 @@ public class RetryCacheController {
 
     private final RetryCacheService retryCacheService;
     private final Counter kafkaMessageReadCounter;
-    private final Counter dbWriteCounter;
-    private final Timer dbWriteTimer;
+    private final Counter dbReadCounter;
+    private final Timer dbReadTimer;
 
     public RetryCacheController(RetryCacheService retryCacheService, MeterRegistry meterRegistry) {
         this.retryCacheService = retryCacheService;
         this.kafkaMessageReadCounter = meterRegistry.counter("kafka_messages_read_total");
-        this.dbWriteCounter = meterRegistry.counter("db_write_total");
-        this.dbWriteTimer = meterRegistry.timer("db_write_duration");
+        this.dbReadCounter = meterRegistry.counter("db_read_total");
+        this.dbReadTimer = meterRegistry.timer("db_read_duration");
     }
 
 
@@ -47,8 +47,8 @@ public class RetryCacheController {
     @GetMapping("/get-downtime-logs")
     public ResponseEntity<List<DbDowntimeEntity>> getDowntimeLogs() {
         try {
-            List<DbDowntimeEntity> downtimeLogs = dbWriteTimer.record(() -> retryCacheService.getAllDowntimeLogs());
-            dbWriteCounter.increment();
+            List<DbDowntimeEntity> downtimeLogs = dbReadTimer.record(() -> retryCacheService.getAllDowntimeLogs());
+            dbReadCounter.increment();
 
             return new ResponseEntity<>(downtimeLogs, HttpStatus.OK);
         } catch (Exception e) {

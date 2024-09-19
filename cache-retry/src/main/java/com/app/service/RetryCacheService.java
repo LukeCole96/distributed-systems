@@ -4,6 +4,9 @@ import com.app.entity.DbDowntimeEntity;
 import com.app.repository.DbDowntimeStoreRepository;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +14,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+
 import java.time.Duration;
 import java.util.List;
 
@@ -22,10 +26,14 @@ public class RetryCacheService {
 
     private final WebClient webClient;
     private final DbDowntimeStoreRepository downtimeRepo;
+    private final Counter dbWriteCounter; // Counter for DB write operations
+    private final Timer dbWriteTimer;     // Timer for DB write durations
 
-    public RetryCacheService(WebClient.Builder webClientBuilder, DbDowntimeStoreRepository downtimeRepo) {
+    public RetryCacheService(WebClient.Builder webClientBuilder, DbDowntimeStoreRepository downtimeRepo, MeterRegistry meterRegistry) {
         this.webClient = webClientBuilder.baseUrl("http://channel-metadata-store:8080").build();
         this.downtimeRepo = downtimeRepo;
+        this.dbWriteCounter = meterRegistry.counter("db_write_total");
+        this.dbWriteTimer = meterRegistry.timer("db_write_duration");
     }
 
     @KafkaListener(topics = "retry-db-write-from-cache", groupId = "channel-metadata-group")
@@ -33,8 +41,6 @@ public class RetryCacheService {
     @Retry(name = "dbRetry")
     public void consumeKafkaMessage(String message) throws InterruptedException {
         try {
-//                        Thread.sleep(5000); //only for testing circuit breaking...
-
             log.info("Received Kafka message: {}", message);
             DbDowntimeEntity downtimeStore = new DbDowntimeEntity();
 
@@ -42,8 +48,10 @@ public class RetryCacheService {
             downtimeStore.setDowntimeTimestamp(timestamp);
             downtimeRepo.save(downtimeStore);
 
-            log.info("Successfully updated database with downtime timestamp: {}", timestamp);
+            dbWriteTimer.record(() -> downtimeRepo.save(downtimeStore));
+            dbWriteCounter.increment();
 
+            log.info("Successfully updated database with downtime timestamp: {}", timestamp);
         } catch (Exception e) {
             log.error("Failed to update database with downtime timestamp.", e);
             throw e;
@@ -61,13 +69,11 @@ public class RetryCacheService {
 
     @CircuitBreaker(name = "metadataService", fallbackMethod = "fallbackMetadataUpdate")
     public void triggerChannelMetadataUpdate() throws InterruptedException {
-//        Thread.sleep(4000);
-
         webClient.post()
                 .uri("/api/channel-metadata/force-update-all")
                 .retrieve()
                 .toBodilessEntity()
-                .doOnSuccess(response ->  log.info("Successfully triggered channel metadata update. Response: {}", response))
+                .doOnSuccess(response -> log.info("Successfully triggered channel metadata update. Response: {}", response))
                 .doOnError(error -> log.error("Failed to trigger channel metadata update.", error))
                 .retryWhen(reactor.util.retry.Retry.fixedDelay(1, Duration.ofSeconds(5)))
                 .subscribe();
@@ -75,13 +81,11 @@ public class RetryCacheService {
 
     private String extractTimestampFromLog(String logMessage) {
         int timestampIndex = logMessage.indexOf("Timestamp: ");
-
         if (timestampIndex != -1) {
             String timestamp = logMessage.substring(timestampIndex + 11, timestampIndex + 30);
             log.info("Extracted timestamp: {}", timestamp);
             return timestamp;
         }
-
         log.warn("Timestamp not found in log message: {}", logMessage);
         return null;
     }

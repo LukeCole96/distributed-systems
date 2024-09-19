@@ -26,8 +26,8 @@ public class RetryCacheService {
 
     private final WebClient webClient;
     private final DbDowntimeStoreRepository downtimeRepo;
-    private final Counter dbWriteCounter; // Counter for DB write operations
-    private final Timer dbWriteTimer;     // Timer for DB write durations
+    private final Counter dbWriteCounter;
+    private final Timer dbWriteTimer;
 
     public RetryCacheService(WebClient.Builder webClientBuilder, DbDowntimeStoreRepository downtimeRepo, MeterRegistry meterRegistry) {
         this.webClient = webClientBuilder.baseUrl("http://channel-metadata-store:8080").build();
@@ -46,9 +46,9 @@ public class RetryCacheService {
 
             String timestamp = extractTimestampFromLog(message);
             downtimeStore.setDowntimeTimestamp(timestamp);
-            downtimeRepo.save(downtimeStore);
 
             dbWriteTimer.record(() -> downtimeRepo.save(downtimeStore));
+
             dbWriteCounter.increment();
 
             log.info("Successfully updated database with downtime timestamp: {}", timestamp);

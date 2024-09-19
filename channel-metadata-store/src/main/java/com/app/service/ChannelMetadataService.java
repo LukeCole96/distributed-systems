@@ -7,14 +7,17 @@ import com.app.model.ChannelMetadataRequest;
 import com.app.repository.ChannelMetadataRepository;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.List;
 import java.util.Set;
 
@@ -26,13 +29,24 @@ public class ChannelMetadataService {
     private final CustomCacheWrapper customCacheWrapper;
     private final KafkaProducerService kafkaProducerService;
     private final ApplicationEventPublisher applicationEventPublisher;
+    private final Counter dbWriteCounter;
+    private final Timer dbWriteTimer;
+    private final Counter dbReadCounter;
+    private final Timer dbReadTimer;
 
-    @Autowired
-    public ChannelMetadataService(ChannelMetadataRepository channelMetadataRepository, CustomCacheWrapper customCacheWrapper, KafkaProducerService kafkaProducerService, ApplicationEventPublisher applicationEventPublisher) {
+    public ChannelMetadataService(ChannelMetadataRepository channelMetadataRepository,
+                                  CustomCacheWrapper customCacheWrapper,
+                                  KafkaProducerService kafkaProducerService,
+                                  ApplicationEventPublisher applicationEventPublisher,
+                                  MeterRegistry meterRegistry) {
         this.channelMetadataRepository = channelMetadataRepository;
         this.customCacheWrapper = customCacheWrapper;
         this.kafkaProducerService = kafkaProducerService;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.dbWriteCounter = meterRegistry.counter("db_write_total");
+        this.dbWriteTimer = meterRegistry.timer("db_write_duration");
+        this.dbReadCounter = meterRegistry.counter("db_read_total");
+        this.dbReadTimer = meterRegistry.timer("db_read_duration");
     }
 
     @Transactional(rollbackFor = {Exception.class})
@@ -45,12 +59,11 @@ public class ChannelMetadataService {
             if (key instanceof String) {
                 String cacheKey = (String) key;
                 try {
-                    //                    Thread.sleep(5000); //only for testing circuit breaking...
-
                     ChannelMetadataRequest request = (ChannelMetadataRequest) customCacheWrapper.get(cacheKey);
                     ChannelMetadataEntity entity = convertRequestToEntity(request);
 
-                    channelMetadataRepository.save(entity);
+                    dbWriteTimer.record(() -> channelMetadataRepository.save(entity));
+                    dbWriteCounter.increment();
 
                     log.info("Successfully updated database from cache for key: {}", cacheKey);
                 } catch (Exception e) {
@@ -68,13 +81,12 @@ public class ChannelMetadataService {
     @Retry(name = "dbRetry")
     public ChannelMetadataRequest saveOrUpdateChannelMetadata(String countryCode, ChannelMetadataRequest request) throws InterruptedException {
         try {
-
-//            Thread.sleep(5000); //only for testing circuit breaking...
             ChannelMetadataEntity entity = convertRequestToEntity(request);
-            ChannelMetadataEntity savedEntity = channelMetadataRepository.save(entity);
+            ChannelMetadataEntity savedEntity = dbWriteTimer.record(() -> channelMetadataRepository.save(entity));
+            dbWriteCounter.increment();
+
             ChannelMetadataRequest updatedModel = mapEntityToModel(savedEntity);
             customCacheWrapper.put(countryCode, updatedModel);
-            log.info("thread some how continued.... did timeout occur ehhh");
 
             log.info("Successfully saved and cached metadata for countryCode: {}", countryCode);
             return updatedModel;
@@ -98,15 +110,13 @@ public class ChannelMetadataService {
         if (cachedValue instanceof ChannelMetadataRequest) {
             log.info("Found value in cache for countryCode: {}", countryCode);
             return (ChannelMetadataRequest) cachedValue;
-        } else {
-
-            log.warn("Unexpected type in cache for countryCode: {}. Expected ChannelMetadataRequest, found: {}", countryCode, cachedValue != null ? cachedValue.getClass().getName() : "null");
         }
 
-        ChannelMetadataEntity entity = channelMetadataRepository.findByCountryCode(countryCode);
+        ChannelMetadataEntity entity = dbReadTimer.record(() -> channelMetadataRepository.findByCountryCode(countryCode));
+        dbReadCounter.increment();
+
         if (entity != null) {
             ChannelMetadataRequest model = mapEntityToModel(entity);
-
             customCacheWrapper.put(countryCode, model);
             log.info("Updated cache with database value for countryCode: {}", countryCode);
             return model;

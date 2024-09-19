@@ -49,7 +49,9 @@ services:
       #      - GF_INSTALL_PLUGINS=grafana-clock-panel
       - GF_INSTALL_PLUGINS=grafana-piechart-panel
     volumes:
-      - './datasources:/etc/grafana/provisioning/datasources'
+      - './grafana/datasources:/etc/grafana/provisioning/datasources'
+      - './grafana/dashboards/dashboards.yml:/etc/grafana/provisioning/dashboards/main.yml'
+      - './grafana/dashboard-backup/:/var/lib/grafana/dashboards'
     networks:
       - hazelcast-network
 

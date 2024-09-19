@@ -36,9 +36,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "fieldConfig": {
         "defaults": {
@@ -95,7 +95,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(rate(http_server_requests_seconds_bucket{status=\"200\"}[5m]))",
@@ -110,9 +110,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "description": "see alto",
       "fieldConfig": {
@@ -166,7 +166,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(resilience4j_circuitbreaker_state{state=\"open|half-open\"}) or vector(0)",
@@ -181,9 +181,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "description": "see alto",
       "fieldConfig": {
@@ -241,7 +241,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(rate(http_server_requests_seconds_bucket{status!=\"200\"}[15m])) or vector(0)",
@@ -256,9 +256,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "name": "${prometheusInstance}",
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "description": "see alto",
       "fieldConfig": {
@@ -312,7 +312,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "",
@@ -327,9 +327,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "fieldConfig": {
         "defaults": {
@@ -382,7 +382,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(up{job=\"docker-spring-boot-apps\", container_name=~\".*channel.*\"})",
@@ -397,9 +397,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "description": "see alto",
       "fieldConfig": {
@@ -453,7 +453,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "",
@@ -468,9 +468,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "default": false,
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "fieldConfig": {
         "defaults": {
@@ -532,7 +532,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(http_server_requests_active_seconds_active_count) by (uri,status)",
@@ -547,9 +547,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "name": "${prometheusInstance}",
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "fieldConfig": {
         "defaults": {
@@ -605,7 +605,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(rate(http_server_requests_active_seconds_bucket{container_name=~\".*channel.*\"}[2m])) by (container_name)",
@@ -620,9 +620,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "name": "${prometheusInstance}",
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "fieldConfig": {
         "defaults": {
@@ -702,7 +702,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(db_write_total)",
@@ -714,7 +714,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "-sum(db_read_total)",
@@ -730,9 +730,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "name": "${prometheusInstance}",
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "fieldConfig": {
         "defaults": {
@@ -785,7 +785,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(custom_cache_hits_total) or vector(0)",
@@ -800,9 +800,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "name": "${prometheusInstance}",
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "fieldConfig": {
         "defaults": {
@@ -855,7 +855,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(custom_cache_misses_total) or vector(0)",
@@ -870,9 +870,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "name": "${prometheusInstance}",
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "description": "Top line (hits\nBottom line (misses)",
       "fieldConfig": {
@@ -953,7 +953,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum by (kind) (resilience4j_circuitbreaker_calls_seconds_count{name=\"kafkaService\"})\n",
@@ -968,9 +968,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "name": "${prometheusInstance}",
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1051,7 +1051,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dduccx4pc0fswb"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(jvm_memory_used_bytes{area=\"heap\"} / (1024 * 1024 * 1024)) / \nsum(jvm_memory_committed_bytes{area=\"heap\"} / (1024 * 1024 * 1024)) * 100\n",
@@ -1066,9 +1066,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "name": "${prometheusInstance}",
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1178,7 +1178,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dduccx4pc0fswb"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(system_cpu_usage{container_name=~\"/distributed-systems-channel-metadata-store-.*\"} * 100) by (container_name)",
@@ -1193,9 +1193,9 @@
     },
     {
       "datasource": {
-        "default": true,
+        "name": "${prometheusInstance}",
         "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
+        "uid": "${prometheusInstance}"
       },
       "description": "Top line (hits\nBottom line (misses)",
       "fieldConfig": {
@@ -1276,7 +1276,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
+            "uid": "${prometheusInstance}"
           },
           "editorMode": "code",
           "expr": "sum(resilience4j_circuitbreaker_state{state=~\"open|half_open|closed\"}) by (state)\n",
@@ -1297,27 +1297,20 @@
     "list": [
       {
         "current": {
-          "isNone": true,
           "selected": false,
-          "text": "None",
-          "value": ""
+          "text": "prometheus",
+          "value": "P1809F7CD0C75ACF3"
         },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "adyapl0s2jawwf"
-        },
-        "definition": "",
         "hide": 0,
         "includeAll": false,
         "multi": false,
-        "name": "query0",
+        "name": "prometheusInstance",
         "options": [],
-        "query": "",
+        "query": "prometheus",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
+        "type": "datasource"
       }
     ]
   },
@@ -1329,6 +1322,6 @@
   "timezone": "browser",
   "title": "Channel Metadata Store overview",
   "uid": "aduceaz4m37r4a",
-  "version": 4,
+  "version": 1,
   "weekStart": ""
 }

@@ -67,7 +67,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 3,
         "w": 4,
         "x": 0,
         "y": 1
@@ -138,7 +138,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 3,
         "w": 4,
         "x": 4,
         "y": 1
@@ -213,7 +213,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 3,
         "w": 4,
         "x": 8,
         "y": 1
@@ -284,7 +284,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 3,
         "w": 4,
         "x": 12,
         "y": 1
@@ -315,7 +315,7 @@
             "uid": "adyapl0s2jawwf"
           },
           "editorMode": "code",
-          "expr": "sum(changes(up{job=\"docker-spring-boot-apps\", container_name=~\".*channel.*\"}[24h]))\n",
+          "expr": "",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -327,10 +327,10 @@
     },
     {
       "datasource": {
+        "default": true,
         "type": "prometheus",
         "uid": "adyapl0s2jawwf"
       },
-      "description": "see alto",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -354,12 +354,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 3,
         "w": 4,
         "x": 16,
         "y": 1
       },
-      "id": 22,
+      "id": 7,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -378,11 +378,26 @@
         "wideLayout": true
       },
       "pluginVersion": "11.2.0",
-      "title": "Alerts (P1-P2)",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "adyapl0s2jawwf"
+          },
+          "editorMode": "code",
+          "expr": "sum(up{job=\"docker-spring-boot-apps\", container_name=~\".*channel.*\"})",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Replica Instances",
       "type": "stat"
     },
     {
       "datasource": {
+        "default": true,
         "type": "prometheus",
         "uid": "adyapl0s2jawwf"
       },
@@ -410,7 +425,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 3,
         "w": 4,
         "x": 20,
         "y": 1
@@ -434,7 +449,21 @@
         "wideLayout": true
       },
       "pluginVersion": "11.2.0",
-      "title": "Alerts (P3-P4)",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "adyapl0s2jawwf"
+          },
+          "editorMode": "code",
+          "expr": "",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerts",
       "type": "stat"
     },
     {
@@ -481,12 +510,13 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 8,
         "x": 0,
-        "y": 3
+        "y": 4
       },
       "id": 4,
       "options": {
+        "combine": false,
         "legend": {
           "calcs": [],
           "displayMode": "list",
@@ -505,7 +535,7 @@
             "uid": "adyapl0s2jawwf"
           },
           "editorMode": "code",
-          "expr": "sum(http_server_requests_active_seconds_active_count) by (uri,outcome,container_name)",
+          "expr": "sum(http_server_requests_active_seconds_active_count) by (uri,status)",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -514,6 +544,79 @@
       ],
       "title": "CMS application responses",
       "type": "histogram"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "prometheus",
+        "uid": "adyapl0s2jawwf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 8,
+        "y": 4
+      },
+      "id": 27,
+      "options": {
+        "displayLabels": [
+          "percent"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "adyapl0s2jawwf"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(http_server_requests_active_seconds_bucket{container_name=~\".*channel.*\"}[2m])) by (container_name)",
+          "instant": false,
+          "legendFormat": "{{label_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Traffic across replicas",
+      "type": "piechart"
     },
     {
       "datasource": {
@@ -580,7 +683,7 @@
         "h": 8,
         "w": 4,
         "x": 12,
-        "y": 3
+        "y": 4
       },
       "id": 9,
       "options": {
@@ -654,12 +757,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 3,
+        "h": 8,
+        "w": 4,
         "x": 16,
-        "y": 3
+        "y": 4
       },
-      "id": 7,
+      "id": 24,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -685,15 +788,183 @@
             "uid": "adyapl0s2jawwf"
           },
           "editorMode": "code",
-          "expr": "sum(up{job=\"docker-spring-boot-apps\", container_name=~\".*channel.*\"})",
+          "expr": "sum(custom_cache_hits_total) or vector(0)",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Replica Instances",
+      "title": "Cache Hits",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "prometheus",
+        "uid": "adyapl0s2jawwf"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 20,
+        "y": 4
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "adyapl0s2jawwf"
+          },
+          "editorMode": "code",
+          "expr": "sum(custom_cache_misses_total) or vector(0)",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Cache Misses",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "prometheus",
+        "uid": "adyapl0s2jawwf"
+      },
+      "description": "Top line (hits\nBottom line (misses)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 12
+      },
+      "id": 26,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "adyapl0s2jawwf"
+          },
+          "editorMode": "code",
+          "expr": "sum by (kind) (resilience4j_circuitbreaker_calls_seconds_count{name=\"kafkaService\"})\n",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Consumer Requests",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -752,15 +1023,16 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "percent"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 5,
-        "x": 19,
-        "y": 3
+        "h": 14,
+        "w": 6,
+        "x": 12,
+        "y": 12
       },
       "id": 1,
       "options": {
@@ -782,7 +1054,7 @@
             "uid": "dduccx4pc0fswb"
           },
           "editorMode": "code",
-          "expr": "sum(sum_over_time(jvm_memory_used_bytes[2m])) by (area, container_name)\n",
+          "expr": "sum(jvm_memory_used_bytes{area=\"heap\"} / (1024 * 1024 * 1024)) / \nsum(jvm_memory_committed_bytes{area=\"heap\"} / (1024 * 1024 * 1024)) * 100\n",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -849,15 +1121,45 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "percent"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "sum(system_cpu_usage * 100) by (container_name)",
+                  "/distributed-systems-cache-retry-1",
+                  "/distributed-systems-channel-metadata-store-2",
+                  "/distributed-systems-channel-metadata-store-3",
+                  "/distributed-systems-channel-metadata-store-4"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 16,
-        "y": 7
+        "h": 14,
+        "w": 6,
+        "x": 18,
+        "y": 12
       },
       "id": 13,
       "options": {
@@ -879,7 +1181,7 @@
             "uid": "dduccx4pc0fswb"
           },
           "editorMode": "code",
-          "expr": "sum(system_cpu_usage * 100) by (container_name)",
+          "expr": "sum(system_cpu_usage{container_name=~\"/distributed-systems-channel-metadata-store-.*\"} * 100) by (container_name)",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -887,116 +1189,6 @@
         }
       ],
       "title": "Container CPU Utilization",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "default": true,
-        "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 5,
-        "x": 19,
-        "y": 7
-      },
-      "id": 2,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "dduccx4pc0fswb"
-          },
-          "editorMode": "code",
-          "expr": "sum(jvm_threads_states_threads{state=~\"waiting||blocked\"})",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "dduccx4pc0fswb"
-          },
-          "editorMode": "code",
-          "expr": "- sum(jvm_threads_states_threads{state=~\"runnable|new\"})",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "JVM Thread States",
       "type": "timeseries"
     },
     {
@@ -1065,7 +1257,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 11
+        "y": 19
       },
       "id": 11,
       "options": {
@@ -1087,7 +1279,7 @@
             "uid": "adyapl0s2jawwf"
           },
           "editorMode": "code",
-          "expr": "sum(resilience4j_circuitbreaker_state{state=~\"open|half_open|closed\"}) by (state, container_name)\n",
+          "expr": "sum(resilience4j_circuitbreaker_state{state=~\"open|half_open|closed\"}) by (state)\n",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -1096,283 +1288,9 @@
       ],
       "title": "Circuit Breaker Status",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "default": true,
-        "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 2,
-        "x": 12,
-        "y": 11
-      },
-      "id": 24,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.2.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
-          },
-          "editorMode": "code",
-          "expr": "sum(custom_cache_hits_total) or vector(0)",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Cache Hits",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "default": true,
-        "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 2,
-        "x": 14,
-        "y": 11
-      },
-      "id": 25,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.2.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
-          },
-          "editorMode": "code",
-          "expr": "sum(custom_cache_misses_total) or vector(0)",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Cache Misses",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "default": true,
-        "type": "prometheus",
-        "uid": "adyapl0s2jawwf"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "scaleDistribution": {
-              "type": "linear"
-            }
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 11
-      },
-      "id": 12,
-      "options": {
-        "calculate": false,
-        "cellGap": 1,
-        "color": {
-          "exponent": 0.5,
-          "fill": "dark-orange",
-          "mode": "scheme",
-          "reverse": false,
-          "scale": "exponential",
-          "scheme": "Oranges",
-          "steps": 64
-        },
-        "exemplars": {
-          "color": "rgba(255,0,255,0.7)"
-        },
-        "filterValues": {
-          "le": 1e-9
-        },
-        "legend": {
-          "show": true
-        },
-        "rowsFrame": {
-          "layout": "auto"
-        },
-        "tooltip": {
-          "mode": "single",
-          "showColorScale": false,
-          "yHistogram": false
-        },
-        "yAxis": {
-          "axisPlacement": "left",
-          "reverse": false
-        }
-      },
-      "pluginVersion": "11.2.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "adyapl0s2jawwf"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by (status, uri, le) (rate(http_server_requests_seconds_bucket[5m]))",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Error Code heatmap",
-      "type": "heatmap"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 18
-      },
-      "id": 14,
-      "panels": [],
-      "title": "Cache-retry",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 19
-      },
-      "id": 15,
-      "panels": [],
-      "title": "Kafka",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 20
-      },
-      "id": 16,
-      "panels": [],
-      "title": "Hazelcast",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 21
-      },
-      "id": 17,
-      "panels": [],
-      "title": "DB",
-      "type": "row"
     }
   ],
-  "refresh": "",
+  "refresh": "10s",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
@@ -1404,7 +1322,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},

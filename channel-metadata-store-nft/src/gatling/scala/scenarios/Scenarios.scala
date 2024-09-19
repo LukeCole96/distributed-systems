@@ -146,4 +146,24 @@ object TestScenario {
         ).asJson
     ).inject(constantUsersPerSec(10) during (2 minutes))
   }
+
+  val extended_get_gb_from_db_scenario = scenario("GET from DB Scenario")
+    .exec(
+      http("get_api_channel_metadata_GB")
+        .get("/api/channel-metadata/GB")
+        .header("Content-Type", "application/json")
+        .check(status.is(200))
+        .check(jsonPath("$.countryCode").is("GB"))
+        .check(jsonPath("$.product").is("exampleProduct"))
+        .check(jsonPath("$.metadata[0].name").is("AT One"))
+        .check(jsonPath("$.metadata[0].language").is("English"))
+        .check(jsonPath("$.metadata[0].type").is("News"))
+    )
+    .inject(constantUsersPerSec(100) during (30 minutes))
+    .throttle(
+      reachRps(100) in (30 seconds),
+      holdFor(30 minutes),
+      reachRps(0) in (30 seconds)
+    )
+
 }

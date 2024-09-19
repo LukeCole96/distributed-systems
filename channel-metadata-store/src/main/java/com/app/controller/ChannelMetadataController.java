@@ -73,11 +73,11 @@ public class ChannelMetadataController {
     }
 
     @GetMapping("/{countryCode}")
-    public ResponseEntity<ChannelMetadataRequest> getCountryData(@PathVariable String countryCode, HttpServletRequest httpRequest) {
+    public ResponseEntity<?> getCountryData(@PathVariable String countryCode, HttpServletRequest httpRequest) {
         log.info("Fetching data for countryCode: {}", countryCode);
 
         if (!authValidator.validate(httpRequest.getHeader("Authorization"))) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ChannelMetadataRequest()); //hacky oops
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid or missing credentials");
         }
 
         ChannelMetadataRequest channelData = channelMetadataService.getChannelMetadataByCountryCode(countryCode);

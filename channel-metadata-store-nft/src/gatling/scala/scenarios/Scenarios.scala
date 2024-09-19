@@ -13,6 +13,7 @@ object TestScenario {
   def peak_load(requestName: String, requestEndpoint: String) = scenario("peak load test for " + requestName + " endpoint")
     .exec(http(requestName)
       .get(requestEndpoint)
+      .header("Authorization", "Basic Y21zOmNtc3Bhc3M=")
       .check(status.is(200)))
     .inject(constantUsersPerSec(10) during (5 minutes))
     .throttle(reachRps(10) in (30 seconds),
@@ -24,6 +25,7 @@ object TestScenario {
       http("post_api_channel_metadata_GB")
         .post("/api/channel-metadata/GB")
         .header("Content-Type", "application/json")
+        .header("Authorization", "Basic Y21zOmNtc3Bhc3M=")
         .body(
           StringBody(
             """
@@ -55,6 +57,7 @@ object TestScenario {
       http("get_api_channel_metadata_GB")
         .get("/api/channel-metadata/GB")
         .header("Content-Type", "application/json")
+        .header("Authorization", "Basic Y21zOmNtc3Bhc3M=")
         .check(status.is(200))
         .check(jsonPath("$.countryCode").is("GB"))
         .check(jsonPath("$.product").is("exampleProduct"))
@@ -74,6 +77,7 @@ object TestScenario {
       http("get_api_channel_metadata_GB")
         .get("/api/channel-metadata/GB")
         .header("Content-Type", "application/json")
+        .header("Authorization", "Basic Y21zOmNtc3Bhc3M=")
         .check(status.is(200))
         .check(jsonPath("$.countryCode").is("GB"))
         .check(jsonPath("$.product").is("exampleProduct"))
@@ -98,6 +102,7 @@ object TestScenario {
       http(s"POST /api/channel-metadata/$countryCode")
         .post(endpoint)
         .header("Content-Type", "application/json")
+        .header("Authorization", "Basic Y21zOmNtc3Bhc3M=")
         .body(
           StringBody(
             s"""
@@ -127,6 +132,7 @@ object TestScenario {
       http(s"POST /api/channel-metadata/$countryCode")
         .post(endpoint)
         .header("Content-Type", "application/json")
+        .header("Authorization", "Basic Y21zOmNtc3Bhc3M=")
         .body(
           StringBody(
             s"""
@@ -152,6 +158,7 @@ object TestScenario {
       http("get_api_channel_metadata_GB")
         .get("/api/channel-metadata/GB")
         .header("Content-Type", "application/json")
+        .header("Authorization", "Basic Y21zOmNtc3Bhc3M=")
         .check(status.is(200))
         .check(jsonPath("$.countryCode").is("GB"))
         .check(jsonPath("$.product").is("exampleProduct"))

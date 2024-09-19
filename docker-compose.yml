@@ -161,6 +161,8 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/channel_metadata_db
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
+      - CMS_USERNAME=cms
+      - CMS_PASSWORD=cmspass
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - HAZELCAST_URL=hazelcast:5701
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka-1:9092,kafka-2:9094,kafka-3:9096
@@ -182,6 +184,9 @@ services:
       - kafka-2
       - kafka-3
       - cache-retry-db
+    environment:
+      - CMS_USERNAME=crs
+      - CMS_PASSWORD=crspass
     networks:
       - hazelcast-network
     labels:

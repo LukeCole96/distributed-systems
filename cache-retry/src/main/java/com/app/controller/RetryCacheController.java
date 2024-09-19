@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import com.app.controller.requesthelper.AuthValidator;
 import com.app.entity.DbDowntimeEntity;
 import com.app.exceptions.GlobalExceptionHandler;
 import com.app.model.ControllerResponse;
@@ -7,6 +8,7 @@ import com.app.service.RetryCacheService;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +19,14 @@ import java.util.List;
 public class RetryCacheController {
 
     private final RetryCacheService retryCacheService;
+    private final AuthValidator authValidator;
     private final Counter kafkaMessageReadCounter;
     private final Counter dbReadCounter;
     private final Timer dbReadTimer;
 
-    public RetryCacheController(RetryCacheService retryCacheService, MeterRegistry meterRegistry) {
+    public RetryCacheController(RetryCacheService retryCacheService, MeterRegistry meterRegistry, AuthValidator authValidator) {
         this.retryCacheService = retryCacheService;
+        this.authValidator = authValidator;
         this.kafkaMessageReadCounter = meterRegistry.counter("kafka_messages_read_total");
         this.dbReadCounter = meterRegistry.counter("db_read_total");
         this.dbReadTimer = meterRegistry.timer("db_read_duration");
@@ -30,7 +34,11 @@ public class RetryCacheController {
 
 
     @GetMapping("/trigger-cache-retry")
-    public ResponseEntity<ControllerResponse> triggerCacheRetry() {
+    public ResponseEntity<ControllerResponse> triggerCacheRetry(HttpServletRequest httpRequest) {
+        if (!authValidator.validate(httpRequest.getHeader("Authorization"))) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ControllerResponse("401", "Invalid or missing credentials"));
+        }
+
         try {
             kafkaMessageReadCounter.increment();
             retryCacheService.triggerChannelMetadataUpdate();
@@ -45,7 +53,10 @@ public class RetryCacheController {
     }
 
     @GetMapping("/get-downtime-logs")
-    public ResponseEntity<List<DbDowntimeEntity>> getDowntimeLogs() {
+    public ResponseEntity<?> getDowntimeLogs(HttpServletRequest httpRequest) {
+        if (!authValidator.validate(httpRequest.getHeader("Authorization"))) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid or missing credentials");
+        }
         try {
             List<DbDowntimeEntity> downtimeLogs = dbReadTimer.record(() -> retryCacheService.getAllDowntimeLogs());
             dbReadCounter.increment();

@@ -38,6 +38,7 @@ public class ChannelMetadataStepDefinitions {
 
         response = given()
                 .header("Content-Type", "application/json")
+                .header("Authorization", "Basic Y21zOmNtc3Bhc3M=")
                 .body(requestBody)
                 .post(host + endpoint);
 
@@ -50,6 +51,7 @@ public class ChannelMetadataStepDefinitions {
     public void post_data_to_without_body(String endpoint) throws InterruptedException {
         response = given()
                 .header("Content-Type", "application/json")
+                .header("Authorization", "Basic Y21zOmNtc3Bhc3M=")
                 .post(host + endpoint);
 
         response.prettyPrint();
@@ -61,6 +63,7 @@ public class ChannelMetadataStepDefinitions {
     public void get_data_from(String endpoint) {
         response = given()
                 .header("Content-Type", "application/json")
+                .header("Authorization", "Basic Y21zOmNtc3Bhc3M=")
                 .get(host + endpoint);
 
         response.prettyPrint();

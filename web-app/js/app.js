@@ -43,8 +43,6 @@ function saveState() {
 
 document.getElementById('apiForm').addEventListener('submit', async function (event) {
     event.preventDefault();
-    // saveState();
-
     const host = document.getElementById('host').value;
     let path = document.getElementById('path').value;
     const method = document.getElementById('method').value;
@@ -99,7 +97,7 @@ function addStatusToList(status) {
     }
 
     const statusListElement = document.getElementById('statusList');
-    statusListElement.innerHTML = ''; 
+    statusListElement.innerHTML = '';
 
     requestStatusList.forEach(statusMessage => {
         const listItem = document.createElement('li');
@@ -110,32 +108,50 @@ function addStatusToList(status) {
     localStorage.setItem('statusList', JSON.stringify(requestStatusList));
 }
 
-async function fetchDowntimeLogs() {
+let allLogs = [];
+
+async function fetchDowntimeLogs(showAll = false) {
     const url = 'http://localhost:90/get-downtime-logs';
     const headers = {
-        "Authorization": "Basic Y3JzOmNyc3Bhc3M=" 
+        "Authorization": "Basic Y3JzOmNyc3Bhc3M="
     };
 
     try {
-        const response = await fetch(url, {
-            headers: headers
-        });
+        const response = await fetch(url, { headers: headers });
         if (!response.ok) throw new Error('Failed to fetch downtime logs');
 
         const downtimeLogs = await response.json();
-        const tableBody = document.querySelector('#downtimeTable tbody');
-        tableBody.innerHTML = ''; 
-
-        downtimeLogs.forEach(log => {
-            if (log.id && log.downtimeTimestamp) {
-                const row = `<tr><td>${log.id}</td><td>${log.downtimeTimestamp}</td></tr>`;
-                tableBody.insertAdjacentHTML('beforeend', row);
-            }
-        });
+        allLogs = downtimeLogs;
+        renderDowntimeLogs(showAll ? allLogs : allLogs.slice(-30)); // Fix: slice the last 30 logs correctly
     } catch (error) {
         console.error('Error fetching downtime logs:', error);
     }
 }
 
+function renderDowntimeLogs(logs) {
+    const tableBody = document.querySelector('#downtimeTable tbody');
+    tableBody.innerHTML = '';
+
+    logs.forEach(log => {
+        if (log.id && log.downtimeTimestamp) {
+            const row = `<tr><td>${log.id}</td><td>${log.downtimeTimestamp}</td></tr>`;
+            tableBody.insertAdjacentHTML('beforeend', row);
+        }
+    });
+}
+
+document.getElementById('showAllButton').addEventListener('click', function () {
+    fetchDowntimeLogs(true);
+    document.getElementById('showAllButton').style.display = 'none';
+    document.getElementById('showRecentButton').style.display = 'inline';
+});
+
+document.getElementById('showRecentButton').addEventListener('click', function () {
+    fetchDowntimeLogs(false);
+    document.getElementById('showRecentButton').style.display = 'none';
+    document.getElementById('showAllButton').style.display = 'inline';
+});
+
 setInterval(fetchDowntimeLogs, 30000);
+
 fetchDowntimeLogs();

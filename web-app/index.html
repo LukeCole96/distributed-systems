@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMS Admin</title>
+    <title>API Request Builder</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <div class="container">
         <div class="left-panel">
-            <h1>CMS Admin</h1>
+            <h1>API Request Builder</h1>
 
             <form id="apiForm">
                 <label for="host">Select Host:</label>
@@ -61,6 +61,8 @@
 
         <div class="right-panel">
             <h2>Database Downtime Logs</h2>
+            <button id="showAllButton">Show All</button>
+            <button id="showRecentButton" style="display:none;">Show Last 30</button>
             <table id="downtimeTable">
                 <thead>
                     <tr>

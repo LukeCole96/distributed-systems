@@ -54,10 +54,11 @@ public class RetryCacheController {
 
     @GetMapping("/get-downtime-logs")
     public ResponseEntity<?> getDowntimeLogs(HttpServletRequest httpRequest) {
-        if (!authValidator.validate(httpRequest.getHeader("Authorization"))) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid or missing credentials");
-        }
         try {
+            if (!authValidator.validate(httpRequest.getHeader("Authorization"))) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid or missing credentials");
+            }
+
             List<DbDowntimeEntity> downtimeLogs = dbReadTimer.record(() -> retryCacheService.getAllDowntimeLogs());
             dbReadCounter.increment();
 

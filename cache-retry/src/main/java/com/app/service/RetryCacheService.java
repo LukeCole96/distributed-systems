@@ -45,13 +45,12 @@ public class RetryCacheService {
             DbDowntimeEntity downtimeStore = new DbDowntimeEntity();
 
             String timestamp = extractTimestampFromLog(message);
-            downtimeStore.setDowntimeTimestamp(timestamp);
-
-            dbWriteTimer.record(() -> downtimeRepo.save(downtimeStore));
-
-            dbWriteCounter.increment();
-
-            log.info("Successfully updated database with downtime timestamp: {}", timestamp);
+            if (timestamp != "null") {
+                downtimeStore.setDowntimeTimestamp(timestamp);
+                dbWriteTimer.record(() -> downtimeRepo.save(downtimeStore));
+                dbWriteCounter.increment();
+                log.info("Successfully updated database with downtime timestamp: {}", timestamp);
+            }
         } catch (Exception e) {
             log.error("Failed to update database with downtime timestamp.", e);
             throw e;

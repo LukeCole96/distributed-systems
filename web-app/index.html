@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS Admin</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h1>CMS Admin</h1>
+
+            <form id="apiForm">
+                <label for="host">Select Host:</label>
+                <select id="host">
+                    <option value="http://localhost:80">localhost:80</option>
+                    <option value="http://localhost:90">localhost:90</option>
+                </select>
+
+                <label for="path">Select Path:</label>
+                <select id="path">
+                    <option value="/api/channel-metadata/force-update-all">/api/channel-metadata/force-update-all</option>
+                    <option value="/api/channel-metadata/{param}">/api/channel-metadata/{param}</option>
+                    <option value="/get-downtime-logs">/get-downtime-logs</option>
+                    <option value="/trigger-cache-retry">/trigger-cache-retry</option>
+                    <option value="/private/prometheus">/private/prometheus</option>
+                    <option value="/private/info">/private/info</option>
+                    <option value="/private/healthcheck">/private/healthcheck</option>
+                    <option value="/private/status">/private/status</option>
+                </select>
+
+                <div id="paramInput" style="display:none;">
+                    <label for="pathParam">Enter value for {param}:</label>
+                    <input type="text" id="pathParam" placeholder="Enter value for {param}">
+                </div>
+
+                <label for="method">HTTP Method:</label>
+                <select id="method">
+                    <option value="GET">GET</option>
+                    <option value="POST">POST</option>
+                </select>
+
+                <label for="headers">Headers (JSON format, editable):</label>
+                <textarea id="headers" rows="4" placeholder='{"Content-Type": "application/json"}'></textarea>
+
+                <div id="bodyContainer">
+                    <label for="body">Request Body (JSON format, for POST only):</label>
+                    <textarea id="body" rows="5" placeholder='{"key": "value"}'></textarea>
+                </div>
+
+                <button type="submit">Send Request</button>
+            </form>
+
+            <h2>Response Output</h2>
+            <div id="responseOutput">Response will appear here...</div>
+
+            <h2>Request Status</h2>
+            <ul class="status-list" id="statusList"></ul>
+        </div>
+
+        <div class="right-panel">
+            <h2>Database Downtime Logs</h2>
+            <table id="downtimeTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Downtime logs will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>

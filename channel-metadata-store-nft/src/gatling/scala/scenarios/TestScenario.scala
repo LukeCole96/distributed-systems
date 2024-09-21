@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
 
-object TestScenarios {
+object TestScenario {
 
   val status_scenario = peak_load("private_status", "/private/status")
   val metrics_scenario = peak_load("private_metrics", "/private/metrics")

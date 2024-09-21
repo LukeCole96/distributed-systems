@@ -4,6 +4,10 @@ import com.app.model.ChannelMetadataRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,10 +21,17 @@ public class ChannelMetadataEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
+    @NotBlank(message = "Country code cannot be blank")
     protected String countryCode;
+
     @Lob
+    @NotNull(message = "Metadata cannot be null")
+    @Size(min = 1, message = "Metadata must contain at least one channel")
     protected String metadata;
+
+    @NotBlank(message = "Product cannot be blank")
     protected String product;
+
 
     public ChannelMetadataEntity() {}
 

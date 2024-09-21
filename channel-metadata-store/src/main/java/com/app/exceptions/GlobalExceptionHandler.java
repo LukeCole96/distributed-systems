@@ -1,10 +1,14 @@
 package com.app.exceptions;
 
 import com.app.kafka.KafkaProducerService;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -24,13 +28,6 @@ public class GlobalExceptionHandler {
     @Autowired
     public GlobalExceptionHandler(KafkaProducerService kafkaProducerService) {
         this.kafkaProducerService = kafkaProducerService;
-    }
-
-    // 4XX
-    public static class MethodArgumentNotValidException extends RuntimeException {
-        public MethodArgumentNotValidException(String message) {
-            super(message);
-        }
     }
 
     //409
@@ -68,11 +65,14 @@ public class GlobalExceptionHandler {
         }
     }
 
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationException(MethodArgumentNotValidException ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
         errorDetails.put("errorCode", "CMS-0001");
-        errorDetails.put("message", ex.getMessage());
+        ex.getBindingResult().getFieldErrors().forEach(error -> {
+            errorDetails.put(error.getField(), error.getDefaultMessage());
+        });
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
@@ -126,14 +126,32 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
     }
 
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Map<String, String>> handleJsonParseException(HttpMessageNotReadableException ex, WebRequest request) {
+        Throwable cause = ex.getCause();
+        String errorMessage = "Invalid JSON format";
+
+        if (cause instanceof JsonParseException) {
+            errorMessage = "Malformed JSON request";
+        } else if (cause instanceof JsonMappingException) {
+            errorMessage = "JSON field mismatch or invalid data structure";
+        }
+
+        Map<String, String> errorDetails = new HashMap<>();
+        errorDetails.put("errorCode", "CMS-0007");
+        errorDetails.put("message", errorMessage);
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+
     // 5XX
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handleGlobalException(Exception ex, WebRequest request) {
         Map<String, String> errorDetails = new HashMap<>();
-        errorDetails.put("errorCode", "CMS-0007");
-        errorDetails.put("message", "An unexpected error occurred");
+        errorDetails.put("errorCode", "CMS-0008");
+        errorDetails.put("message", "An unexpected error occurred: " + ex.getMessage());
 
-        sendErrorMessageToKafka("CMS-0007", ex.getMessage());
+        sendErrorMessageToKafka("CMS-0008", ex.getMessage());
 
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }

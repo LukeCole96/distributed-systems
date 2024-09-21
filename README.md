@@ -4,7 +4,6 @@
 Sky require a system that will integrate with an existing upstream. This upstream will want to call CMS to get channel-metadata, containing streaming metadata critical with provisioning existing and new channels for streaming propositions globally. The following system is designed to be highly avaialable, scalable and resillient. It also needs to be performant and fail fast. In the event there is DB downtime, the system should serve a last known good to make a best effort of serving data for critical BAU processes, that can impact customer playout.
 
 ## Overview
-![alt text](image.png)
 
 Distributed Systems is a modular microservice domain designed for comprehensive monitoring and management of various components within an environment. It integrates essential tools like Prometheus, Grafana, and Alert Manager to ensure optimal system performance and visibility. 
 
@@ -13,6 +12,45 @@ It integrates a Springboot Application, Channel-Metadata-Store (CMS) with a MySQ
 In the event the DB did go over, we want to ensure any cached items added that weren't able to be populated in the database, are. We did this by enabling CMS to produce topics (db-retry-cache-topic:3-3) to indicate a need to retry updating DB with cache data, to a Kafka Cluster (3 brokers and a zoo keeper instance). Then, a seperate Springboot Application, Cache-Retry-Service (CRS), will consume these topics. Once CMS has produced to Kafka and CRS consuming topics, we extract key metadata containing timestamps of the database failover. We store this in a seperate MySql database (Cache-retry-DB). After updating the DB, and regardless of success or failure with the write, CRS calls CMS's GET /force-cache-update to attempt a cache update to DB.
 
 There is then a Admin Web Interface, used by a user that would like to create/update streaming channels for various countries manually. This Admin interface has a form to build queries against CMS/CRS, and has a view of the database downtime captured in Cache-retry-DB to show general downtime.
+
+### User Journey: Channel Metadata Flow
+
+![alt text](image.png)
+
+Admin Interface:
+
+Users interact with the front-end to submit requests to either:
+- View DB downtime data.
+Post or retrieve channel metadata (GET/POST).
+- Receive Real-time status of submitted requests.
+
+Channel Metadata Store (Producer App):
+The front-end sends the metadata requests to the Channel Metadata Store.
+This service manages writes and reads through a Hazelcast cache:
+- (1.1) Writes are attempted through the cache before reaching the database.
+- If the database is available, data is written directly.
+- If successful, a response is returned to the user.
+
+Failure Handling (Sad Path):
+If the write to the database fails, the Channel Metadata Store publishes the failed events to Kafka.
+- (2.0) The Kafka cluster (3 brokers) handles these failed events.
+- The Cache Retry Service (Consumer App) subscribes to Kafka:
+- (2.1) This service consumes failed messages and attempts to retry the DB updates.
+- (2.2) It can force an update to ensure the data eventually reaches the DB.
+
+DB-Downtime-Store:
+The DB-Downtime-Store logs any downtime events, and this data can be accessed via the admin interface.
+- (3.0) This service provides downtime info, which is returned to the user.
+
+Monitoring and Metrics:
+Prometheus scrapes metrics from the producer app and stores them for analysis.
+- (3.1) It scrapes relevant system metrics.
+- Grafana visualizes these metrics and provides monitoring dashboards.
+- (3.2) Grafana helps monitor system health and alert managers can be triggered for downtime or failed retries.
+
+Flow Summary:
+- Happy Path (Green): Successful writes go through Hazelcast cache and database, returning responses to the user.
+- Sad Path (Red): If a failure occurs (DB down), Kafka handles the failed events, and the Cache Retry Service ensures data integrity by retrying updates.
 
 ## Tech Stack
 Languages:
@@ -49,7 +87,6 @@ Infrastructure as Code:
 - Docker/Docker-compose
 
 ## Modules
-
 ### alert-manager
 Handles alert notifications based on predefined thresholds. It routes alerts to appropriate channels and supports integration with multiple notification platforms.
 
@@ -277,7 +314,7 @@ task prodSimulation(type: JavaExec) {
     args = [
             '--simulation', 'simulation.ProductionTrafficExtendedPeakLoad'
     ]
-
+}
 ```
 
 ### Docker Management Commands

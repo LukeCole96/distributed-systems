@@ -72,6 +72,12 @@ document.getElementById('apiForm').addEventListener('submit', async function (ev
         const duration = (performance.now() - startTime).toFixed(2);
         let responseBody;
 
+        const responseHeaders = [...response.headers.entries()]
+            .map(([key, value]) => `${key}: ${value}`)
+            .join('\n');
+
+        const headersOutput = `Response Headers:\n${responseHeaders}\n\n`;
+
         const contentType = response.headers.get('Content-Type');
         if (contentType && contentType.includes('application/json')) {
             responseBody = await response.json();
@@ -82,7 +88,9 @@ document.getElementById('apiForm').addEventListener('submit', async function (ev
 
         const statusMessage = `Request to ${url} took ${duration}ms - Status: ${response.status} ${response.statusText}`;
         addStatusToList(statusMessage);
-        document.getElementById('responseOutput').textContent = responseBody;
+
+        document.getElementById('responseOutput').textContent = headersOutput + responseBody;
+
     } catch (error) {
         const duration = (performance.now() - startTime).toFixed(2);
         addStatusToList(`Error after ${duration}ms: ${error.message}`);
@@ -122,7 +130,7 @@ async function fetchDowntimeLogs(showAll = false) {
 
         const downtimeLogs = await response.json();
         allLogs = downtimeLogs;
-        renderDowntimeLogs(showAll ? allLogs : allLogs.slice(-30)); // Fix: slice the last 30 logs correctly
+        renderDowntimeLogs(showAll ? allLogs : allLogs.slice(-30));
     } catch (error) {
         console.error('Error fetching downtime logs:', error);
     }

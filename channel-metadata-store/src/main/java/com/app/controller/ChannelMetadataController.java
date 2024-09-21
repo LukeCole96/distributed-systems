@@ -10,11 +10,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
 @Slf4j
+@Validated
 @RestController
 @RequestMapping("/api/channel-metadata")
 public class ChannelMetadataController {
@@ -62,7 +64,6 @@ public class ChannelMetadataController {
     public ResponseEntity<String> saveCountryData(@PathVariable String countryCode,
                                                   @Valid @RequestBody ChannelMetadataRequest request, HttpServletRequest httpRequest) {
         log.info("Received request to save data for countryCode: {}", countryCode);
-
         String requestId = getRequestIdOrGenerate(httpRequest);
 
         if (!authValidator.validate(httpRequest.getHeader("Authorization"))) {
@@ -84,8 +85,6 @@ public class ChannelMetadataController {
             throw new GlobalExceptionHandler.BadRequestException("Invalid request data");
         } catch (GlobalExceptionHandler.ResourceNotFoundException e) {
             throw new GlobalExceptionHandler.ResourceNotFoundException("Country not found");
-        } catch (GlobalExceptionHandler.MethodArgumentNotValidException e) {
-            throw new GlobalExceptionHandler.MethodArgumentNotValidException(e.getMessage());
         } catch (Exception e) {
             throw new GlobalExceptionHandler.ConflictException("Timeout occurred");
         }
@@ -93,6 +92,10 @@ public class ChannelMetadataController {
 
     @GetMapping("/{countryCode}")
     public ResponseEntity<?> getCountryData(@PathVariable String countryCode, HttpServletRequest httpRequest) {
+        if (countryCode == null || countryCode.trim().isEmpty()) {
+            throw new GlobalExceptionHandler.BadRequestException("Country code cannot be empty");
+        }
+
         log.info("Fetching data for countryCode: {}", countryCode);
 
         String requestId = getRequestIdOrGenerate(httpRequest);

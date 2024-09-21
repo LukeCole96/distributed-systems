@@ -70,6 +70,7 @@ public class RetryCacheService {
     public void triggerChannelMetadataUpdate() throws InterruptedException {
         webClient.post()
                 .uri("/api/channel-metadata/force-update-all")
+                .header("Authorization","Basic Y21zOmNtc3Bhc3M=")
                 .retrieve()
                 .toBodilessEntity()
                 .doOnSuccess(response -> log.info("Successfully triggered channel metadata update. Response: {}", response))

@@ -3,7 +3,6 @@ package simulationDowntime
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scenarios.TestScenario
-
 import scala.sys.process._
 import scala.language.postfixOps
 

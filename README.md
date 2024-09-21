@@ -4,6 +4,8 @@
 Sky require a system that will integrate with an existing upstream. This upstream will want to call CMS to get channel-metadata, containing streaming metadata critical with provisioning existing and new channels for streaming propositions globally. The following system is designed to be highly avaialable, scalable and resillient. It also needs to be performant and fail fast. In the event there is DB downtime, the system should serve a last known good to make a best effort of serving data for critical BAU processes, that can impact customer playout.
 
 ## Overview
+![alt text](image.png)
+
 Distributed Systems is a modular microservice domain designed for comprehensive monitoring and management of various components within an environment. It integrates essential tools like Prometheus, Grafana, and Alert Manager to ensure optimal system performance and visibility. 
 
 It integrates a Springboot Application, Channel-Metadata-Store (CMS) with a MySQL database (DB), persisting country streaming channels metadata. CMS also utilizes a hazelcast cluser, used as distributed cache in a 'write-through' context. This strategy ensures that we update the cache eachtime we update the database, and in the event the DB fell over, we can use this as a last known good until services are fully restored, presenting key resilliency in availability and design. 

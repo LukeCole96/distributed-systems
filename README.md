@@ -60,7 +60,7 @@ A springboot application that produces kafka, integrates with CRS and a MySQL DB
 ### channel-metadata-nft
 A non-functional-test suite that runs gatling simulation tests against the domain.
 
-### contianer-metadata-store-nft
+### container-scan-tests
 A bash script that is run in conjunction with docker-compose, it runs scans against active containers as they're built to identify and report vulnrabilities based on status (low, medium, high, severe).
 
 ### func-tests

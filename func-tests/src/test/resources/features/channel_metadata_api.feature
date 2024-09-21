@@ -29,3 +29,24 @@ Feature: Channel Metadata API - returning and accepting metadata.
     When I POST data to "/api/channel-metadata/GB" with invalid credentials "Basic sfsfs="
     Then the status code should be 401
     And the response should contain "Invalid or missing credentials"
+
+  Scenario: Post malformed JSON to save GB channel metadata
+    Given the database is up and running
+    When I POST malformed JSON to "/api/channel-metadata/GB" with auth header "Basic Y21zOmNtc3Bhc3M="
+    Then the status code should be 400
+    And the response should contain "CMS-0007"
+    And the response should contain "Malformed JSON request"
+
+  Scenario: Post invalid attribute to save GB channel metadata
+    Given the database is up and running
+    When I POST data with invalid attribute to "/api/channel-metadata/GB" with auth header "Basic Y21zOmNtc3Bhc3M="
+    Then the status code should be 400
+    And the response should contain "CMS-0007"
+    And the response should contain "JSON field mismatch or invalid data structure"
+
+  Scenario: Post malformed field to save GB channel metadata
+    Given the database is up and running
+    When I POST data with malformed field to "/api/channel-metadata/GB" with auth header "Basic Y21zOmNtc3Bhc3M="
+    Then the status code should be 400
+    And the response should contain "CMS-0007"
+    And the response should contain "JSON field mismatch or invalid data structure"

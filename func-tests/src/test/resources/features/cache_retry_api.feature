@@ -15,4 +15,4 @@ Feature: Cache-Retry API - consumes from kafka and triggers retries on cms cache
   @cacheRetry
   Scenario: Receive security failure when trying to retry cache
     Given I GET data from "/trigger-cache-retry" with invalid credentials "Basic banana="
-    Then the status code should be 500
+    Then the status code should be 401

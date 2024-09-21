@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
+
 import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.given;
@@ -18,11 +19,7 @@ public class ChannelMetadataStepDefinitions {
     private String host;
 
     private void setHost(String endpoint) {
-        if (endpoint.startsWith("/api/channel-metadata")) {
-            host = "http://localhost:80";
-        } else {
-            host = "http://localhost:90";
-        }
+        host = endpoint.startsWith("/api/channel-metadata") ? "http://localhost:80" : "http://localhost:90";
     }
 
     @Given("the database is up and running")
@@ -30,7 +27,7 @@ public class ChannelMetadataStepDefinitions {
     }
 
     @When("I POST data to {string} with body and auth header {string}")
-    public void post_data_to_with_body(String endpoint, String authHeader) throws InterruptedException {
+    public void post_data_to_with_body(String endpoint, String authHeader) {
         setHost(endpoint);
 
         String requestBody = """
@@ -54,11 +51,88 @@ public class ChannelMetadataStepDefinitions {
                 .post(host + endpoint);
 
         response.prettyPrint();
-        Thread.sleep(1000);
+    }
+
+    @When("I POST malformed JSON to {string} with auth header {string}")
+    public void post_malformed_json_to(String endpoint, String authHeader) {
+        setHost(endpoint);
+
+        String malformedJson = """
+                {
+                        {
+                            "name": "AT One",
+                            "language": "English",
+                            "type": "News"
+                        }
+                   oduct": "exampleProduct"
+                }
+        """;
+
+        response = given()
+                .header("Content-Type", "application/json")
+                .header("Authorization", authHeader)
+                .body(malformedJson)
+                .post(host + endpoint);
+
+        response.prettyPrint();
+    }
+
+    @When("I POST data with invalid attribute to {string} with auth header {string}")
+    public void post_data_with_invalid_attribute_to(String endpoint, String authHeader) {
+        setHost(endpoint);
+
+        String invalidRequest = """
+            {
+                "invalidCountryCode": "GB",
+                "metadata": [
+                    {
+                        "name": "AT One",
+                        "language": "English",
+                        "type": "News"
+                    }
+                ],
+                "product": "exampleProduct"
+            }
+        """;
+
+        response = given()
+                .header("Content-Type", "application/json")
+                .header("Authorization", authHeader)
+                .body(invalidRequest)
+                .post(host + endpoint);
+
+        response.prettyPrint();
+    }
+
+    @When("I POST data with malformed field to {string} with auth header {string}")
+    public void post_data_with_malformed_field_to(String endpoint, String authHeader) {
+        setHost(endpoint);
+
+        String malformedFieldRequest = """
+            {
+                "countryCode": "GB",
+                "metadata": [
+                    {
+                        "name": "AT One",
+                        "language": "123,
+                        "type": "News"
+                    }
+                ],
+                "product": "exampleProduct"
+            }
+        """;
+
+        response = given()
+                .header("Content-Type", "application/json")
+                .header("Authorization", authHeader)
+                .body(malformedFieldRequest)
+                .post(host + endpoint);
+
+        response.prettyPrint();
     }
 
     @When("I POST data to {string} with invalid credentials {string}")
-    public void post_data_to_with_invalid_credentials(String endpoint, String auth) throws InterruptedException {
+    public void post_data_to_with_invalid_credentials(String endpoint, String auth) {
         setHost(endpoint);
 
         String requestBody = """
@@ -82,24 +156,22 @@ public class ChannelMetadataStepDefinitions {
                 .post(host + endpoint);
 
         response.prettyPrint();
-        Thread.sleep(1000);
     }
 
     @When("I GET data from {string} with invalid credentials {string}")
-    public void get_data_to_with_invalid_credentials(String endpoint, String auth) throws InterruptedException {
+    public void get_data_to_with_invalid_credentials(String endpoint, String auth) {
         setHost(endpoint);
+
         response = given()
                 .header("Content-Type", "application/json")
                 .header("Authorization", auth)
-                .post(host + endpoint);
+                .get(host + endpoint);
 
         response.prettyPrint();
-        Thread.sleep(1000);
     }
 
-
     @When("I POST data to {string} without body")
-    public void post_data_to_without_body(String endpoint) throws InterruptedException {
+    public void post_data_to_without_body(String endpoint) {
         setHost(endpoint);
 
         response = given()
@@ -108,7 +180,6 @@ public class ChannelMetadataStepDefinitions {
                 .post(host + endpoint);
 
         response.prettyPrint();
-        Thread.sleep(1000);
     }
 
     @And("I GET data from {string} with auth header {string}")

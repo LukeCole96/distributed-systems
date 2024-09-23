@@ -94,7 +94,7 @@ Handles alert notifications based on predefined thresholds. It routes alerts to 
 A springboot application that consumes from kafka, integrates with CMS and a MySQL DB (cache-retry-db). A Web app interfaces with this application to receive DB database downtime data from database.
 
 ### channel-metadata-store
-A springboot application that produces kafka, integrates with CRS and a MySQL DB (DB). A Web app interfaces with this application to update streaming channel-metadata in the database.
+A springboot application that produces kafka messages, integrates with hazelcast cache and a MySQL DB (DB). A Web app interfaces with this application to update streaming channel-metadata in the database.
 
 ### channel-metadata-nft
 A non-functional-test suite that runs gatling simulation tests against the domain.
